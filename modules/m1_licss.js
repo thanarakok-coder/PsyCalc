@@ -371,9 +371,9 @@ window.M1_LiCss = {
                     <label for="m1-target-css">ระดับยา Css</label>
                     <div class="stepper-container">
                       <div class="stepper-box">
-                        <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-target-css', -0.1, 0, 5, 2)">-</button>
-                        <input type="number" id="m1-target-css" step="0.1" placeholder="0.00" oninput="window.M1_LiCss.calculate()">
-                        <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-target-css', 0.1, 0, 5, 2)">+</button>
+                        <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-target-css', -0.1, 0, 5, 3)">-</button>
+                        <input type="number" id="m1-target-css" step="0.001" placeholder="0.000" oninput="window.M1_LiCss.calculate()">
+                        <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-target-css', 0.1, 0, 5, 3)">+</button>
                       </div>
                       <span class="unit-text">mEq/L</span>
                     </div>
@@ -498,33 +498,36 @@ window.M1_LiCss = {
     let cssIbwF = calcCss(dose, crclIbwF);
     let cssRealF = calcCss(dose, crclRealF);
 
-    // ================= RENDER RESULTS =================
+    // ================= RENDER RESULTS (ใช้ทศนิยม 3 หลัก) =================
     // Male Results
-    this.setText('m-ibw', ibwM > 0 ? ibwM.toFixed(2) : '-');
-    this.setText('m-realbw', bw > 0 ? bw.toFixed(2) : '-');
-    this.setText('m-crcl-ibw', crclIbwM > 0 ? crclIbwM.toFixed(2) : '-');
-    this.setText('m-crcl-realbw', crclRealM > 0 ? crclRealM.toFixed(2) : '-');
-    this.setText('m-css-ibw', cssIbwM > 0 ? cssIbwM.toFixed(2) : '-');
-    this.setText('m-css-realbw', cssRealM > 0 ? cssRealM.toFixed(2) : '-');
+    this.setText('m-ibw', ibwM > 0 ? ibwM.toFixed(3) : '-');
+    this.setText('m-realbw', bw > 0 ? bw.toFixed(3) : '-');
+    this.setText('m-crcl-ibw', crclIbwM > 0 ? crclIbwM.toFixed(3) : '-');
+    this.setText('m-crcl-realbw', crclRealM > 0 ? crclRealM.toFixed(3) : '-');
+    this.setText('m-css-ibw', cssIbwM > 0 ? cssIbwM.toFixed(3) : '-');
+    this.setText('m-css-realbw', cssRealM > 0 ? cssRealM.toFixed(3) : '-');
 
     // Female Results
-    this.setText('f-ibw', ibwF > 0 ? ibwF.toFixed(2) : '-');
-    this.setText('f-realbw', bw > 0 ? bw.toFixed(2) : '-');
-    this.setText('f-crcl-ibw', crclIbwF > 0 ? crclIbwF.toFixed(2) : '-');
-    this.setText('f-crcl-realbw', crclRealF > 0 ? crclRealF.toFixed(2) : '-');
-    this.setText('f-css-ibw', cssIbwF > 0 ? cssIbwF.toFixed(2) : '-');
-    this.setText('f-css-realbw', cssRealF > 0 ? cssRealF.toFixed(2) : '-');
+    this.setText('f-ibw', ibwF > 0 ? ibwF.toFixed(3) : '-');
+    this.setText('f-realbw', bw > 0 ? bw.toFixed(3) : '-');
+    this.setText('f-crcl-ibw', crclIbwF > 0 ? crclIbwF.toFixed(3) : '-');
+    this.setText('f-crcl-realbw', crclRealF > 0 ? crclRealF.toFixed(3) : '-');
+    this.setText('f-css-ibw', cssIbwF > 0 ? cssIbwF.toFixed(3) : '-');
+    this.setText('f-css-realbw', cssRealF > 0 ? cssRealF.toFixed(3) : '-');
 
     // Highlight น้ำหนักที่น้อยกว่าและช่อง Css ที่สอดคล้องกัน
     this.highlightLower('m-ibw-box', 'm-realbw-box', 'm-css-ibw-box', 'm-css-realbw-box', ibwM, bw);
     this.highlightLower('f-ibw-box', 'f-realbw-box', 'f-css-ibw-box', 'f-css-realbw-box', ibwF, bw);
 
-    // Recommended Dose Calculations
+    // Recommended Dose Calculations (ตามสูตรใหม่และทศนิยม 3 หลัก)
     if (dose > 0 && targetCss > 0) {
-      let recBase = (dose * targetCss);
-      this.setText('rec-min', (recBase * 0.8).toFixed(2) + ' เม็ด/วัน');
-      this.setText('rec-max-acute', (recBase * 1.5).toFixed(2) + ' เม็ด/วัน');
-      this.setText('rec-max-maint', recBase.toFixed(2) + ' เม็ด/วัน');
+      let minDose = (0.6 * dose) / targetCss;
+      let maxAcute = (1.2 * dose) / targetCss;
+      let maxMaint = (1.0 * dose) / targetCss;
+
+      this.setText('rec-min', minDose.toFixed(3) + ' เม็ด/วัน');
+      this.setText('rec-max-acute', maxAcute.toFixed(3) + ' เม็ด/วัน');
+      this.setText('rec-max-maint', maxMaint.toFixed(3) + ' เม็ด/วัน');
     } else {
       this.setText('rec-min', '- เม็ด/วัน');
       this.setText('rec-max-acute', '- เม็ด/วัน');
