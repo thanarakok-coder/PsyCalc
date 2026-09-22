@@ -3,21 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const moduleMenu = document.getElementById('module-menu');
     const moduleContent = document.getElementById('module-content');
 
-    // โหลด Module ตามการเลือก
+    // ฟังก์ชันสลับ Module
     window.loadModule = function(modId) {
         moduleMenu.style.display = 'none';
         moduleContent.style.display = 'block';
 
-        if (modId === 'm1') {
-            if (window.M1_LiCss) {
-                window.M1_LiCss.render(moduleContent);
-            } else {
-                // Dynamically Load JS Module
-                const script = document.createElement('script');
-                script.src = 'modules/m1_liCss.js';
-                script.onload = () => window.M1_LiCss.render(moduleContent);
-                document.head.appendChild(script);
-            }
+        if (modId === 'm1' && window.M1_LiCss) {
+            window.M1_LiCss.render(moduleContent);
+        } else if (modId === 'm2' && window.M2_ValCss) {
+            window.M2_ValCss.render(moduleContent);
+        } else if (modId === 'm3' && window.M3_PheCap) {
+            window.M3_PheCap.render(moduleContent);
+        } else if (modId === 'm4' && window.M4_PheTab) {
+            window.M4_PheTab.render(moduleContent);
         }
     };
 
@@ -32,11 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.menu-card').forEach(card => {
         card.addEventListener('click', () => {
             const mod = card.getAttribute('data-module');
-            if (mod === 'm1') loadModule('m1');
+            loadModule(mod);
         });
     });
 
-    // Utility: ฟังชั่นช่วยรองรับการกด Enter เพื่อข้ามไป input ถัดไป
+    // Event Listener กลางสำหรับกด Enter ข้ามช่อง
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && e.target.tagName === 'INPUT') {
             e.preventDefault();
