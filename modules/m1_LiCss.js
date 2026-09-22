@@ -6,9 +6,7 @@ window.M1_LiCss = {
                 <button id="m1-btn-clear" class="btn-clear">Clear ค่าทั้งหมด</button>
             </div>
 
-            <!-- Panel บน: คำนวณทำนายระดับยา -->
             <div class="m1-top-layout">
-                <!-- Input 1 Area (สัดส่วน ~30-35%) -->
                 <div class="m1-input-panel">
                     <div class="form-group">
                         <label for="m1-bw">BW (น้ำหนัก)</label>
@@ -47,9 +45,7 @@ window.M1_LiCss = {
                     </div>
                 </div>
 
-                <!-- Output 1 Area: ผลคำนวณทำนายระดับยา -->
                 <div class="m1-output-panel">
-                    <!-- ฝั่งชาย (สีฟ้าอ่อน) -->
                     <div class="gender-box gender-male">
                         <div class="gender-title">เพศชาย</div>
                         <div class="sub-cols">
@@ -66,7 +62,6 @@ window.M1_LiCss = {
                         </div>
                     </div>
 
-                    <!-- ฝั่งหญิง (สีชมพูอ่อน) -->
                     <div class="gender-box gender-female">
                         <div class="gender-title">เพศหญิง</div>
                         <div class="sub-cols">
@@ -85,7 +80,6 @@ window.M1_LiCss = {
                 </div>
             </div>
 
-            <!-- Panel ล่าง: Recommended dose (ss 7 วัน) -->
             <div class="m1-bottom-layout">
                 <div class="rec-input-panel">
                     <div class="rec-title">recommend dose (steady state 7 วัน)</div>
@@ -120,7 +114,8 @@ window.M1_LiCss = {
     bindEvents: function() {
         const inputs = ['m1-bw', 'm1-ht', 'm1-age', 'm1-scr', 'm1-dose', 'm1-rec-dose', 'm1-rec-css'];
         inputs.forEach(id => {
-            document.getElementById(id).addEventListener('input', () => this.calculate());
+            const el = document.getElementById(id);
+            el.addEventListener('input', () => this.calculate());
         });
 
         document.getElementById('m1-btn-clear').addEventListener('click', () => {
@@ -138,7 +133,6 @@ window.M1_LiCss = {
         const scr = parseFloat(document.getElementById('m1-scr').value);
         const dose = parseFloat(document.getElementById('m1-dose').value);
 
-        // คำนวณฝั่งทำนายระดับยา
         if (bw > 0 && ht > 0 && age > 0 && scr > 0 && dose > 0) {
             // Male
             const m_ibw = 50 + 2.3 * ((ht / 2.54) - 60);
@@ -156,11 +150,8 @@ window.M1_LiCss = {
             document.getElementById('m-crcl-real').innerText = m_crcl_real.toFixed(3);
             document.getElementById('m-css-real').innerText = m_css_real.toFixed(3);
 
-            // Highlight Male Lower Weight
-            const colMIbw = document.getElementById('col-m-ibw');
-            const colMReal = document.getElementById('col-m-real');
-            colMIbw.classList.toggle('highlight', m_ibw < bw);
-            colMReal.classList.toggle('highlight', bw <= m_ibw);
+            document.getElementById('col-m-ibw').classList.toggle('highlight', m_ibw < bw);
+            document.getElementById('col-m-real').classList.toggle('highlight', bw <= m_ibw);
 
             // Female
             const f_ibw = 45.5 + 2.3 * ((ht / 2.54) - 60);
@@ -178,14 +169,10 @@ window.M1_LiCss = {
             document.getElementById('f-crcl-real').innerText = f_crcl_real.toFixed(3);
             document.getElementById('f-css-real').innerText = f_css_real.toFixed(3);
 
-            // Highlight Female Lower Weight
-            const colFIbw = document.getElementById('col-f-ibw');
-            const colFReal = document.getElementById('col-f-real');
-            colFIbw.classList.toggle('highlight', f_ibw < bw);
-            colFReal.classList.toggle('highlight', bw <= f_ibw);
+            document.getElementById('col-f-ibw').classList.toggle('highlight', f_ibw < bw);
+            document.getElementById('col-f-real').classList.toggle('highlight', bw <= f_ibw);
 
         } else {
-            // Clear outputs
             ['m-ibw', 'm-crcl-ibw', 'm-css-ibw', 'm-realbw', 'm-crcl-real', 'm-css-real',
              'f-ibw', 'f-crcl-ibw', 'f-css-ibw', 'f-realbw', 'f-crcl-real', 'f-css-real'].forEach(id => {
                 document.getElementById(id).innerText = '-';
@@ -195,7 +182,6 @@ window.M1_LiCss = {
             });
         }
 
-        // คำนวณฝั่ง Recommended Dose
         const recDose = parseFloat(document.getElementById('m1-rec-dose').value);
         const recCss = parseFloat(document.getElementById('m1-rec-css').value);
 
