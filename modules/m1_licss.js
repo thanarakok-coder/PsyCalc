@@ -3,37 +3,20 @@ window.M1_LiCss = {
     container.innerHTML = `
       <style>
         .m1-container {
-          padding: 10px;
+          padding: 8px;
           max-width: 1280px;
           margin: 0 auto;
           font-family: system-ui, -apple-system, sans-serif;
         }
         .m1-header-block {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
           margin-bottom: 12px;
-          padding-bottom: 8px;
+          padding-bottom: 6px;
           border-bottom: 1px solid #e2e8f0;
         }
         .m1-title-text {
-          font-size: 1.1rem;
+          font-size: 1.15rem;
           font-weight: 700;
-          color: #1e293b;
-        }
-        .btn-clear {
-          background-color: #ef4444;
-          color: white;
-          border: none;
-          padding: 6px 14px;
-          border-radius: 6px;
-          font-size: 0.85rem;
-          font-weight: 600;
-          cursor: pointer;
-          transition: background-color 0.2s;
-        }
-        .btn-clear:hover {
-          background-color: #dc2626;
+          color: #0f172a;
         }
         
         /* Grid Layout: PC = 2 Columns */
@@ -49,22 +32,48 @@ window.M1_LiCss = {
           }
         }
 
-        /* Compact Stepper UI */
+        .m1-left-inputs {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
         .m1-card {
           background: #ffffff;
-          border: 1px solid #e2e8f0;
-          border-radius: 10px;
+          border: 1px solid #cbd5e1;
+          border-radius: 8px;
           padding: 12px;
-          box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .card-header-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px;
+          padding-bottom: 4px;
+          border-bottom: 2px solid #3b82f6;
         }
         .section-subtitle {
           font-size: 0.85rem;
           font-weight: 700;
           color: #0f172a;
-          margin-bottom: 10px;
-          padding-bottom: 4px;
-          border-bottom: 2px solid #3b82f6;
         }
+        .btn-reset-sm {
+          background: #f1f5f9;
+          color: #475569;
+          border: 1px solid #cbd5e1;
+          padding: 2px 8px;
+          border-radius: 4px;
+          font-size: 0.72rem;
+          font-weight: 600;
+          cursor: pointer;
+        }
+        .btn-reset-sm:hover {
+          background: #e2e8f0;
+          color: #0f172a;
+        }
+
         .form-group-compact {
           margin-bottom: 8px;
         }
@@ -72,7 +81,7 @@ window.M1_LiCss = {
           display: block;
           font-size: 0.78rem;
           font-weight: 600;
-          color: #475569;
+          color: #334155;
           margin-bottom: 3px;
         }
         .stepper-row {
@@ -87,40 +96,37 @@ window.M1_LiCss = {
           border: 1px solid #cbd5e1;
           border-radius: 20px;
           padding: 2px;
-          width: 190px;
+          width: 180px;
           justify-content: space-between;
         }
         .btn-step {
-          width: 26px;
-          height: 26px;
+          width: 24px;
+          height: 24px;
           border-radius: 50%;
           border: 1px solid #cbd5e1;
           background: #ffffff;
           color: #334155;
           font-weight: bold;
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
           user-select: none;
-          transition: all 0.15s ease;
         }
         .btn-step:hover {
-          background: #e2e8f0;
-          color: #0f172a;
+          background: #cbd5e1;
         }
         .stepper-box input[type="number"] {
-          width: 120px;
+          width: 110px;
           border: none;
           background: transparent;
           text-align: center;
           font-weight: 700;
-          font-size: 0.9rem;
-          color: #1e293b;
+          font-size: 0.88rem;
+          color: #0f172a;
           outline: none;
         }
-        /* Hide browser default spinners */
         .stepper-box input[type="number"]::-webkit-outer-spin-button,
         .stepper-box input[type="number"]::-webkit-inner-spin-button {
           -webkit-appearance: none;
@@ -130,13 +136,12 @@ window.M1_LiCss = {
           -moz-appearance: textfield;
         }
         .unit-label {
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           color: #64748b;
-          font-weight: 500;
-          min-width: 40px;
+          font-weight: 600;
         }
 
-        /* Results Display (Right Panel) */
+        /* Results Display */
         .results-panel {
           display: flex;
           flex-direction: column;
@@ -188,136 +193,145 @@ window.M1_LiCss = {
           padding: 3px 6px;
           border-radius: 4px;
           line-height: 1.4;
+          background: rgba(255,255,255,0.6);
         }
-        /* Highlight lower weight item */
-        .calc-item.highlight-lower {
+        
+        /* Highlight low weight & low weight Css */
+        .highlight-lower {
           background-color: #dcfce7 !important;
-          border: 1px solid #86efac;
-          font-weight: 700;
-          color: #15803d;
+          border: 1px solid #86efac !important;
+          font-weight: 700 !important;
+          color: #15803d !important;
         }
+
         .dose-recommend-card {
-          background: #f8fafc;
-          border: 1px solid #e2e8f0;
+          background: #ffffff;
+          border: 1px solid #cbd5e1;
           border-radius: 8px;
           padding: 12px;
         }
         .recommend-title {
           font-size: 0.85rem;
           font-weight: 700;
-          color: #334155;
+          color: #0f172a;
           margin-bottom: 8px;
+          padding-bottom: 4px;
+          border-bottom: 1px solid #e2e8f0;
         }
         .rec-row {
           display: flex;
           justify-content: space-between;
-          padding: 4px 0;
-          border-bottom: 1px dashed #e2e8f0;
-          font-size: 0.85rem;
+          padding: 5px 0;
+          border-bottom: 1px dashed #f1f5f9;
+          font-size: 0.83rem;
         }
         .rec-row:last-child {
           border-bottom: none;
         }
         .rec-label { color: #475569; }
         .rec-val { font-weight: 700; color: #0f172a; }
-
-        .m1-footer {
-          margin-top: 16px;
-          text-align: center;
-          font-size: 0.75rem;
-          color: #64748b;
-        }
       </style>
 
       <div class="m1-container">
         <div class="m1-header-block">
           <div class="m1-title-text">M1: LiCss - ช่วยแนะนำการปรับขนาดยา Lithium</div>
-          <button id="m1-btn-clear" class="btn-clear">Clear ค่าทั้งหมด</button>
         </div>
 
         <div class="m1-main-grid">
-          <!-- LEFT: INPUT PANEL -->
-          <div class="m1-card">
-            <div class="section-subtitle">ข้อมูลผู้ป่วย</div>
-            
-            <div class="form-group-compact">
-              <label for="m1-bw">BW (น้ำหนัก)</label>
-              <div class="stepper-row">
-                <div class="stepper-box">
-                  <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-bw', -1, 0, 300, 1)">-</button>
-                  <input type="number" id="m1-bw" step="1" placeholder="0" oninput="window.M1_LiCss.calculate()">
-                  <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-bw', 1, 0, 300, 1)">+</button>
+          <!-- LEFT: INPUT PANELS -->
+          <div class="m1-left-inputs">
+            <!-- INPUT 1 CARD -->
+            <div class="m1-card">
+              <div class="card-header-row">
+                <span class="section-subtitle">ข้อมูลผู้ป่วย (Input 1)</span>
+                <button type="button" id="m1-btn-reset-in1" class="btn-reset-sm">Reset</button>
+              </div>
+              
+              <div class="form-group-compact">
+                <label for="m1-bw">BW (น้ำหนัก)</label>
+                <div class="stepper-row">
+                  <div class="stepper-box">
+                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-bw', -1, 0, 300, 1)">-</button>
+                    <input type="number" id="m1-bw" step="1" placeholder="0" oninput="window.M1_LiCss.calculate()">
+                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-bw', 1, 0, 300, 1)">+</button>
+                  </div>
+                  <span class="unit-label">kg</span>
                 </div>
-                <span class="unit-label">kg</span>
+              </div>
+
+              <div class="form-group-compact">
+                <label for="m1-ht">Ht (ส่วนสูง)</label>
+                <div class="stepper-row">
+                  <div class="stepper-box">
+                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-ht', -1, 0, 250, 1)">-</button>
+                    <input type="number" id="m1-ht" step="1" placeholder="0" oninput="window.M1_LiCss.calculate()">
+                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-ht', 1, 0, 250, 1)">+</button>
+                  </div>
+                  <span class="unit-label">cm</span>
+                </div>
+              </div>
+
+              <div class="form-group-compact">
+                <label for="m1-age">Age (อายุ)</label>
+                <div class="stepper-row">
+                  <div class="stepper-box">
+                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-age', -1, 0, 120, 0)">-</button>
+                    <input type="number" id="m1-age" step="1" placeholder="0" oninput="window.M1_LiCss.calculate()">
+                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-age', 1, 0, 120, 0)">+</button>
+                  </div>
+                  <span class="unit-label">ปี</span>
+                </div>
+              </div>
+
+              <div class="form-group-compact">
+                <label for="m1-scr">Scr</label>
+                <div class="stepper-row">
+                  <div class="stepper-box">
+                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-scr', -0.1, 0, 20, 2)">-</button>
+                    <input type="number" id="m1-scr" step="0.1" placeholder="0.00" oninput="window.M1_LiCss.calculate()">
+                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-scr', 0.1, 0, 20, 2)">+</button>
+                  </div>
+                  <span class="unit-label">mg/dL</span>
+                </div>
               </div>
             </div>
 
-            <div class="form-group-compact">
-              <label for="m1-ht">Ht (ส่วนสูง)</label>
-              <div class="stepper-row">
-                <div class="stepper-box">
-                  <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-ht', -1, 0, 250, 1)">-</button>
-                  <input type="number" id="m1-ht" step="1" placeholder="0" oninput="window.M1_LiCss.calculate()">
-                  <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-ht', 1, 0, 250, 1)">+</button>
-                </div>
-                <span class="unit-label">cm</span>
+            <!-- INPUT 2 CARD -->
+            <div class="m1-card">
+              <div class="card-header-row" style="border-bottom-color: #10b981;">
+                <span class="section-subtitle">recommend dose (steady state 7 วัน) (Input 2)</span>
+                <button type="button" id="m1-btn-reset-in2" class="btn-reset-sm">Reset</button>
               </div>
-            </div>
 
-            <div class="form-group-compact">
-              <label for="m1-age">Age (อายุ)</label>
-              <div class="stepper-row">
-                <div class="stepper-box">
-                  <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-age', -1, 0, 120, 0)">-</button>
-                  <input type="number" id="m1-age" step="1" placeholder="0" oninput="window.M1_LiCss.calculate()">
-                  <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-age', 1, 0, 120, 0)">+</button>
+              <div class="form-group-compact">
+                <label for="m1-dose">ขนาดยาที่ได้รับ (Cap/day)</label>
+                <div class="stepper-row">
+                  <div class="stepper-box">
+                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-dose', -1, 0, 50, 0)">-</button>
+                    <input type="number" id="m1-dose" step="1" placeholder="0" oninput="window.M1_LiCss.calculate()">
+                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-dose', 1, 0, 50, 0)">+</button>
+                  </div>
+                  <span class="unit-label">เม็ด</span>
                 </div>
-                <span class="unit-label">ปี</span>
               </div>
-            </div>
 
-            <div class="form-group-compact">
-              <label for="m1-scr">Scr</label>
-              <div class="stepper-row">
-                <div class="stepper-box">
-                  <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-scr', -0.1, 0, 20, 2)">-</button>
-                  <input type="number" id="m1-scr" step="0.1" placeholder="0.00" oninput="window.M1_LiCss.calculate()">
-                  <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-scr', 0.1, 0, 20, 2)">+</button>
+              <div class="form-group-compact">
+                <label for="m1-target-css">ระดับยาที่รอ (Target Css)</label>
+                <div class="stepper-row">
+                  <div class="stepper-box">
+                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-target-css', -0.1, 0, 5, 2)">-</button>
+                    <input type="number" id="m1-target-css" step="0.1" placeholder="0.00" oninput="window.M1_LiCss.calculate()">
+                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-target-css', 0.1, 0, 5, 2)">+</button>
+                  </div>
+                  <span class="unit-label">mEq/L</span>
                 </div>
-                <span class="unit-label">mg/dL</span>
-              </div>
-            </div>
-
-            <div class="section-subtitle" style="margin-top: 14px;">ขนาดยาที่ได้รับปัจจุบัน</div>
-            
-            <div class="form-group-compact">
-              <label for="m1-dose">ขนาดยา (Cap/day)</label>
-              <div class="stepper-row">
-                <div class="stepper-box">
-                  <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-dose', -1, 0, 50, 0)">-</button>
-                  <input type="number" id="m1-dose" step="1" placeholder="0" oninput="window.M1_LiCss.calculate()">
-                  <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-dose', 1, 0, 50, 0)">+</button>
-                </div>
-                <span class="unit-label">เม็ด</span>
-              </div>
-            </div>
-
-            <div class="form-group-compact">
-              <label for="m1-target-css">ระดับยาที่รอ (Target Css)</label>
-              <div class="stepper-row">
-                <div class="stepper-box">
-                  <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-target-css', -0.1, 0, 5, 2)">-</button>
-                  <input type="number" id="m1-target-css" step="0.1" placeholder="0.00" oninput="window.M1_LiCss.calculate()">
-                  <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-target-css', 0.1, 0, 5, 2)">+</button>
-                </div>
-                <span class="unit-label">mEq/L</span>
               </div>
             </div>
           </div>
 
-          <!-- RIGHT: OUTPUT RESULTS PANEL -->
+          <!-- RIGHT: OUTPUT PANELS -->
           <div class="results-panel">
-            <!-- Output 1: Prediction Grid -->
+            <!-- OUTPUT 1: PREDICTION GRID -->
             <div class="predict-gender-grid">
               <!-- Male Card -->
               <div class="gender-card gender-male">
@@ -338,10 +352,14 @@ window.M1_LiCss = {
                     <span>CrCl real BW:</span> <span id="m1-m-crcl-realbw">-</span>
                   </div>
                 </div>
-                <div class="calc-row-grid" style="margin-top: 4px; font-size: 0.9rem;">
-                  <div class="calc-item" style="grid-column: span 2; background: #ffffff; border: 1px solid #bfdbfe;">
-                    <span style="font-weight: 700;">ทำนาย Css:</span>
-                    <span id="m1-m-css" style="font-weight: 700; color: #1d4ed8;">-</span>
+                <div class="calc-row-grid" style="margin-top: 6px;">
+                  <div class="calc-item" id="m1-m-css-ibw-box" style="border: 1px solid #bfdbfe;">
+                    <span>ทำนาย Css (IBW):</span>
+                    <span id="m1-m-css-ibw" style="font-weight: 700;">-</span>
+                  </div>
+                  <div class="calc-item" id="m1-m-css-realbw-box" style="border: 1px solid #bfdbfe;">
+                    <span>ทำนาย Css (real BW):</span>
+                    <span id="m1-m-css-realbw" style="font-weight: 700;">-</span>
                   </div>
                 </div>
               </div>
@@ -365,18 +383,22 @@ window.M1_LiCss = {
                     <span>CrCl real BW:</span> <span id="m1-f-crcl-realbw">-</span>
                   </div>
                 </div>
-                <div class="calc-row-grid" style="margin-top: 4px; font-size: 0.9rem;">
-                  <div class="calc-item" style="grid-column: span 2; background: #ffffff; border: 1px solid #fbcfe8;">
-                    <span style="font-weight: 700;">ทำนาย Css:</span>
-                    <span id="m1-f-css" style="font-weight: 700; color: #be185d;">-</span>
+                <div class="calc-row-grid" style="margin-top: 6px;">
+                  <div class="calc-item" id="m1-f-css-ibw-box" style="border: 1px solid #fbcfe8;">
+                    <span>ทำนาย Css (IBW):</span>
+                    <span id="m1-f-css-ibw" style="font-weight: 700;">-</span>
+                  </div>
+                  <div class="calc-item" id="m1-f-css-realbw-box" style="border: 1px solid #fbcfe8;">
+                    <span>ทำนาย Css (real BW):</span>
+                    <span id="m1-f-css-realbw" style="font-weight: 700;">-</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Output 2: Dose Recommendations -->
+            <!-- OUTPUT 2: DOSE RECOMMENDATIONS -->
             <div class="dose-recommend-card">
-              <div class="recommend-title">ผลลัพธ์แนะนำขนาดขนาดยา (recommend dose steady state 7 วัน)</div>
+              <div class="recommend-title">ผลลัพธ์แนะนำขนาดขนาดยา (recommend dose steady state 7 วัน) (Output 2)</div>
               <div class="rec-row">
                 <span class="rec-label">minimum dose:</span>
                 <span id="m1-rec-min" class="rec-val">-</span>
@@ -392,16 +414,21 @@ window.M1_LiCss = {
             </div>
           </div>
         </div>
-
-        <div class="m1-footer">
-          ผู้ใช้งานควรตรวจสอบความถูกต้องและดัดแปลงแนะนำใช้ให้เหมาะสม [ผลลัพธ์นี้ไม่อนุญาตให้นำไปใช้อ้างอิงทางกฎหมาย] <br>
-          Designed by RacNoot52
-        </div>
       </div>
     `;
 
-    document.getElementById('m1-btn-clear').addEventListener('click', function() {
-      ['m1-bw', 'm1-ht', 'm1-age', 'm1-scr', 'm1-dose', 'm1-target-css'].forEach(id => {
+    // Reset Input 1 Event
+    document.getElementById('m1-btn-reset-in1')?.addEventListener('click', function() {
+      ['m1-bw', 'm1-ht', 'm1-age', 'm1-scr'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      window.M1_LiCss.calculate();
+    });
+
+    // Reset Input 2 Event
+    document.getElementById('m1-btn-reset-in2')?.addEventListener('click', function() {
+      ['m1-dose', 'm1-target-css'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = '';
       });
@@ -433,7 +460,7 @@ window.M1_LiCss = {
     const dose = parseFloat(document.getElementById('m1-dose')?.value) || 0;
     const targetCss = parseFloat(document.getElementById('m1-target-css')?.value) || 0;
 
-    // Male calculations
+    // male calculations
     let ibwM = 0;
     if (ht > 0) ibwM = 50 + 0.91 * (ht - 152.4);
     ibwM = Math.max(0, ibwM);
@@ -444,7 +471,7 @@ window.M1_LiCss = {
       if (bw > 0) crclRealM = ((140 - age) * bw) / (72 * scr);
     }
 
-    // Female calculations
+    // female calculations
     let ibwF = 0;
     if (ht > 0) ibwF = 45.5 + 0.91 * (ht - 152.4);
     ibwF = Math.max(0, ibwF);
@@ -455,34 +482,47 @@ window.M1_LiCss = {
       if (bw > 0) crclRealF = (((140 - age) * bw) / (72 * scr)) * 0.85;
     }
 
-    // Predict Css (Sample linear calculation)
-    let cssM = 0, cssF = 0;
-    if (dose > 0 && crclRealM > 0) cssM = (dose * 150) / crclRealM;
-    if (dose > 0 && crclRealF > 0) cssF = (dose * 150) / crclRealF;
+    // Predict Css both for IBW and Real BW (Lithium Cl_Li ~ 0.235 * CrCl)
+    let cssIbwM = 0, cssRealM = 0;
+    let cssIbwF = 0, cssRealF = 0;
 
-    // UI Updates - Male
+    if (dose > 0) {
+      let dailyDoseMg = dose * 300; // 1 cap = 300 mg Lithium Carbonate (~8.12 mEq)
+      if (crclIbwM > 0) cssIbwM = (dailyDoseMg * 0.0083) / (crclIbwM * 0.0144 * 24);
+      if (crclRealM > 0) cssRealM = (dailyDoseMg * 0.0083) / (crclRealM * 0.0144 * 24);
+
+      if (crclIbwF > 0) cssIbwF = (dailyDoseMg * 0.0083) / (crclIbwF * 0.0144 * 24);
+      if (crclRealF > 0) cssRealF = (dailyDoseMg * 0.0083) / (crclRealF * 0.0144 * 24);
+    }
+
+    // Set UI Texts Male
     this.setText('m1-m-ibw', ibwM > 0 ? ibwM.toFixed(2) : '-');
     this.setText('m1-m-realbw', bw > 0 ? bw.toFixed(2) : '-');
     this.setText('m1-m-crcl-ibw', crclIbwM > 0 ? crclIbwM.toFixed(2) : '-');
     this.setText('m1-m-crcl-realbw', crclRealM > 0 ? crclRealM.toFixed(2) : '-');
-    this.setText('m1-m-css', cssM > 0 ? cssM.toFixed(3) : '-');
+    this.setText('m1-m-css-ibw', cssIbwM > 0 ? cssIbwM.toFixed(2) : '-');
+    this.setText('m1-m-css-realbw', cssRealM > 0 ? cssRealM.toFixed(2) : '-');
 
-    // UI Updates - Female
+    // Set UI Texts Female
     this.setText('m1-f-ibw', ibwF > 0 ? ibwF.toFixed(2) : '-');
     this.setText('m1-f-realbw', bw > 0 ? bw.toFixed(2) : '-');
     this.setText('m1-f-crcl-ibw', crclIbwF > 0 ? crclIbwF.toFixed(2) : '-');
     this.setText('m1-f-crcl-realbw', crclRealF > 0 ? crclRealF.toFixed(2) : '-');
-    this.setText('m1-f-css', cssF > 0 ? cssF.toFixed(3) : '-');
+    this.setText('m1-f-css-ibw', cssIbwF > 0 ? cssIbwF.toFixed(2) : '-');
+    this.setText('m1-f-css-realbw', cssRealF > 0 ? cssRealF.toFixed(2) : '-');
 
-    // Highlight lower weight
-    this.highlightLower('m1-m-ibw-box', 'm1-m-realbw-box', ibwM, bw);
-    this.highlightLower('m1-f-ibw-box', 'm1-f-realbw-box', ibwF, bw);
+    // Highlights: Weight & Css based on lower weight
+    this.highlightLower('m1-m-ibw-box', 'm1-m-realbw-box', 'm1-m-css-ibw-box', 'm1-m-css-realbw-box', ibwM, bw);
+    this.highlightLower('m1-f-ibw-box', 'm1-f-realbw-box', 'm1-f-css-ibw-box', 'm1-f-css-realbw-box', ibwF, bw);
 
-    // Dose Recommendations
-    if (targetCss > 0) {
-      this.setText('m1-rec-min', (targetCss * 1.2).toFixed(2) + ' เม็ด');
-      this.setText('m1-rec-max-acute', (targetCss * 2.4).toFixed(2) + ' เม็ด');
-      this.setText('m1-rec-max-maint', (targetCss * 1.8).toFixed(2) + ' เม็ด');
+    // Calculate Output 2 (Recommend Dose using current dose and Target Css)
+    if (dose > 0 && targetCss > 0) {
+      // Dose proportioning
+      let recDoseBase = (dose * targetCss);
+      
+      this.setText('m1-rec-min', (recDoseBase * 0.8).toFixed(2) + ' เม็ด/วัน');
+      this.setText('m1-rec-max-acute', (recDoseBase * 1.5).toFixed(2) + ' เม็ด/วัน');
+      this.setText('m1-rec-max-maint', recDoseBase.toFixed(2) + ' เม็ด/วัน');
     } else {
       this.setText('m1-rec-min', '-');
       this.setText('m1-rec-max-acute', '-');
@@ -495,19 +535,26 @@ window.M1_LiCss = {
     if (el) el.innerText = txt;
   },
 
-  highlightLower: function(id1, id2, val1, val2) {
-    const el1 = document.getElementById(id1);
-    const el2 = document.getElementById(id2);
-    if (!el1 || !el2) return;
+  highlightLower: function(wBox1, wBox2, cssBox1, cssBox2, w1, w2) {
+    const elW1 = document.getElementById(wBox1);
+    const elW2 = document.getElementById(wBox2);
+    const elC1 = document.getElementById(cssBox1);
+    const elC2 = document.getElementById(cssBox2);
 
-    el1.classList.remove('highlight-lower');
-    el2.classList.remove('highlight-lower');
+    if (!elW1 || !elW2 || !elC1 || !elC2) return;
 
-    if (val1 > 0 && val2 > 0) {
-      if (val1 < val2) {
-        el1.classList.add('highlight-lower');
-      } else if (val2 < val1) {
-        el2.classList.add('highlight-lower');
+    elW1.classList.remove('highlight-lower');
+    elW2.classList.remove('highlight-lower');
+    elC1.classList.remove('highlight-lower');
+    elC2.classList.remove('highlight-lower');
+
+    if (w1 > 0 && w2 > 0) {
+      if (w1 <= w2) {
+        elW1.classList.add('highlight-lower');
+        elC1.classList.add('highlight-lower');
+      } else {
+        elW2.classList.add('highlight-lower');
+        elC2.classList.add('highlight-lower');
       }
     }
   }
