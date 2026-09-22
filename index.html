@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TDM.PSYcalc</title>
+    <!-- Google Fonts: Sarabun & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,37 +19,35 @@
 
     <!-- Main Container -->
     <main class="app-container">
-        <!-- Navigation Menu Grid (หน้าแรก / เลือกโมดูล) -->
+        <!-- Navigation Menu Grid -->
         <div id="module-menu" class="module-menu">
             <h2>กรุณาเลือกเครื่องมือคำนวณ</h2>
             <div class="menu-grid">
-                <button class="menu-card active" data-module="m1">
+                <button class="menu-card" data-module="m1">
                     <span class="mod-code">M1</span>
                     <span class="mod-title">LiCss</span>
                     <span class="mod-desc">แนะนำการปรับขนาดยา Lithium</span>
                 </button>
-                <button class="menu-card disabled" data-module="m2">
+                <button class="menu-card" data-module="m2">
                     <span class="mod-code">M2</span>
                     <span class="mod-title">ValCss</span>
-                    <span class="mod-desc">แนะนำการปรับขนาดยา Valproate (เร็วๆ นี้)</span>
+                    <span class="mod-desc">แนะนำการปรับขนาดยา Valproate</span>
                 </button>
-                <button class="menu-card disabled" data-module="m3">
+                <button class="menu-card" data-module="m3">
                     <span class="mod-code">M3</span>
                     <span class="mod-title">PheCap</span>
-                    <span class="mod-desc">แนะนำการปรับขนาดยา Phenytoin capsule (เร็วๆ นี้)</span>
+                    <span class="mod-desc">แนะนำการปรับขนาดยา Phenytoin capsule</span>
                 </button>
-                <button class="menu-card disabled" data-module="m4">
+                <button class="menu-card" data-module="m4">
                     <span class="mod-code">M4</span>
                     <span class="mod-title">PheTab</span>
-                    <span class="mod-desc">แนะนำการปรับขนาดยา Phenytoin infatab (เร็วๆ นี้)</span>
+                    <span class="mod-desc">แนะนำการปรับขนาดยา Phenytoin infatab</span>
                 </button>
             </div>
         </div>
 
         <!-- Dynamic Module Render Area -->
-        <div id="module-content" class="module-content">
-            <!-- Dynamic View Loaded Here -->
-        </div>
+        <div id="module-content" class="module-content" style="display: none;"></div>
     </main>
 
     <!-- Footnote -->
@@ -54,7 +56,13 @@
         <p class="footer-credit">Designed by RacNoot52</p>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Modules Script Imports -->
+    <script src="modules/m1_liCss.js"></script>
+    <script src="modules/m2_valCss.js"></script>
+    <script src="modules/m3_pheCap.js"></script>
+    <script src="modules/m4_pheTab.js"></script>
+    
+    <!-- Core App Logic -->
     <script src="app.js"></script>
 </body>
 </html>
