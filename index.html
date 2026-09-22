@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDM.PSYcalc</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Bar -->
+    <header class="app-header">
+        <div class="header-title">TDM.PSYcalc</div>
+        <button id="btn-home" class="btn-home">Home</button>
+    </header>
+
+    <!-- Main Container -->
+    <main class="app-container">
+        <!-- Navigation Menu Grid (หน้าแรก / เลือกโมดูล) -->
+        <div id="module-menu" class="module-menu">
+            <h2>กรุณาเลือกเครื่องมือคำนวณ</h2>
+            <div class="menu-grid">
+                <button class="menu-card active" data-module="m1">
+                    <span class="mod-code">M1</span>
+                    <span class="mod-title">LiCss</span>
+                    <span class="mod-desc">แนะนำการปรับขนาดยา Lithium</span>
+                </button>
+                <button class="menu-card disabled" data-module="m2">
+                    <span class="mod-code">M2</span>
+                    <span class="mod-title">ValCss</span>
+                    <span class="mod-desc">แนะนำการปรับขนาดยา Valproate (เร็วๆ นี้)</span>
+                </button>
+                <button class="menu-card disabled" data-module="m3">
+                    <span class="mod-code">M3</span>
+                    <span class="mod-title">PheCap</span>
+                    <span class="mod-desc">แนะนำการปรับขนาดยา Phenytoin capsule (เร็วๆ นี้)</span>
+                </button>
+                <button class="menu-card disabled" data-module="m4">
+                    <span class="mod-code">M4</span>
+                    <span class="mod-title">PheTab</span>
+                    <span class="mod-desc">แนะนำการปรับขนาดยา Phenytoin infatab (เร็วๆ นี้)</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Dynamic Module Render Area -->
+        <div id="module-content" class="module-content">
+            <!-- Dynamic View Loaded Here -->
+        </div>
+    </main>
+
+    <!-- Footnote -->
+    <footer class="app-footer">
+        <p class="footer-warning"><strong>ผู้ใช้งานควรตรวจสอบความถูกต้องด้วยตนเองก่อนนำไปใช้เสมอ | ขอสงวนสิทธิ์ ไม่อนุญาตให้นำไปใช้เชิงพาณิชย์ทุกกรณี</strong></p>
+        <p class="footer-credit">Designed by RacNoot52</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
