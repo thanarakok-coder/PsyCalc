@@ -231,7 +231,7 @@ window.M1_LiCss = {
 
         <div class="m1-main-layout">
           
-          <!-- LEFT COLUMN: ข้อมูลผู้ป่วย (รวมทุก Input ไว้ที่เดียวตามรูปวาด) -->
+          <!-- LEFT COLUMN: ข้อมูลผู้ป่วย -->
           <div class="m1-card">
             <div class="card-head-title">
               <span>ข้อมูลผู้ป่วย</span>
@@ -454,42 +454,52 @@ window.M1_LiCss = {
     const dose = parseFloat(document.getElementById('m1-dose')?.value) || 0;
     const targetCss = parseFloat(document.getElementById('m1-target-css')?.value) || 0;
 
-    // Male calculations
+    // Helper Function คำนวณ Css ตามสูตร: (dose * 1 * 1 * 8.12) / ((0.235 * crcl * 24 * 60) / 1000)
+    const calcCss = (doseVal, crclVal) => {
+      if (doseVal <= 0 || crclVal <= 0) return 0;
+      return (doseVal * 1 * 1 * 8.12) / ((0.235 * crclVal * 24 * 60) / 1000);
+    };
+
+    // ================= MALE LOGIC =================
+    // IBW = 50 + 2.3 * ((ht / 2.54) - 60)
     let ibwM = 0;
-    if (ht > 0) ibwM = 50 + 0.91 * (ht - 152.4);
-    ibwM = Math.max(0, ibwM);
+    if (ht > 0) {
+      ibwM = 50 + 2.3 * ((ht / 2.54) - 60);
+      ibwM = Math.max(0, ibwM);
+    }
 
     let crclIbwM = 0, crclRealM = 0;
     if (age > 0 && scr > 0) {
+      // CrCl IBW = ((140 - age) * IBW) / (72 * Scr)
       if (ibwM > 0) crclIbwM = ((140 - age) * ibwM) / (72 * scr);
+      // CrCl real BW = ((140 - age) * bw) / (72 * Scr)
       if (bw > 0) crclRealM = ((140 - age) * bw) / (72 * scr);
     }
 
-    // Female calculations
+    let cssIbwM = calcCss(dose, crclIbwM);
+    let cssRealM = calcCss(dose, crclRealM);
+
+    // ================= FEMALE LOGIC =================
+    // IBW = 45.5 + 2.3 * ((ht / 2.54) - 60)
     let ibwF = 0;
-    if (ht > 0) ibwF = 45.5 + 0.91 * (ht - 152.4);
-    ibwF = Math.max(0, ibwF);
+    if (ht > 0) {
+      ibwF = 45.5 + 2.3 * ((ht / 2.54) - 60);
+      ibwF = Math.max(0, ibwF);
+    }
 
     let crclIbwF = 0, crclRealF = 0;
     if (age > 0 && scr > 0) {
-      if (ibwF > 0) crclIbwF = (((140 - age) * ibwF) / (72 * scr)) * 0.85;
-      if (bw > 0) crclRealF = (((140 - age) * bw) / (72 * scr)) * 0.85;
+      // CrCl IBW = ((140 - age) * IBW * 0.85) / (72 * Scr)
+      if (ibwF > 0) crclIbwF = ((140 - age) * ibwF * 0.85) / (72 * scr);
+      // CrCl real BW = ((140 - age) * bw * 0.85) / (72 * Scr)
+      if (bw > 0) crclRealF = ((140 - age) * bw * 0.85) / (72 * scr);
     }
 
-    // Predict Css (IBW & Real BW)
-    let cssIbwM = 0, cssRealM = 0;
-    let cssIbwF = 0, cssRealF = 0;
+    let cssIbwF = calcCss(dose, crclIbwF);
+    let cssRealF = calcCss(dose, crclRealF);
 
-    if (dose > 0) {
-      let dailyDoseMg = dose * 300;
-      if (crclIbwM > 0) cssIbwM = (dailyDoseMg * 0.0083) / (crclIbwM * 0.0144 * 24);
-      if (crclRealM > 0) cssRealM = (dailyDoseMg * 0.0083) / (crclRealM * 0.0144 * 24);
-
-      if (crclIbwF > 0) cssIbwF = (dailyDoseMg * 0.0083) / (crclIbwF * 0.0144 * 24);
-      if (crclRealF > 0) cssRealF = (dailyDoseMg * 0.0083) / (crclRealF * 0.0144 * 24);
-    }
-
-    // Render Male Results
+    // ================= RENDER RESULTS =================
+    // Male Results
     this.setText('m-ibw', ibwM > 0 ? ibwM.toFixed(2) : '-');
     this.setText('m-realbw', bw > 0 ? bw.toFixed(2) : '-');
     this.setText('m-crcl-ibw', crclIbwM > 0 ? crclIbwM.toFixed(2) : '-');
@@ -497,7 +507,7 @@ window.M1_LiCss = {
     this.setText('m-css-ibw', cssIbwM > 0 ? cssIbwM.toFixed(2) : '-');
     this.setText('m-css-realbw', cssRealM > 0 ? cssRealM.toFixed(2) : '-');
 
-    // Render Female Results
+    // Female Results
     this.setText('f-ibw', ibwF > 0 ? ibwF.toFixed(2) : '-');
     this.setText('f-realbw', bw > 0 ? bw.toFixed(2) : '-');
     this.setText('f-crcl-ibw', crclIbwF > 0 ? crclIbwF.toFixed(2) : '-');
@@ -505,11 +515,11 @@ window.M1_LiCss = {
     this.setText('f-css-ibw', cssIbwF > 0 ? cssIbwF.toFixed(2) : '-');
     this.setText('f-css-realbw', cssRealF > 0 ? cssRealF.toFixed(2) : '-');
 
-    // Highlight lower weight & corresponding Css
+    // Highlight น้ำหนักที่น้อยกว่าและช่อง Css ที่สอดคล้องกัน
     this.highlightLower('m-ibw-box', 'm-realbw-box', 'm-css-ibw-box', 'm-css-realbw-box', ibwM, bw);
     this.highlightLower('f-ibw-box', 'f-realbw-box', 'f-css-ibw-box', 'f-css-realbw-box', ibwF, bw);
 
-    // Recommended Dose Calculation Output
+    // Recommended Dose Calculations
     if (dose > 0 && targetCss > 0) {
       let recBase = (dose * targetCss);
       this.setText('rec-min', (recBase * 0.8).toFixed(2) + ' เม็ด/วัน');
