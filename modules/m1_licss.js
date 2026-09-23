@@ -20,7 +20,7 @@ window.M1_LiCss = {
         /* Grid หลัก: ซ้าย (Input) - ขวา (Results) */
         .m1-main-layout {
           display: grid;
-          grid-template-columns: 340px 1fr;
+          grid-template-columns: 360px 1fr;
           gap: 16px;
           align-items: start;
         }
@@ -38,12 +38,20 @@ window.M1_LiCss = {
           padding: 14px;
           box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
+
+        /* การ์ดฝั่งซ้าย (ข้อมูลผู้ป่วย) แต่งสีพื้นหลังเบาๆ ให้เด่นขึ้น */
+        .input-card-highlight {
+          background: #f8fafc;
+          border: 1.5px solid #93c5fd;
+          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.06);
+        }
+
         .card-head-title {
-          font-size: 0.92rem;
+          font-size: 0.95rem;
           font-weight: 700;
           color: #0f172a;
-          margin-bottom: 12px;
-          padding-bottom: 4px;
+          margin-bottom: 14px;
+          padding-bottom: 6px;
           border-bottom: 2px solid #3b82f6;
           display: flex;
           justify-content: space-between;
@@ -53,9 +61,9 @@ window.M1_LiCss = {
           background: #f1f5f9;
           color: #475569;
           border: 1px solid #cbd5e1;
-          padding: 2px 8px;
+          padding: 3px 10px;
           border-radius: 4px;
-          font-size: 0.72rem;
+          font-size: 0.75rem;
           font-weight: 600;
           cursor: pointer;
         }
@@ -64,57 +72,69 @@ window.M1_LiCss = {
           color: #0f172a;
         }
 
-        /* Stepper Control Styling */
+        /* Field Group & Stepper Control - ปรับใหญ่และเด่นขึ้น 15-20% */
         .field-group {
-          margin-bottom: 10px;
+          margin-bottom: 12px;
         }
         .field-group label {
           display: block;
-          font-size: 0.8rem;
-          font-weight: 600;
-          color: #334155;
-          margin-bottom: 4px;
+          font-size: 0.88rem; /* ขยายจาก 0.8rem */
+          font-weight: 700;
+          color: #1e293b;
+          margin-bottom: 5px;
         }
         .stepper-container {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 10px;
         }
+
+        /* ขยายกว้างเต็มพื้นที่ + แต่งโทนสีฟ้าเน้นกล่อง Input */
         .stepper-box {
-          display: inline-flex;
+          display: flex;
           align-items: center;
-          background: #f8fafc;
-          border: 1px solid #cbd5e1;
-          border-radius: 20px;
-          padding: 2px 4px;
-          width: 170px;
-          justify-content: space-between;
+          flex: 1; /* ขยายเต็มพื้นที่ความกว้างที่เหลือ */
+          background: #eff6ff; /* โทนฟ้าสว่างเน้นให้เด่น */
+          border: 1.5px solid #60a5fa; /* ขอบฟ้าเด่นชัด */
+          border-radius: 24px;
+          padding: 3px 6px;
+          height: 38px; /* ขยายความสูงขึ้น */
+          box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
+          transition: all 0.2s ease;
         }
+        .stepper-box:focus-within {
+          border-color: #2563eb;
+          box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
         .btn-step {
-          width: 24px;
-          height: 24px;
+          width: 30px; /* ขยายจาก 24px */
+          height: 30px;
           border-radius: 50%;
-          border: 1px solid #cbd5e1;
+          border: 1px solid #93c5fd;
           background: #ffffff;
-          color: #1e293b;
+          color: #1d4ed8;
           font-weight: bold;
-          font-size: 0.9rem;
+          font-size: 1.1rem; /* ขยายขนาดเครื่องหมาย + - */
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
           user-select: none;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
         .btn-step:hover {
-          background: #e2e8f0;
+          background: #dbeafe;
+          color: #1e40af;
         }
+
         .stepper-box input {
-          width: 100px;
+          width: 100%;
           border: none;
           background: transparent;
           text-align: center;
-          font-weight: 700;
-          font-size: 0.9rem;
+          font-weight: 800;
+          font-size: 1.1rem; /* ขยายขนาดฟอนต์ตัวเลขขึ้น 20% */
           color: #0f172a;
           outline: none;
         }
@@ -127,9 +147,10 @@ window.M1_LiCss = {
           -moz-appearance: textfield;
         }
         .unit-text {
-          font-size: 0.8rem;
-          font-weight: 600;
-          color: #64748b;
+          font-size: 0.88rem; /* ขยายขนาดหน่วย */
+          font-weight: 700;
+          color: #475569;
+          min-width: 42px;
         }
 
         /* ฝั่งขวา Stack */
@@ -181,7 +202,7 @@ window.M1_LiCss = {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          background: rgba(255,255,255,0.7);
+          background: rgba(255,255,255,0.75);
           padding: 4px 6px;
           border-radius: 4px;
           border: 1px solid transparent;
@@ -231,8 +252,8 @@ window.M1_LiCss = {
 
         <div class="m1-main-layout">
           
-          <!-- LEFT COLUMN: ข้อมูลผู้ป่วย -->
-          <div class="m1-card">
+          <!-- LEFT COLUMN: ข้อมูลผู้ป่วย (เพิ่มการแต่งสีพื้นหลังและการลอย) -->
+          <div class="m1-card input-card-highlight">
             <div class="card-head-title">
               <span>ข้อมูลผู้ป่วย</span>
               <button type="button" id="m1-btn-reset-all" class="btn-reset-mini">Reset</button>
@@ -291,7 +312,7 @@ window.M1_LiCss = {
             </div>
 
             <!-- 5. ขนาดยาที่ได้รับ -->
-            <div class="field-group" style="margin-top: 14px; padding-top: 10px; border-top: 1px dashed #cbd5e1;">
+            <div class="field-group" style="margin-top: 16px; padding-top: 12px; border-top: 1px dashed #cbd5e1;">
               <label for="m1-dose">ขนาดยาที่ได้รับ (Cap/day)</label>
               <div class="stepper-container">
                 <div class="stepper-box">
@@ -454,14 +475,12 @@ window.M1_LiCss = {
     const dose = parseFloat(document.getElementById('m1-dose')?.value) || 0;
     const targetCss = parseFloat(document.getElementById('m1-target-css')?.value) || 0;
 
-    // Helper Function คำนวณ Css ตามสูตร: (dose * 1 * 1 * 8.12) / ((0.235 * crcl * 24 * 60) / 1000)
     const calcCss = (doseVal, crclVal) => {
       if (doseVal <= 0 || crclVal <= 0) return 0;
       return (doseVal * 1 * 1 * 8.12) / ((0.235 * crclVal * 24 * 60) / 1000);
     };
 
-    // ================= MALE LOGIC =================
-    // IBW = 50 + 2.3 * ((ht / 2.54) - 60)
+    // Male Logic
     let ibwM = 0;
     if (ht > 0) {
       ibwM = 50 + 2.3 * ((ht / 2.54) - 60);
@@ -470,17 +489,14 @@ window.M1_LiCss = {
 
     let crclIbwM = 0, crclRealM = 0;
     if (age > 0 && scr > 0) {
-      // CrCl IBW = ((140 - age) * IBW) / (72 * Scr)
       if (ibwM > 0) crclIbwM = ((140 - age) * ibwM) / (72 * scr);
-      // CrCl real BW = ((140 - age) * bw) / (72 * Scr)
       if (bw > 0) crclRealM = ((140 - age) * bw) / (72 * scr);
     }
 
     let cssIbwM = calcCss(dose, crclIbwM);
     let cssRealM = calcCss(dose, crclRealM);
 
-    // ================= FEMALE LOGIC =================
-    // IBW = 45.5 + 2.3 * ((ht / 2.54) - 60)
+    // Female Logic
     let ibwF = 0;
     if (ht > 0) {
       ibwF = 45.5 + 2.3 * ((ht / 2.54) - 60);
@@ -489,17 +505,14 @@ window.M1_LiCss = {
 
     let crclIbwF = 0, crclRealF = 0;
     if (age > 0 && scr > 0) {
-      // CrCl IBW = ((140 - age) * IBW * 0.85) / (72 * Scr)
       if (ibwF > 0) crclIbwF = ((140 - age) * ibwF * 0.85) / (72 * scr);
-      // CrCl real BW = ((140 - age) * bw * 0.85) / (72 * Scr)
       if (bw > 0) crclRealF = ((140 - age) * bw * 0.85) / (72 * scr);
     }
 
     let cssIbwF = calcCss(dose, crclIbwF);
     let cssRealF = calcCss(dose, crclRealF);
 
-    // ================= RENDER RESULTS (ใช้ทศนิยม 3 หลัก) =================
-    // Male Results
+    // Render Results (ทศนิยม 3 หลัก)
     this.setText('m-ibw', ibwM > 0 ? ibwM.toFixed(3) : '-');
     this.setText('m-realbw', bw > 0 ? bw.toFixed(3) : '-');
     this.setText('m-crcl-ibw', crclIbwM > 0 ? crclIbwM.toFixed(3) : '-');
@@ -507,7 +520,6 @@ window.M1_LiCss = {
     this.setText('m-css-ibw', cssIbwM > 0 ? cssIbwM.toFixed(3) : '-');
     this.setText('m-css-realbw', cssRealM > 0 ? cssRealM.toFixed(3) : '-');
 
-    // Female Results
     this.setText('f-ibw', ibwF > 0 ? ibwF.toFixed(3) : '-');
     this.setText('f-realbw', bw > 0 ? bw.toFixed(3) : '-');
     this.setText('f-crcl-ibw', crclIbwF > 0 ? crclIbwF.toFixed(3) : '-');
@@ -515,11 +527,11 @@ window.M1_LiCss = {
     this.setText('f-css-ibw', cssIbwF > 0 ? cssIbwF.toFixed(3) : '-');
     this.setText('f-css-realbw', cssRealF > 0 ? cssRealF.toFixed(3) : '-');
 
-    // Highlight น้ำหนักที่น้อยกว่าและช่อง Css ที่สอดคล้องกัน
+    // Highlight น้ำหนักที่น้อยกว่า
     this.highlightLower('m-ibw-box', 'm-realbw-box', 'm-css-ibw-box', 'm-css-realbw-box', ibwM, bw);
     this.highlightLower('f-ibw-box', 'f-realbw-box', 'f-css-ibw-box', 'f-css-realbw-box', ibwF, bw);
 
-    // Recommended Dose Calculations (ตามสูตรใหม่และทศนิยม 3 หลัก)
+    // Recommended Dose Calculations
     if (dose > 0 && targetCss > 0) {
       let minDose = (0.6 * dose) / targetCss;
       let maxAcute = (1.2 * dose) / targetCss;
