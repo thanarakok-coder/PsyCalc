@@ -318,19 +318,19 @@ window.M2_ValCss = {
               </div>
             </div>
 
-            <!-- ทำนายระดับยา -->
+            <!-- ทำนายระดับยา (เปลี่ยนหน่วยเป็น mEq/L) -->
             <div class="predict-section">
               <div class="predict-title">ทำนายระดับยา</div>
               <div class="predict-grid">
                 <div class="predict-card">
                   <div class="predict-card-label">ผู้ใหญ่</div>
                   <div class="predict-card-val" id="m2-pred-adult">-</div>
-                  <div class="predict-card-unit">mcg/mL</div>
+                  <div class="predict-card-unit">mEq/L</div>
                 </div>
                 <div class="predict-card">
                   <div class="predict-card-label">เด็ก</div>
                   <div class="predict-card-val" id="m2-pred-child">-</div>
-                  <div class="predict-card-unit">mcg/mL</div>
+                  <div class="predict-card-unit">mEq/L</div>
                 </div>
               </div>
             </div>
@@ -345,7 +345,7 @@ window.M2_ValCss = {
                 <button type="button" id="m2-btn-clear-right" class="btn-clear-mini">Clear</button>
               </div>
 
-              <!-- ระดับยาที่ SS (เปลี่ยนหน่วยเป็น mEq/L) -->
+              <!-- ระดับยาที่ SS -->
               <div class="field-group-inline" style="margin-top: 10px;">
                 <label for="m2-ss-level" style="width: 110px;">ระดับยาที่ SS</label>
                 <div class="stepper-container-inline">
