@@ -345,7 +345,7 @@ window.M2_ValCss = {
                 <button type="button" id="m2-btn-clear-right" class="btn-clear-mini">Clear</button>
               </div>
 
-              <!-- ระดับยาที่ SS -->
+              <!-- ระดับยาที่ SS (เปลี่ยนหน่วยเป็น mEq/L) -->
               <div class="field-group-inline" style="margin-top: 10px;">
                 <label for="m2-ss-level" style="width: 110px;">ระดับยาที่ SS</label>
                 <div class="stepper-container-inline">
@@ -354,7 +354,7 @@ window.M2_ValCss = {
                     <input type="number" id="m2-ss-level" step="0.001" placeholder="0" oninput="window.M2_ValCss.calculate()">
                     <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-ss-level', 0.1, 0, 1000, 3)">+</button>
                   </div>
-                  <span class="unit-text">mcg/mL</span>
+                  <span class="unit-text">mEq/L</span>
                 </div>
               </div>
 
@@ -409,6 +409,15 @@ window.M2_ValCss = {
     });
   },
 
+  // Helper สำหรับใส่ comma หลักพัน
+  formatNumber: function(num, decimals = 2) {
+    if (isNaN(num) || num === null || num === undefined) return '-';
+    return Number(num).toLocaleString('en-US', {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals
+    });
+  },
+
   stepInput: function(id, delta, minVal, maxVal, decimals) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -434,7 +443,7 @@ window.M2_ValCss = {
     // 1. ทำนายระดับยาผู้ใหญ่ = (1000 * dose) / (8 * 24 * bw)
     if (bw > 0 && dose > 0) {
       const predAdult = (1000 * dose) / (8 * 24 * bw);
-      this.setText('m2-pred-adult', predAdult.toFixed(2));
+      this.setText('m2-pred-adult', this.formatNumber(predAdult, 2));
     } else {
       this.setText('m2-pred-adult', '-');
     }
@@ -442,7 +451,7 @@ window.M2_ValCss = {
     // 2. ทำนายระดับยาเด็ก = (1000 * dose) / (13 * 24 * bw)
     if (bw > 0 && dose > 0) {
       const predChild = (1000 * dose) / (13 * 24 * bw);
-      this.setText('m2-pred-child', predChild.toFixed(2));
+      this.setText('m2-pred-child', this.formatNumber(predChild, 2));
     } else {
       this.setText('m2-pred-child', '-');
     }
@@ -450,7 +459,7 @@ window.M2_ValCss = {
     // 3. Minimum dose = (50 * dose) / ssLevel
     if (ssLevel > 0 && dose > 0) {
       const minDose = (50 * dose) / ssLevel;
-      this.setText('m2-rec-min', minDose.toFixed(2));
+      this.setText('m2-rec-min', this.formatNumber(minDose, 2));
     } else {
       this.setText('m2-rec-min', '-');
     }
@@ -458,7 +467,7 @@ window.M2_ValCss = {
     // 4. Max dose (Acute Mania) = (125 * dose) / ssLevel
     if (ssLevel > 0 && dose > 0) {
       const maxAcute = (125 * dose) / ssLevel;
-      this.setText('m2-rec-max-acute', maxAcute.toFixed(2));
+      this.setText('m2-rec-max-acute', this.formatNumber(maxAcute, 2));
     } else {
       this.setText('m2-rec-max-acute', '-');
     }
@@ -466,7 +475,7 @@ window.M2_ValCss = {
     // 5. Max dose (Maintenance phase) = (100 * dose) / ssLevel
     if (ssLevel > 0 && dose > 0) {
       const maxMaint = (100 * dose) / ssLevel;
-      this.setText('m2-rec-max-maint', maxMaint.toFixed(2));
+      this.setText('m2-rec-max-maint', this.formatNumber(maxMaint, 2));
     } else {
       this.setText('m2-rec-max-maint', '-');
     }
