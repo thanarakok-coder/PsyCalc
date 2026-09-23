@@ -17,7 +17,7 @@ window.M2_ValCss = {
           border-bottom: 1px solid #cbd5e1;
         }
 
-        /* Grid แบ่ง ซ้าย-ขวา เท่ากัน/สมดุลกัน */
+        /* Grid แบ่ง ซ้าย-ขวา */
         .m2-main-layout {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -165,11 +165,11 @@ window.M2_ValCss = {
           font-size: 0.9rem;
           font-weight: 700;
           color: #475569;
-          min-width: 60px;
+          min-width: 65px;
           text-align: left;
         }
 
-        /* ส่วนแสดงผลทำนายระดับยา (ฝั่งซ้ายล่าง) */
+        /* ส่วนแสดงผลทำนายระดับยา */
         .predict-section {
           margin-top: 16px;
           padding-top: 12px;
@@ -211,7 +211,7 @@ window.M2_ValCss = {
           font-weight: 500;
         }
 
-        /* ผลการคำนวณฝั่งขวา (Recommended Dose) */
+        /* ผลการคำนวณฝั่งขวา */
         .rec-out-list {
           display: flex;
           flex-direction: column;
@@ -264,7 +264,7 @@ window.M2_ValCss = {
       </style>
 
       <div class="m2-wrapper">
-        <div class="m2-header-title">M2: Valproate / Divalproex Dosing Calculator</div>
+        <div class="m2-header-title">M2: ValCss - ช่วยแนะนำการปรับขนาดยา Valproate</div>
 
         <div class="m2-main-layout">
           
@@ -277,29 +277,29 @@ window.M2_ValCss = {
               </div>
 
               <div class="input-fields-container">
-                <!-- BW -->
+                <!-- BW (น้ำหนัก) -->
                 <div class="field-group-inline">
                   <label for="m2-bw">BW (น้ำหนัก)</label>
                   <div class="stepper-container-inline">
                     <div class="stepper-box">
-                      <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-bw', -1, 0, 300, 1)">-</button>
-                      <input type="number" id="m2-bw" placeholder="0" oninput="window.M2_ValCss.calculate()">
-                      <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-bw', 1, 0, 300, 1)">+</button>
+                      <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-bw', -1, 0, 300, 2)">-</button>
+                      <input type="number" id="m2-bw" step="0.01" placeholder="0" oninput="window.M2_ValCss.calculate()">
+                      <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-bw', 1, 0, 300, 2)">+</button>
                     </div>
                     <span class="unit-text">kg</span>
                   </div>
                 </div>
 
-                <!-- Ht -->
+                <!-- Ht (ส่วนสูง) -->
                 <div class="field-group-inline">
                   <label for="m2-ht">Ht (ส่วนสูง)</label>
                   <div class="stepper-container-inline">
                     <div class="stepper-box">
-                      <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-ht', -1, 0, 250, 1)">-</button>
-                      <input type="number" id="m2-ht" placeholder="0" oninput="window.M2_ValCss.calculate()">
-                      <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-ht', 1, 0, 250, 1)">+</button>
+                      <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-ht', -1, 0, 250, 2)">-</button>
+                      <input type="number" id="m2-ht" step="0.01" placeholder="0" oninput="window.M2_ValCss.calculate()">
+                      <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-ht', 1, 0, 250, 2)">+</button>
                     </div>
-                    <span class="unit-text">cm.</span>
+                    <span class="unit-text">cm</span>
                   </div>
                 </div>
 
@@ -308,9 +308,9 @@ window.M2_ValCss = {
                   <label for="m2-dose">ขนาดยา/วัน</label>
                   <div class="stepper-container-inline">
                     <div class="stepper-box">
-                      <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-dose', -50, 0, 5000, 0)">-</button>
-                      <input type="number" id="m2-dose" placeholder="0" oninput="window.M2_ValCss.calculate()">
-                      <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-dose', 50, 0, 5000, 0)">+</button>
+                      <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-dose', -100, 0, 10000, 2)">-</button>
+                      <input type="number" id="m2-dose" step="0.01" placeholder="0" oninput="window.M2_ValCss.calculate()">
+                      <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-dose', 100, 0, 10000, 2)">+</button>
                     </div>
                     <span class="unit-text">mg/day</span>
                   </div>
@@ -318,19 +318,19 @@ window.M2_ValCss = {
               </div>
             </div>
 
-            <!-- ทำนายระดับยา (ผู้ใหญ่ / เด็ก) -->
+            <!-- ทำนายระดับยา -->
             <div class="predict-section">
               <div class="predict-title">ทำนายระดับยา</div>
               <div class="predict-grid">
                 <div class="predict-card">
                   <div class="predict-card-label">ผู้ใหญ่</div>
                   <div class="predict-card-val" id="m2-pred-adult">-</div>
-                  <div class="predict-card-unit">mEq/L</div>
+                  <div class="predict-card-unit">mcg/mL</div>
                 </div>
                 <div class="predict-card">
                   <div class="predict-card-label">เด็ก</div>
                   <div class="predict-card-val" id="m2-pred-child">-</div>
-                  <div class="predict-card-unit">mEq/L</div>
+                  <div class="predict-card-unit">mcg/mL</div>
                 </div>
               </div>
             </div>
@@ -345,16 +345,16 @@ window.M2_ValCss = {
                 <button type="button" id="m2-btn-clear-right" class="btn-clear-mini">Clear</button>
               </div>
 
-              <!-- Input: ระดับยาที่ SS -->
+              <!-- ระดับยาที่ SS -->
               <div class="field-group-inline" style="margin-top: 10px;">
                 <label for="m2-ss-level" style="width: 110px;">ระดับยาที่ SS</label>
                 <div class="stepper-container-inline">
                   <div class="stepper-box">
-                    <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-ss-level', -0.1, 0, 500, 1)">-</button>
-                    <input type="number" id="m2-ss-level" step="0.1" placeholder="0" oninput="window.M2_ValCss.calculate()">
-                    <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-ss-level', 0.1, 0, 500, 1)">+</button>
+                    <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-ss-level', -0.1, 0, 1000, 3)">-</button>
+                    <input type="number" id="m2-ss-level" step="0.001" placeholder="0" oninput="window.M2_ValCss.calculate()">
+                    <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-ss-level', 0.1, 0, 1000, 3)">+</button>
                   </div>
-                  <span class="unit-text">mEq/L</span>
+                  <span class="unit-text">mcg/mL</span>
                 </div>
               </div>
 
@@ -431,7 +431,45 @@ window.M2_ValCss = {
     const dose = parseFloat(document.getElementById('m2-dose')?.value) || 0;
     const ssLevel = parseFloat(document.getElementById('m2-ss-level')?.value) || 0;
 
-    // TODO: เตรียมใส่สูตรคำนวณ Valproate ตรงนี้
+    // 1. ทำนายระดับยาผู้ใหญ่ = (1000 * dose) / (8 * 24 * bw)
+    if (bw > 0 && dose > 0) {
+      const predAdult = (1000 * dose) / (8 * 24 * bw);
+      this.setText('m2-pred-adult', predAdult.toFixed(2));
+    } else {
+      this.setText('m2-pred-adult', '-');
+    }
+
+    // 2. ทำนายระดับยาเด็ก = (1000 * dose) / (13 * 24 * bw)
+    if (bw > 0 && dose > 0) {
+      const predChild = (1000 * dose) / (13 * 24 * bw);
+      this.setText('m2-pred-child', predChild.toFixed(2));
+    } else {
+      this.setText('m2-pred-child', '-');
+    }
+
+    // 3. Minimum dose = (50 * dose) / ssLevel
+    if (ssLevel > 0 && dose > 0) {
+      const minDose = (50 * dose) / ssLevel;
+      this.setText('m2-rec-min', minDose.toFixed(2));
+    } else {
+      this.setText('m2-rec-min', '-');
+    }
+
+    // 4. Max dose (Acute Mania) = (125 * dose) / ssLevel
+    if (ssLevel > 0 && dose > 0) {
+      const maxAcute = (125 * dose) / ssLevel;
+      this.setText('m2-rec-max-acute', maxAcute.toFixed(2));
+    } else {
+      this.setText('m2-rec-max-acute', '-');
+    }
+
+    // 5. Max dose (Maintenance phase) = (100 * dose) / ssLevel
+    if (ssLevel > 0 && dose > 0) {
+      const maxMaint = (100 * dose) / ssLevel;
+      this.setText('m2-rec-max-maint', maxMaint.toFixed(2));
+    } else {
+      this.setText('m2-rec-max-maint', '-');
+    }
   },
 
   setText: function(id, txt) {
