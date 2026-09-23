@@ -1,4 +1,5 @@
-window.M2_Valproate = {
+// 1. เปลี่ยนชื่อ Object เป็น M2_Valcss ให้ตรงกับชื่อไฟล์/Router
+window.M2_Valcss = {
   render: function(container) {
     container.innerHTML = `
       <style>
@@ -282,9 +283,9 @@ window.M2_Valproate = {
                   <label for="m2-bw">BW (น้ำหนัก)</label>
                   <div class="stepper-container-inline">
                     <div class="stepper-box">
-                      <button type="button" class="btn-step" onclick="window.M2_Valproate.stepInput('m2-bw', -1, 0, 300, 1)">-</button>
-                      <input type="number" id="m2-bw" placeholder="0" oninput="window.M2_Valproate.calculate()">
-                      <button type="button" class="btn-step" onclick="window.M2_Valproate.stepInput('m2-bw', 1, 0, 300, 1)">+</button>
+                      <button type="button" class="btn-step" onclick="window.M2_Valcss.stepInput('m2-bw', -1, 0, 300, 1)">-</button>
+                      <input type="number" id="m2-bw" placeholder="0" oninput="window.M2_Valcss.calculate()">
+                      <button type="button" class="btn-step" onclick="window.M2_Valcss.stepInput('m2-bw', 1, 0, 300, 1)">+</button>
                     </div>
                     <span class="unit-text">kg</span>
                   </div>
@@ -295,9 +296,9 @@ window.M2_Valproate = {
                   <label for="m2-ht">Ht (ส่วนสูง)</label>
                   <div class="stepper-container-inline">
                     <div class="stepper-box">
-                      <button type="button" class="btn-step" onclick="window.M2_Valproate.stepInput('m2-ht', -1, 0, 250, 1)">-</button>
-                      <input type="number" id="m2-ht" placeholder="0" oninput="window.M2_Valproate.calculate()">
-                      <button type="button" class="btn-step" onclick="window.M2_Valproate.stepInput('m2-ht', 1, 0, 250, 1)">+</button>
+                      <button type="button" class="btn-step" onclick="window.M2_Valcss.stepInput('m2-ht', -1, 0, 250, 1)">-</button>
+                      <input type="number" id="m2-ht" placeholder="0" oninput="window.M2_Valcss.calculate()">
+                      <button type="button" class="btn-step" onclick="window.M2_Valcss.stepInput('m2-ht', 1, 0, 250, 1)">+</button>
                     </div>
                     <span class="unit-text">cm.</span>
                   </div>
@@ -308,9 +309,9 @@ window.M2_Valproate = {
                   <label for="m2-dose">ขนาดยา/วัน</label>
                   <div class="stepper-container-inline">
                     <div class="stepper-box">
-                      <button type="button" class="btn-step" onclick="window.M2_Valproate.stepInput('m2-dose', -50, 0, 5000, 0)">-</button>
-                      <input type="number" id="m2-dose" placeholder="0" oninput="window.M2_Valproate.calculate()">
-                      <button type="button" class="btn-step" onclick="window.M2_Valproate.stepInput('m2-dose', 50, 0, 5000, 0)">+</button>
+                      <button type="button" class="btn-step" onclick="window.M2_Valcss.stepInput('m2-dose', -50, 0, 5000, 0)">-</button>
+                      <input type="number" id="m2-dose" placeholder="0" oninput="window.M2_Valcss.calculate()">
+                      <button type="button" class="btn-step" onclick="window.M2_Valcss.stepInput('m2-dose', 50, 0, 5000, 0)">+</button>
                     </div>
                     <span class="unit-text">mg/day</span>
                   </div>
@@ -350,9 +351,9 @@ window.M2_Valproate = {
                 <label for="m2-ss-level" style="width: 110px;">ระดับยาที่ SS</label>
                 <div class="stepper-container-inline">
                   <div class="stepper-box">
-                    <button type="button" class="btn-step" onclick="window.M2_Valproate.stepInput('m2-ss-level', -0.1, 0, 500, 1)">-</button>
-                    <input type="number" id="m2-ss-level" step="0.1" placeholder="0" oninput="window.M2_Valproate.calculate()">
-                    <button type="button" class="btn-step" onclick="window.M2_Valproate.stepInput('m2-ss-level', 0.1, 0, 500, 1)">+</button>
+                    <button type="button" class="btn-step" onclick="window.M2_Valcss.stepInput('m2-ss-level', -0.1, 0, 500, 1)">-</button>
+                    <input type="number" id="m2-ss-level" step="0.1" placeholder="0" oninput="window.M2_Valcss.calculate()">
+                    <button type="button" class="btn-step" onclick="window.M2_Valcss.stepInput('m2-ss-level', 0.1, 0, 500, 1)">+</button>
                   </div>
                   <span class="unit-text">mEq/L</span>
                 </div>
@@ -398,14 +399,14 @@ window.M2_Valproate = {
         const el = document.getElementById(id);
         if (el) el.value = '';
       });
-      window.M2_Valproate.calculate();
+      window.M2_Valcss.calculate();
     });
 
     // Clear ฝั่งขวา
     document.getElementById('m2-btn-clear-right')?.addEventListener('click', function() {
       const el = document.getElementById('m2-ss-level');
       if (el) el.value = '';
-      window.M2_Valproate.calculate();
+      window.M2_Valcss.calculate();
     });
   },
 
@@ -430,15 +431,6 @@ window.M2_Valproate = {
     const ht = parseFloat(document.getElementById('m2-ht')?.value) || 0;
     const dose = parseFloat(document.getElementById('m2-dose')?.value) || 0;
     const ssLevel = parseFloat(document.getElementById('m2-ss-level')?.value) || 0;
-
-    // TODO: รอขยี้สูตรคำนวณจริงที่นี่
-    // ----------------------------------------------------
-    // ตัวอย่างการแสดงผลเบื้องต้น:
-    // this.setText('m2-pred-adult', ...);
-    // this.setText('m2-pred-child', ...);
-    // this.setText('m2-rec-min', ...);
-    // this.setText('m2-rec-max-acute', ...);
-    // this.setText('m2-rec-max-maint', ...);
   },
 
   setText: function(id, txt) {
