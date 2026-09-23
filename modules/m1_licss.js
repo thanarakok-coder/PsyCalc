@@ -17,10 +17,10 @@ window.M1_LiCss = {
           border-bottom: 1px solid #cbd5e1;
         }
 
-        /* Grid หลัก: ซ้าย (Input) - ขวา (Results) */
+        /* Grid หลัก */
         .m1-main-layout {
           display: grid;
-          grid-template-columns: 420px 1fr; /* ขยายความกว้างฝั่งซ้ายเล็กน้อยเพื่อรองรับ Inline Label */
+          grid-template-columns: 420px 1fr;
           gap: 16px;
           align-items: stretch;
         }
@@ -41,19 +41,26 @@ window.M1_LiCss = {
           flex-direction: column;
         }
 
-        /* การ์ดฝั่งซ้าย (ข้อมูลผู้ป่วย) แต่งสีพื้นหลังเบาๆ ให้เด่นขึ้น */
+        /* [จุด A] การ์ดฝั่งซ้าย: กระจายช่องไฟ (Spacing) ให้เท่ากันสม่ำเสมอ */
         .input-card-highlight {
           background: #f8fafc;
           border: 1.5px solid #93c5fd;
           box-shadow: 0 4px 12px rgba(59, 130, 246, 0.06);
-          justify-content: space-between; /* กระจายระยะห่างให้เต็มแนวสูง */
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        .input-fields-container {
+          display: flex;
+          flex-direction: column;
+          gap: 12px; /* กระจายช่องไฟระหว่างบรรทัดให้เท่ากัน */
         }
 
         .card-head-title {
           font-size: 1rem;
           font-weight: 700;
           color: #0f172a;
-          margin-bottom: 12px;
+          margin-bottom: 14px;
           padding-bottom: 6px;
           border-bottom: 2px solid #3b82f6;
           display: flex;
@@ -61,7 +68,6 @@ window.M1_LiCss = {
           align-items: center;
         }
         
-        /* ปุ่ม Clear Style */
         .btn-clear-mini {
           background: #fee2e2;
           color: #dc2626;
@@ -78,20 +84,20 @@ window.M1_LiCss = {
           color: #991b1b;
         }
 
-        /* Form Group แบบ Inline บรรทัดเดียว */
+        /* Form Group Inline */
         .field-group-inline {
           display: flex;
           align-items: center;
           gap: 8px;
-          margin-bottom: 10px;
         }
         .field-group-inline label {
-          width: 120px; /* ความกว้างคงที่ของหัวข้อฝั่งซ้าย */
+          width: 120px;
           flex-shrink: 0;
           font-size: 0.92rem;
           font-weight: 700;
           color: #1e293b;
           white-space: nowrap;
+          line-height: 1.25;
         }
         .stepper-container-inline {
           display: flex;
@@ -100,7 +106,7 @@ window.M1_LiCss = {
           flex: 1;
         }
 
-        /* ขยายกว้างเต็มพื้นที่ + แต่งโทนสีฟ้าเน้นกล่อง Input */
+        /* Stepper Box */
         .stepper-box {
           display: flex;
           align-items: center;
@@ -109,7 +115,7 @@ window.M1_LiCss = {
           border: 1.5px solid #60a5fa;
           border-radius: 24px;
           padding: 2px 6px;
-          height: 42px; /* เพิ่มความสูงกล่อง */
+          height: 42px;
           box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
           transition: all 0.2s ease;
         }
@@ -145,7 +151,7 @@ window.M1_LiCss = {
           background: transparent;
           text-align: center;
           font-weight: 800;
-          font-size: 1.2rem; /* ขยายขนาดฟอนต์ตัวเลข */
+          font-size: 1.2rem;
           color: #0f172a;
           outline: none;
         }
@@ -172,7 +178,7 @@ window.M1_LiCss = {
           gap: 16px;
         }
 
-        /* Card ผลการคำนวณ ชาย / หญิง */
+        /* Male / Female Output Cards */
         .gender-output-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -220,7 +226,6 @@ window.M1_LiCss = {
           border: 1px solid transparent;
         }
 
-        /* Highlight สีเขียวเมื่อตรงตามเงื่อนไขน้ำหนักที่น้อยกว่า */
         .highlight-green {
           background-color: #dcfce7 !important;
           border-color: #86efac !important;
@@ -231,7 +236,7 @@ window.M1_LiCss = {
         /* Recommended Dose Split Panel */
         .rec-split-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1.1fr 0.9fr;
           gap: 16px;
           align-items: stretch;
         }
@@ -241,13 +246,18 @@ window.M1_LiCss = {
           }
         }
         
-        /* กล่องฝั่งขวา Recommended Dose ขยายเต็มพื้นที่ */
+        /* [จุด B] ปรับเพิ่มขนาดกรอบเติมค่ามาทางซ้ายอีก 15% (ลด label width เหลือ 110px) */
+        .steady-input-label {
+          width: 110px !important;
+        }
+
+        /* [จุด C] จัดโครงสร้างผลการคำนวณ Recommended Dose */
         .rec-out-list {
           display: flex;
           flex-direction: column;
           justify-content: space-around;
           background: #f8fafc;
-          padding: 14px 18px;
+          padding: 10px 14px;
           border-radius: 8px;
           border: 1px solid #cbd5e1;
           height: 100%;
@@ -257,21 +267,41 @@ window.M1_LiCss = {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          font-size: 0.95rem; /* ขยายขนาดฟอนต์ */
           padding: 6px 0;
           border-bottom: 1px dashed #e2e8f0;
         }
         .rec-out-item:last-child {
           border-bottom: none;
         }
+        
+        /* Label ซ้ายฝั่งผลลัพธ์ */
         .rec-out-label {
-          color: #475569;
+          color: #334155;
           font-weight: 600;
+          font-size: 0.88rem;
+          line-height: 1.2;
         }
-        .rec-out-val {
+        .rec-out-label small {
+          font-size: 0.8rem;
+          color: #64748b;
+          font-weight: 500;
+        }
+
+        /* Result Right Value Style */
+        .rec-out-val-container {
+          text-align: right;
+          white-space: nowrap;
+        }
+        .rec-out-num {
           font-weight: 800;
-          font-size: 1.05rem; /* ตัวเลขผลลัพธ์ใหญ่ชัดเจน */
+          font-size: 1.2rem; /* เน้นตัวเลขเด่นชัด */
           color: #0f172a;
+        }
+        .rec-out-unit {
+          font-weight: 500;
+          font-size: 0.82rem; /* ปรับตัวอักษร เม็ด/วัน ให้เล็กนุ่มลง */
+          color: #64748b;
+          margin-left: 2px;
         }
       </style>
 
@@ -280,7 +310,7 @@ window.M1_LiCss = {
 
         <div class="m1-main-layout">
           
-          <!-- LEFT COLUMN: ข้อมูลผู้ป่วย (Inline Row & Full Height) -->
+          <!-- LEFT COLUMN: ข้อมูลผู้ป่วย -->
           <div class="m1-card input-card-highlight">
             <div>
               <div class="card-head-title">
@@ -288,62 +318,65 @@ window.M1_LiCss = {
                 <button type="button" id="m1-btn-clear-left" class="btn-clear-mini">Clear</button>
               </div>
 
-              <!-- 1. BW -->
-              <div class="field-group-inline">
-                <label for="m1-bw">BW (น้ำหนัก)</label>
-                <div class="stepper-container-inline">
-                  <div class="stepper-box">
-                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-bw', -1, 0, 300, 1)">-</button>
-                    <input type="number" id="m1-bw" placeholder="0" oninput="window.M1_LiCss.calculate()">
-                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-bw', 1, 0, 300, 1)">+</button>
+              <!-- [จุด A] รวมอยู่ใน Container และใช้ gap กระจายช่องไฟให้เท่ากัน -->
+              <div class="input-fields-container">
+                <!-- 1. BW -->
+                <div class="field-group-inline">
+                  <label for="m1-bw">BW (น้ำหนัก)</label>
+                  <div class="stepper-container-inline">
+                    <div class="stepper-box">
+                      <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-bw', -1, 0, 300, 1)">-</button>
+                      <input type="number" id="m1-bw" placeholder="0" oninput="window.M1_LiCss.calculate()">
+                      <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-bw', 1, 0, 300, 1)">+</button>
+                    </div>
+                    <span class="unit-text">kg</span>
                   </div>
-                  <span class="unit-text">kg</span>
                 </div>
-              </div>
 
-              <!-- 2. Ht -->
-              <div class="field-group-inline">
-                <label for="m1-ht">Ht (ส่วนสูง)</label>
-                <div class="stepper-container-inline">
-                  <div class="stepper-box">
-                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-ht', -1, 0, 250, 1)">-</button>
-                    <input type="number" id="m1-ht" placeholder="0" oninput="window.M1_LiCss.calculate()">
-                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-ht', 1, 0, 250, 1)">+</button>
+                <!-- 2. Ht -->
+                <div class="field-group-inline">
+                  <label for="m1-ht">Ht (ส่วนสูง)</label>
+                  <div class="stepper-container-inline">
+                    <div class="stepper-box">
+                      <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-ht', -1, 0, 250, 1)">-</button>
+                      <input type="number" id="m1-ht" placeholder="0" oninput="window.M1_LiCss.calculate()">
+                      <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-ht', 1, 0, 250, 1)">+</button>
+                    </div>
+                    <span class="unit-text">cm.</span>
                   </div>
-                  <span class="unit-text">cm.</span>
                 </div>
-              </div>
 
-              <!-- 3. Age -->
-              <div class="field-group-inline">
-                <label for="m1-age">Age (อายุ)</label>
-                <div class="stepper-container-inline">
-                  <div class="stepper-box">
-                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-age', -1, 0, 120, 0)">-</button>
-                    <input type="number" id="m1-age" placeholder="0" oninput="window.M1_LiCss.calculate()">
-                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-age', 1, 0, 120, 0)">+</button>
+                <!-- 3. Age -->
+                <div class="field-group-inline">
+                  <label for="m1-age">Age (อายุ)</label>
+                  <div class="stepper-container-inline">
+                    <div class="stepper-box">
+                      <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-age', -1, 0, 120, 0)">-</button>
+                      <input type="number" id="m1-age" placeholder="0" oninput="window.M1_LiCss.calculate()">
+                      <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-age', 1, 0, 120, 0)">+</button>
+                    </div>
+                    <span class="unit-text">ปี</span>
                   </div>
-                  <span class="unit-text">ปี</span>
                 </div>
-              </div>
 
-              <!-- 4. Scr -->
-              <div class="field-group-inline">
-                <label for="m1-scr">Scr.</label>
-                <div class="stepper-container-inline">
-                  <div class="stepper-box">
-                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-scr', -0.1, 0, 20, 2)">-</button>
-                    <input type="number" id="m1-scr" step="0.1" placeholder="0.00" oninput="window.M1_LiCss.calculate()">
-                    <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-scr', 0.1, 0, 20, 2)">+</button>
+                <!-- 4. Scr -->
+                <div class="field-group-inline">
+                  <label for="m1-scr">Scr.</label>
+                  <div class="stepper-container-inline">
+                    <div class="stepper-box">
+                      <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-scr', -0.1, 0, 20, 2)">-</button>
+                      <input type="number" id="m1-scr" step="0.1" placeholder="0.00" oninput="window.M1_LiCss.calculate()">
+                      <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-scr', 0.1, 0, 20, 2)">+</button>
+                    </div>
+                    <span class="unit-text">mg/dL</span>
                   </div>
-                  <span class="unit-text">mg/dL</span>
                 </div>
               </div>
             </div>
 
-            <!-- 5. ขนาดยาที่ได้รับ -->
-            <div style="padding-top: 10px; border-top: 1px dashed #cbd5e1; margin-top: 6px;">
-              <div class="field-group-inline" style="margin-bottom: 0;">
+            <!-- 5. ขนาดยาที่ได้รับ (จัดระยะช่องไฟส่วนล่างให้กลมกลืน) -->
+            <div style="padding-top: 12px; border-top: 1px dashed #cbd5e1; margin-top: 12px;">
+              <div class="field-group-inline">
                 <label for="m1-dose">ขนาดยาที่ได้รับ <br><small style="font-weight:normal; color:#64748b;">(Cap/day)</small></label>
                 <div class="stepper-container-inline">
                   <div class="stepper-box">
@@ -358,12 +391,11 @@ window.M1_LiCss = {
 
           </div>
 
-          <!-- RIGHT COLUMN: Output Top + Output Bottom -->
+          <!-- RIGHT COLUMN -->
           <div class="right-stack">
             
-            <!-- TOP RIGHT: เพศชาย & เพศหญิง -->
+            <!-- TOP RIGHT: ผลทำนาย Css -->
             <div class="gender-output-grid">
-              
               <!-- Male Block -->
               <div class="gender-card male-card">
                 <div class="gender-card-title">เพศชาย</div>
@@ -397,22 +429,20 @@ window.M1_LiCss = {
                   <div class="calc-data-cell" id="f-css-realbw-box"><span>ทำนาย Css</span><span id="f-css-realbw">-</span></div>
                 </div>
               </div>
-
             </div>
 
             <!-- BOTTOM RIGHT: Recommended dose (@ Steady State 7 วัน) -->
             <div class="m1-card">
               <div class="card-head-title" style="border-bottom-color: #10b981;">
                 <span>Recommended dose (@ Steady State 7 วัน)</span>
-                <!-- ปุ่ม Clear สำหรับฝั่ง Steady State -->
                 <button type="button" id="m1-btn-clear-steady" class="btn-clear-mini">Clear</button>
               </div>
 
               <div class="rec-split-grid">
-                <!-- ฝั่งซ้าย: Inputs สำหรับ Rec Dose (ปรับ Inline ด้วย) -->
-                <div style="display: flex; flex-direction: column; justify-content: center; gap: 8px;">
+                <!-- [จุด B] ปรับขยายกรอบเติมค่ามาทางซ้าย -->
+                <div style="display: flex; flex-direction: column; justify-content: center; gap: 10px;">
                   <div class="field-group-inline">
-                    <label for="m1-rec-dose" style="width: 130px;">ขนาดยาที่ได้รับ <br><small style="font-weight:normal; color:#64748b;">(Cap/day)</small></label>
+                    <label for="m1-rec-dose" class="steady-input-label">ขนาดยาที่ได้รับ <br><small style="font-weight:normal; color:#64748b;">(Cap/day)</small></label>
                     <div class="stepper-container-inline">
                       <div class="stepper-box">
                         <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-rec-dose', -1, 0, 50, 0)">-</button>
@@ -424,7 +454,7 @@ window.M1_LiCss = {
                   </div>
 
                   <div class="field-group-inline">
-                    <label for="m1-target-css" style="width: 130px;">ระดับยา Css</label>
+                    <label for="m1-target-css" class="steady-input-label">ระดับยา Css</label>
                     <div class="stepper-container-inline">
                       <div class="stepper-box">
                         <button type="button" class="btn-step" onclick="window.M1_LiCss.stepInput('m1-target-css', -0.1, 0, 5, 3)">-</button>
@@ -436,21 +466,33 @@ window.M1_LiCss = {
                   </div>
                 </div>
 
-                <!-- ฝั่งขวา: Outputs แสดงผล (ขยายใหญ่เต็มพื้นที่) -->
+                <!-- [จุด C] ปรับแต่งข้อความและขนาดอักษรผลการคำนวณ -->
                 <div class="rec-out-list">
                   <div class="rec-out-item">
-                    <span class="rec-out-label">minimum dose</span>
-                    <span class="rec-out-val" id="rec-min">- เม็ด/วัน</span>
+                    <span class="rec-out-label">Minimum dose</span>
+                    <div class="rec-out-val-container">
+                      <span class="rec-out-num" id="rec-min">-</span>
+                      <span class="rec-out-unit">เม็ด/วัน</span>
+                    </div>
                   </div>
+
                   <div class="rec-out-item">
-                    <span class="rec-out-label">Max dose (Acute phase)</span>
-                    <span class="rec-out-val" id="rec-max-acute">- เม็ด/วัน</span>
+                    <span class="rec-out-label">Max dose<br><small>(Acute phase)</small></span>
+                    <div class="rec-out-val-container">
+                      <span class="rec-out-num" id="rec-max-acute">-</span>
+                      <span class="rec-out-unit">เม็ด/วัน</span>
+                    </div>
                   </div>
+
                   <div class="rec-out-item">
-                    <span class="rec-out-label">Max dose (Maintenance phase)</span>
-                    <span class="rec-out-val" id="rec-max-maint">- เม็ด/วัน</span>
+                    <span class="rec-out-label">Max dose<br><small>(Maintenance phase)</small></span>
+                    <div class="rec-out-val-container">
+                      <span class="rec-out-num" id="rec-max-maint">-</span>
+                      <span class="rec-out-unit">เม็ด/วัน</span>
+                    </div>
                   </div>
                 </div>
+
               </div>
 
             </div>
@@ -470,7 +512,7 @@ window.M1_LiCss = {
       window.M1_LiCss.calculate();
     });
 
-    // Clear ฝั่ง Steady State 2 ช่อง
+    // Clear ฝั่ง Steady State
     document.getElementById('m1-btn-clear-steady')?.addEventListener('click', function() {
       ['m1-rec-dose', 'm1-target-css'].forEach(id => {
         const el = document.getElementById(id);
@@ -581,13 +623,13 @@ window.M1_LiCss = {
       let maxAcute = (1.2 * dose) / targetCss;
       let maxMaint = (1.0 * dose) / targetCss;
 
-      this.setText('rec-min', minDose.toFixed(3) + ' เม็ด/วัน');
-      this.setText('rec-max-acute', maxAcute.toFixed(3) + ' เม็ด/วัน');
-      this.setText('rec-max-maint', maxMaint.toFixed(3) + ' เม็ด/วัน');
+      this.setText('rec-min', minDose.toFixed(3));
+      this.setText('rec-max-acute', maxAcute.toFixed(3));
+      this.setText('rec-max-maint', maxMaint.toFixed(3));
     } else {
-      this.setText('rec-min', '- เม็ด/วัน');
-      this.setText('rec-max-acute', '- เม็ด/วัน');
-      this.setText('rec-max-maint', '- เม็ด/วัน');
+      this.setText('rec-min', '-');
+      this.setText('rec-max-acute', '-');
+      this.setText('rec-max-maint', '-');
     }
   },
 
