@@ -234,16 +234,19 @@ window.M2_ValCss = {
           border-bottom: none;
         }
         
+        /* เพิ่มขนาดฟอนต์ขึ้น ~15% ปรับเป็นสีดำเข้ม ตัวหนาเด่น */
         .rec-out-label {
-          color: #334155;
-          font-weight: 600;
-          font-size: 0.88rem;
-          line-height: 1.25;
+          color: #0f172a;
+          font-weight: 700;
+          font-size: 1.02rem;
+          line-height: 1.3;
         }
+        /* เพิ่มขนาดฟอนต์ในวงเล็บขึ้น ~15% คงสีเทาและการขึ้นบรรทัดใหม่ */
         .rec-out-label small {
-          font-size: 0.8rem;
+          font-size: 0.9rem;
           color: #64748b;
           font-weight: 500;
+          display: block;
         }
 
         .rec-out-val-container {
@@ -252,12 +255,12 @@ window.M2_ValCss = {
         }
         .rec-out-num {
           font-weight: 800;
-          font-size: 1.25rem;
+          font-size: 1.3rem;
           color: #0f172a;
         }
         .rec-out-unit {
           font-weight: 500;
-          font-size: 0.85rem;
+          font-size: 0.9rem;
           color: #64748b;
           margin-left: 2px;
         }
@@ -318,7 +321,7 @@ window.M2_ValCss = {
               </div>
             </div>
 
-            <!-- ทำนายระดับยา (เปลี่ยนหน่วยเป็น mEq/L) -->
+            <!-- ทำนายระดับยา -->
             <div class="predict-section">
               <div class="predict-title">ทำนายระดับยา</div>
               <div class="predict-grid">
@@ -341,7 +344,7 @@ window.M2_ValCss = {
           <div class="m2-card">
             <div>
               <div class="card-head-title" style="border-bottom-color: #10b981;">
-                <span>Recommended dose <br><small style="font-size:0.8rem; font-weight:normal; color:#475569;">(Steady State อย่างน้อย 3 วัน)</small></span>
+                <span>Recommended dose <br><small style="font-size:0.85rem; font-weight:normal; color:#475569;">(Steady State อย่างน้อย 3 วัน)</small></span>
                 <button type="button" id="m2-btn-clear-right" class="btn-clear-mini">Clear</button>
               </div>
 
@@ -369,7 +372,7 @@ window.M2_ValCss = {
                 </div>
 
                 <div class="rec-out-item">
-                  <span class="rec-out-label">Max dose<br><small>(Acute Mania)</small></span>
+                  <span class="rec-out-label">Max dose <small>(Acute Mania)</small></span>
                   <div class="rec-out-val-container">
                     <span class="rec-out-num" id="m2-rec-max-acute">-</span>
                     <span class="rec-out-unit">mg</span>
@@ -377,7 +380,7 @@ window.M2_ValCss = {
                 </div>
 
                 <div class="rec-out-item">
-                  <span class="rec-out-label">Max dose<br><small>(Maintenance phase)</small></span>
+                  <span class="rec-out-label">Max dose <small>(Maintenance phase)</small></span>
                   <div class="rec-out-val-container">
                     <span class="rec-out-num" id="m2-rec-max-maint">-</span>
                     <span class="rec-out-unit">mg</span>
