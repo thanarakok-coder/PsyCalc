@@ -17,7 +17,7 @@ window.M3_PheCap = {
           border-bottom: 1px solid #cbd5e1;
         }
 
-        /* Layout หลัก: ฝั่งซ้าย 280px ฝั่งขวา 1fr */
+        /* Layout หลัก */
         .m3-main-layout {
           display: grid;
           grid-template-columns: 280px 1fr;
@@ -71,7 +71,6 @@ window.M3_PheCap = {
           background: #fca5a5;
         }
 
-        /* Stacked Form Group */
         .field-group-stacked {
           display: flex;
           flex-direction: column;
@@ -90,7 +89,6 @@ window.M3_PheCap = {
           gap: 8px;
         }
 
-        /* Stepper Box */
         .stepper-box {
           display: flex;
           align-items: center;
@@ -106,7 +104,6 @@ window.M3_PheCap = {
           box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
-        /* ปุ่ม Stepper วงกลม */
         .btn-step {
           width: 34px;
           height: 34px;
@@ -181,7 +178,6 @@ window.M3_PheCap = {
           background: #e0f2fe;
         }
 
-        /* Title 2 บรรทัด */
         .module-brand-title {
           margin-top: 20px;
           display: flex;
@@ -275,7 +271,7 @@ window.M3_PheCap = {
           border-top: 1px solid #e2e8f0;
         }
 
-        /* --- STYLES สำหรับ SCENARIO 1 ACCORDION --- */
+        /* --- STYLES SCENARIO 1 --- */
         .scen1-grid-layout {
           display: grid;
           grid-template-columns: 240px 1fr;
@@ -288,7 +284,6 @@ window.M3_PheCap = {
           }
         }
 
-        /* ซีกซ้าย: ขนาดยา/วัน */
         .dose-input-card {
           background: #f1f5f9;
           border: 1.5px solid #cbd5e1;
@@ -306,7 +301,6 @@ window.M3_PheCap = {
           color: #0f172a;
         }
 
-        /* ซีกขวา: แยกเพศชาย - หญิง */
         .gender-split-container {
           display: grid;
           grid-template-columns: 1fr 2px 1fr;
@@ -324,18 +318,16 @@ window.M3_PheCap = {
         }
 
         .gender-divider-line {
-          background-color: #334155; /* เส้นทึบกั้นตรงกลาง */
+          background-color: #334155;
           width: 2px;
         }
 
-        /* กล่องเพศชาย */
         .gender-box-male {
-          background-color: #f0f9ff; /* สีฟ้าอ่อน */
+          background-color: #f0f9ff;
           padding: 12px;
         }
-        /* กล่องเพศหญิง */
         .gender-box-female {
-          background-color: #fdf2f8; /* สีชมพูอ่อน */
+          background-color: #fdf2f8;
           padding: 12px;
         }
 
@@ -358,27 +350,55 @@ window.M3_PheCap = {
           border-bottom: 1.5px solid #fbcfe8;
         }
 
-        /* แบ่ง 2 ซีก real BW vs IBW */
         .sub-bw-split {
           display: grid;
           grid-template-columns: 1fr 1px 1fr;
           gap: 8px;
         }
         .dashed-vertical-line {
-          border-left: 1.5px dashed #94a3b8; /* เส้นประแนวตั้ง */
+          border-left: 1.5px dashed #94a3b8;
         }
 
         .bw-col {
           display: flex;
           flex-direction: column;
           gap: 8px;
+          padding: 6px;
+          border-radius: 6px;
+          transition: all 0.2s ease;
+          border: 1.5px solid transparent;
         }
+
+        /* HIGHLIGHT CLASS สำหรับน้ำหนักที่น้อยกว่า */
+        .bw-col.highlight-lower {
+          background-color: #f0fdf4; /* พื้นหลังเขียวอ่อน */
+          border-color: #22c55e;     /* กรอบเขียว */
+          box-shadow: 0 2px 8px rgba(34, 197, 94, 0.15);
+        }
+
         .bw-col-title {
           font-weight: 700;
           font-size: 0.95rem;
           color: #334155;
           text-align: center;
-          margin-bottom: 4px;
+          margin-bottom: 2px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 2px;
+        }
+
+        .badge-lower {
+          display: none;
+          font-size: 0.7rem;
+          background: #16a34a;
+          color: #ffffff;
+          padding: 1px 6px;
+          border-radius: 10px;
+          font-weight: 600;
+        }
+        .bw-col.highlight-lower .badge-lower {
+          display: inline-block;
         }
 
         .calc-row-item {
@@ -388,7 +408,7 @@ window.M3_PheCap = {
           font-size: 0.9rem;
           font-weight: 600;
           color: #1e293b;
-          background: rgba(255, 255, 255, 0.7);
+          background: rgba(255, 255, 255, 0.85);
           padding: 6px 8px;
           border-radius: 4px;
           border: 1px dashed #cbd5e1;
@@ -453,7 +473,7 @@ window.M3_PheCap = {
           <!-- ฝั่งขวา: 5 Scenario Accordions -->
           <div class="accordion-list" id="m3-accordion-container">
 
-            <!-- Scenario 1 (เปิดไว้เป็นค่าเริ่มต้น) -->
+            <!-- Scenario 1 -->
             <div class="accordion-item active" id="m3-scen-1">
               <div class="accordion-header">
                 <span class="accordion-icon">▼</span>
@@ -468,7 +488,6 @@ window.M3_PheCap = {
                     <div class="stepper-container-inline" style="width: 100%;">
                       <div class="stepper-box">
                         <button type="button" class="btn-step" id="m3-dose-dec">-</button>
-                        <!-- type="text" เพื่อรองรับ comma คอมม่าหลักพัน -->
                         <input type="text" id="m3-dose" placeholder="0">
                         <button type="button" class="btn-step" id="m3-dose-inc">+</button>
                       </div>
@@ -483,25 +502,31 @@ window.M3_PheCap = {
                     <div class="gender-box-male">
                       <div class="gender-title-male">เพศชาย</div>
                       <div class="sub-bw-split">
-                        <!-- real BW -->
-                        <div class="bw-col">
-                          <div class="bw-col-title">real BW</div>
+                        
+                        <!-- Male: real BW -->
+                        <div class="bw-col" id="col-m-real">
+                          <div class="bw-col-title">
+                            <span>real BW</span>
+                            <span class="badge-lower">(ใช้น้ำหนักนี้)</span>
+                          </div>
                           <div class="calc-row-item">
                             <span>Vmax:</span>
-                            <span class="calc-val-placeholder" id="m1-m-vmax">-</span>
+                            <span class="calc-val-placeholder" id="m1-m-real-vmax">-</span>
                           </div>
                           <div class="calc-row-item">
                             <span>Cทำนาย:</span>
-                            <span class="calc-val-placeholder" id="m1-m-cpred">-</span>
+                            <span class="calc-val-placeholder" id="m1-m-real-cpred">-</span>
                           </div>
                         </div>
 
-                        <!-- เส้นประแนวตั้ง -->
                         <div class="dashed-vertical-line"></div>
 
-                        <!-- IBW -->
-                        <div class="bw-col">
-                          <div class="bw-col-title">IBW</div>
+                        <!-- Male: IBW -->
+                        <div class="bw-col" id="col-m-ibw">
+                          <div class="bw-col-title">
+                            <span>IBW</span>
+                            <span class="badge-lower">(ใช้น้ำหนักนี้)</span>
+                          </div>
                           <div class="calc-row-item">
                             <span>Vmax:</span>
                             <span class="calc-val-placeholder" id="m1-m-ibw-vmax">-</span>
@@ -511,35 +536,41 @@ window.M3_PheCap = {
                             <span class="calc-val-placeholder" id="m1-m-ibw-cpred">-</span>
                           </div>
                         </div>
+
                       </div>
                     </div>
 
-                    <!-- เส้นตรงกั้นทึบ -->
                     <div class="gender-divider-line"></div>
 
                     <!-- ฝั่งเพศหญิง (สีชมพูอ่อน) -->
                     <div class="gender-box-female">
                       <div class="gender-title-female">เพศหญิง</div>
                       <div class="sub-bw-split">
-                        <!-- real BW -->
-                        <div class="bw-col">
-                          <div class="bw-col-title">real BW</div>
+                        
+                        <!-- Female: real BW -->
+                        <div class="bw-col" id="col-f-real">
+                          <div class="bw-col-title">
+                            <span>real BW</span>
+                            <span class="badge-lower">(ใช้น้ำหนักนี้)</span>
+                          </div>
                           <div class="calc-row-item">
                             <span>Vmax:</span>
-                            <span class="calc-val-placeholder" id="m1-f-vmax">-</span>
+                            <span class="calc-val-placeholder" id="m1-f-real-vmax">-</span>
                           </div>
                           <div class="calc-row-item">
                             <span>Cทำนาย:</span>
-                            <span class="calc-val-placeholder" id="m1-f-cpred">-</span>
+                            <span class="calc-val-placeholder" id="m1-f-real-cpred">-</span>
                           </div>
                         </div>
 
-                        <!-- เส้นประแนวตั้ง -->
                         <div class="dashed-vertical-line"></div>
 
-                        <!-- IBW -->
-                        <div class="bw-col">
-                          <div class="bw-col-title">IBW</div>
+                        <!-- Female: IBW -->
+                        <div class="bw-col" id="col-f-ibw">
+                          <div class="bw-col-title">
+                            <span>IBW</span>
+                            <span class="badge-lower">(ใช้น้ำหนักนี้)</span>
+                          </div>
                           <div class="calc-row-item">
                             <span>Vmax:</span>
                             <span class="calc-val-placeholder" id="m1-f-ibw-vmax">-</span>
@@ -549,6 +580,7 @@ window.M3_PheCap = {
                             <span class="calc-val-placeholder" id="m1-f-ibw-cpred">-</span>
                           </div>
                         </div>
+
                       </div>
                     </div>
 
@@ -558,7 +590,7 @@ window.M3_PheCap = {
               </div>
             </div>
 
-            <!-- Scenario 2 -->
+            <!-- Scenario 2 - 5 -->
             <div class="accordion-item" id="m3-scen-2">
               <div class="accordion-header">
                 <span class="accordion-icon">▼</span>
@@ -569,7 +601,6 @@ window.M3_PheCap = {
               </div>
             </div>
 
-            <!-- Scenario 3 -->
             <div class="accordion-item" id="m3-scen-3">
               <div class="accordion-header">
                 <span class="accordion-icon">▼</span>
@@ -580,7 +611,6 @@ window.M3_PheCap = {
               </div>
             </div>
 
-            <!-- Scenario 4 -->
             <div class="accordion-item" id="m3-scen-4">
               <div class="accordion-header">
                 <span class="accordion-icon">▼</span>
@@ -591,7 +621,6 @@ window.M3_PheCap = {
               </div>
             </div>
 
-            <!-- Scenario 5 -->
             <div class="accordion-item" id="m3-scen-5">
               <div class="accordion-header">
                 <span class="accordion-icon">▼</span>
@@ -620,8 +649,14 @@ window.M3_PheCap = {
           const el = document.getElementById(id);
           if (el) el.value = '';
         });
+        this.calculateScenario1();
       });
     }
+
+    // Input Listeners สำหรับคำนวณอัตโนมัติ Real-time
+    ['m3-bw', 'm3-ht', 'm3-dose'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', () => this.calculateScenario1());
+    });
 
     // Stepper buttons (BW / Ht)
     document.getElementById('m3-bw-dec')?.addEventListener('click', () => this.stepInput('m3-bw', -1, 0, 300, 3));
@@ -630,9 +665,9 @@ window.M3_PheCap = {
     document.getElementById('m3-ht-dec')?.addEventListener('click', () => this.stepInput('m3-ht', -1, 0, 250, 2));
     document.getElementById('m3-ht-inc')?.addEventListener('click', () => this.stepInput('m3-ht', 1, 0, 250, 2));
 
-    // Stepper button (Dose - ขนาดยา/วัน เพิ่มลดทีละ 25 หรือ 50)
-    document.getElementById('m3-dose-dec')?.addEventListener('click', () => this.stepDoseInput('m3-dose', -25));
-    document.getElementById('m3-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m3-dose', 25));
+    // Stepper button (Dose - เพิ่มลดทีละ 100 mg)
+    document.getElementById('m3-dose-dec')?.addEventListener('click', () => this.stepDoseInput('m3-dose', -100));
+    document.getElementById('m3-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m3-dose', 100));
 
     // Format บน Blur
     this.formatInputOnBlur('m3-bw', 3);
@@ -653,6 +688,86 @@ window.M3_PheCap = {
     });
   },
 
+  // ระบบคำนวณสำหรับ Scenario 1
+  calculateScenario1: function() {
+    let bw = parseFloat(document.getElementById('m3-bw')?.value) || 0;
+    let ht = parseFloat(document.getElementById('m3-ht')?.value) || 0;
+    let dose = this.parseFormattedNumber(document.getElementById('m3-dose')?.value);
+
+    // เคลียร์ Highlight
+    ['col-m-real', 'col-m-ibw', 'col-f-real', 'col-f-ibw'].forEach(id => {
+      document.getElementById(id)?.classList.remove('highlight-lower');
+    });
+
+    // คำนวณ IBW (ชาย / หญิง)
+    let ibwMale = 0;
+    let ibwFemale = 0;
+
+    if (ht > 0) {
+      ibwMale = 50 + 2.3 * ((ht / 2.54) - 60);
+      ibwFemale = 45.5 + 2.3 * ((ht / 2.54) - 60);
+      if (ibwMale < 0) ibwMale = 0;
+      if (ibwFemale < 0) ibwFemale = 0;
+    }
+
+    // คำนวณ Vmax และ Cทำนาย สำหรับแต่ละหมวด
+    // Male real BW
+    this.computeAndDisplay('m1-m-real', bw, dose);
+    // Male IBW
+    this.computeAndDisplay('m1-m-ibw', ibwMale, dose);
+
+    // Female real BW
+    this.computeAndDisplay('m1-f-real', bw, dose);
+    // Female IBW
+    this.computeAndDisplay('m1-f-ibw', ibwFemale, dose);
+
+    // ไฮไลท์คอลัมน์ที่ค่าน้ำหนักน้อยกว่า (เปรียบเทียบ real BW vs IBW)
+    if (bw > 0 && ht > 0) {
+      // ฝั่งชาย
+      if (bw < ibwMale) {
+        document.getElementById('col-m-real')?.classList.add('highlight-lower');
+      } else if (ibwMale < bw) {
+        document.getElementById('col-m-ibw')?.classList.add('highlight-lower');
+      }
+
+      // ฝั่งหญิง
+      if (bw < ibwFemale) {
+        document.getElementById('col-f-real')?.classList.add('highlight-lower');
+      } else if (ibwFemale < bw) {
+        document.getElementById('col-f-ibw')?.classList.add('highlight-lower');
+      }
+    }
+  },
+
+  // Helper คำนวณ Vmax & Cทำนาย
+  computeAndDisplay: function(prefix, weight, dose) {
+    const elVmax = document.getElementById(`${prefix}-vmax`);
+    const elCpred = document.getElementById(`${prefix}-cpred`);
+
+    if (weight <= 0) {
+      if (elVmax) elVmax.innerText = '-';
+      if (elCpred) elCpred.innerText = '-';
+      return;
+    }
+
+    // Vmax = BW * 7
+    let vmax = weight * 7;
+    if (elVmax) elVmax.innerText = this.formatNumberWithComma(vmax, 2);
+
+    // Cทำนาย = (4 * 0.92 * 1 * Dose) / (Vmax - (0.92 * 1 * Dose))
+    if (dose > 0) {
+      let denom = vmax - (0.92 * 1 * dose);
+      if (denom <= 0) {
+        if (elCpred) elCpred.innerText = 'Infinity'; // ตัวหารติดลบหรือเท่ากับ 0
+      } else {
+        let cpred = (4 * 0.92 * 1 * dose) / denom;
+        if (elCpred) elCpred.innerText = cpred.toFixed(2);
+      }
+    } else {
+      if (elCpred) elCpred.innerText = '-';
+    }
+  },
+
   // Helper แปลง String มี comma เป็นตัวเลข
   parseFormattedNumber: function(str) {
     if (!str) return 0;
@@ -660,7 +775,7 @@ window.M3_PheCap = {
     return parseFloat(clean) || 0;
   },
 
-  // Helper ใส่ คอมม่า (,) และตัด .00
+  // Helper ใส่ Comma + ลบ .00
   formatNumberWithComma: function(num, maxDecimals = 2) {
     if (isNaN(num) || num === 0) return '';
     let factor = Math.pow(10, maxDecimals);
@@ -671,7 +786,6 @@ window.M3_PheCap = {
     return parts.join('.');
   },
 
-  // Format Input ทั่วไป
   formatInputOnBlur: function(id, maxDecimals) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -684,10 +798,10 @@ window.M3_PheCap = {
       }
       let factor = Math.pow(10, maxDecimals);
       el.value = Math.round(val * factor) / factor;
+      this.calculateScenario1();
     });
   },
 
-  // Format สำหรับช่องขนาดยา (รองรับ Comma + max 2 decimals)
   formatDoseOnBlur: function(id) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -698,10 +812,10 @@ window.M3_PheCap = {
       } else {
         el.value = this.formatNumberWithComma(num, 2);
       }
+      this.calculateScenario1();
     });
   },
 
-  // Stepper Calculation สำหรับ BW / Ht
   stepInput: function(id, delta, minVal, maxVal, maxDecimals) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -712,9 +826,9 @@ window.M3_PheCap = {
 
     let factor = Math.pow(10, maxDecimals);
     el.value = Math.round(nextVal * factor) / factor;
+    this.calculateScenario1();
   },
 
-  // Stepper Calculation สำหรับ ขนาดยา (Dose)
   stepDoseInput: function(id, delta) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -723,6 +837,7 @@ window.M3_PheCap = {
     if (nextVal < 0) nextVal = 0;
 
     el.value = this.formatNumberWithComma(nextVal, 2);
+    this.calculateScenario1();
   },
 
   toggleAllAccordions: function(show) {
