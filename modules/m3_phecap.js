@@ -835,7 +835,7 @@ window.M3_PheCap = {
 
                     <!-- ข้อความเตือน (แสดงเฉพาะ CrCl < 10) -->
                     <div class="scen3-notice-box" id="m3-s3-notice">
-                      ⚠️ กรณี ESRD (CrCl&lt;10) ให้นำค่าที่คำนวณได้ มา ÷ 0.44
+                      ⚠️ เคสนี้ ESRD (CrCl&lt;10) ปรับสูตรการคำนวณแล้ว
                     </div>
 
                     <!-- Footnote เฉพาะของ Acc.3 -->
