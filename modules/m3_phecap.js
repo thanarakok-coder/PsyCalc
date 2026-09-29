@@ -20,7 +20,7 @@ window.M3_PheCap = {
         /* Layout แบ่งฝั่งซ้าย 25% ฝั่งขวา 75% */
         .m3-main-layout {
           display: grid;
-          grid-template-columns: 280px 1fr; /* 25% โดยประมาณสำหรับหน้าจอเดสก์ท็อป */
+          grid-template-columns: 280px 1fr;
           gap: 16px;
           align-items: start;
         }
@@ -71,7 +71,7 @@ window.M3_PheCap = {
           background: #fca5a5;
         }
 
-        /* Stacked Form Group (Label คนละบรรทัดกับ Input) */
+        /* Stacked Form Group */
         .field-group-stacked {
           display: flex;
           flex-direction: column;
@@ -79,7 +79,7 @@ window.M3_PheCap = {
           margin-bottom: 14px;
         }
         .field-group-stacked label {
-          font-size: 1.05rem; /* ตัวหนังสือใหญ่เน้นอ่านง่าย */
+          font-size: 1.05rem;
           font-weight: 700;
           color: #0f172a;
         }
@@ -270,9 +270,9 @@ window.M3_PheCap = {
               <label for="m3-bw">น้ำหนัก</label>
               <div class="stepper-container-inline">
                 <div class="stepper-box">
-                  <button type="button" class="btn-step" onclick="window.M3_PheCap.stepInput('m3-bw', -1, 0, 300, 2)">-</button>
-                  <input type="number" id="m3-bw" step="0.01" placeholder="0" onkeydown="window.M3_PheCap.handleEnter(event, 'm3-ht')">
-                  <button type="button" class="btn-step" onclick="window.M3_PheCap.stepInput('m3-bw', 1, 0, 300, 2)">+</button>
+                  <button type="button" class="btn-step" id="m3-bw-dec">-</button>
+                  <input type="number" id="m3-bw" step="0.01" placeholder="0">
+                  <button type="button" class="btn-step" id="m3-bw-inc">+</button>
                 </div>
                 <span class="unit-text">kg</span>
               </div>
@@ -283,9 +283,9 @@ window.M3_PheCap = {
               <label for="m3-ht">ส่วนสูง</label>
               <div class="stepper-container-inline">
                 <div class="stepper-box">
-                  <button type="button" class="btn-step" onclick="window.M3_PheCap.stepInput('m3-ht', -1, 0, 250, 2)">-</button>
+                  <button type="button" class="btn-step" id="m3-ht-dec">-</button>
                   <input type="number" id="m3-ht" step="0.01" placeholder="0">
-                  <button type="button" class="btn-step" onclick="window.M3_PheCap.stepInput('m3-ht', 1, 0, 250, 2)">+</button>
+                  <button type="button" class="btn-step" id="m3-ht-inc">+</button>
                 </div>
                 <span class="unit-text">cm</span>
               </div>
@@ -293,8 +293,8 @@ window.M3_PheCap = {
 
             <!-- ปุ่ม Show All / Hide All -->
             <div class="action-toggle-btns">
-              <button type="button" class="btn-action-outline" onclick="window.M3_PheCap.toggleAllAccordions(true)">Show all</button>
-              <button type="button" class="btn-action-outline" onclick="window.M3_PheCap.toggleAllAccordions(false)">Hide all</button>
+              <button type="button" class="btn-action-outline" id="m3-btn-show-all">Show all</button>
+              <button type="button" class="btn-action-outline" id="m3-btn-hide-all">Hide all</button>
             </div>
 
             <div class="module-brand-title">
@@ -307,7 +307,7 @@ window.M3_PheCap = {
 
             <!-- Scenario 1 -->
             <div class="accordion-item" id="m3-scen-1">
-              <div class="accordion-header" onclick="window.M3_PheCap.toggleAccordion('m3-scen-1')">
+              <div class="accordion-header">
                 <span class="accordion-icon">▼</span>
                 <span>กรณีไม่ได้รับ VPA , Alb. ปกติ , ไม่เคยเจาะวัดระดับยา</span>
               </div>
@@ -318,7 +318,7 @@ window.M3_PheCap = {
 
             <!-- Scenario 2 -->
             <div class="accordion-item" id="m3-scen-2">
-              <div class="accordion-header" onclick="window.M3_PheCap.toggleAccordion('m3-scen-2')">
+              <div class="accordion-header">
                 <span class="accordion-icon">▼</span>
                 <span>กรณีเคยเจาะระดับยา 1 ครั้ง (Steady State อย่างน้อย 7 วัน)</span>
               </div>
@@ -329,7 +329,7 @@ window.M3_PheCap = {
 
             <!-- Scenario 3 -->
             <div class="accordion-item" id="m3-scen-3">
-              <div class="accordion-header" onclick="window.M3_PheCap.toggleAccordion('m3-scen-3')">
+              <div class="accordion-header">
                 <span class="accordion-icon">▼</span>
                 <span>กรณีผล Alb. ต่ำกว่าปกติ</span>
               </div>
@@ -340,7 +340,7 @@ window.M3_PheCap = {
 
             <!-- Scenario 4 -->
             <div class="accordion-item" id="m3-scen-4">
-              <div class="accordion-header" onclick="window.M3_PheCap.toggleAccordion('m3-scen-4')">
+              <div class="accordion-header">
                 <span class="accordion-icon">▼</span>
                 <span>กรณีได้รับ VPA ร่วมด้วย</span>
               </div>
@@ -351,7 +351,7 @@ window.M3_PheCap = {
 
             <!-- Scenario 5 -->
             <div class="accordion-item" id="m3-scen-5">
-              <div class="accordion-header" onclick="window.M3_PheCap.toggleAccordion('m3-scen-5')">
+              <div class="accordion-header">
                 <span class="accordion-icon">▼</span>
                 <span>กรณีระดับยาเกิน TH range</span>
               </div>
@@ -366,24 +366,66 @@ window.M3_PheCap = {
       </div>
     `;
 
-    // Clear ฝั่งซ้าย
-    document.getElementById('m3-btn-clear-left')?.addEventListener('click', function() {
-      ['m3-bw', 'm3-ht'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.value = '';
+    // Bind Event Listeners สำหรับ UI M3
+    this.bindEvents();
+  },
+
+  // ผูกระบบ Event Listeners โดยตรง
+  bindEvents: function() {
+    // Clear ปุ่มฝั่งซ้าย
+    const btnClear = document.getElementById('m3-btn-clear-left');
+    if (btnClear) {
+      btnClear.addEventListener('click', () => {
+        ['m3-bw', 'm3-ht'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.value = '';
+        });
+      });
+    }
+
+    // Stepper buttons (BW)
+    document.getElementById('m3-bw-dec')?.addEventListener('click', () => this.stepInput('m3-bw', -1, 0, 300, 2));
+    document.getElementById('m3-bw-inc')?.addEventListener('click', () => this.stepInput('m3-bw', 1, 0, 300, 2));
+
+    // Stepper buttons (Ht)
+    document.getElementById('m3-ht-dec')?.addEventListener('click', () => this.stepInput('m3-ht', -1, 0, 250, 2));
+    document.getElementById('m3-ht-inc')?.addEventListener('click', () => this.stepInput('m3-ht', 1, 0, 250, 2));
+
+    // Enter Key
+    document.getElementById('m3-bw')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        document.getElementById('m3-ht')?.focus();
+      }
+    });
+
+    // Show/Hide All Accordions
+    document.getElementById('m3-btn-show-all')?.addEventListener('click', () => this.toggleAllAccordions(true));
+    document.getElementById('m3-btn-hide-all')?.addEventListener('click', () => this.toggleAllAccordions(false));
+
+    // Accordions Toggle
+    const accHeaders = document.querySelectorAll('#m3-accordion-container .accordion-header');
+    accHeaders.forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.closest('.accordion-item');
+        if (item) item.classList.toggle('active');
       });
     });
   },
 
-  // ควบคุมการเปิด-ปิด Accordion รายอัน
-  toggleAccordion: function(id) {
-    const item = document.getElementById(id);
-    if (item) {
-      item.classList.toggle('active');
-    }
+  // Stepper Calculation
+  stepInput: function(id, delta, minVal, maxVal, decimals) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    let curr = parseFloat(el.value) || 0;
+    let nextVal = curr + delta;
+    if (nextVal < minVal) nextVal = minVal;
+    if (nextVal > maxVal) nextVal = maxVal;
+
+    el.value = (decimals === 0) ? Math.round(nextVal) : parseFloat(nextVal.toFixed(decimals));
   },
 
-  // ควบคุม Show All / Hide All
+  // Toggle All Accordions helper
   toggleAllAccordions: function(show) {
     const items = document.querySelectorAll('#m3-accordion-container .accordion-item');
     items.forEach(item => {
@@ -393,30 +435,5 @@ window.M3_PheCap = {
         item.classList.remove('active');
       }
     });
-  },
-
-  // กด Enter ย้าย Focus
-  handleEnter: function(e, nextId) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      const nextEl = document.getElementById(nextId);
-      if (nextEl) nextEl.focus();
-    }
-  },
-
-  // Stepper Controller
-  stepInput: function(id, delta, minVal, maxVal, decimals) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    let curr = parseFloat(el.value) || 0;
-    let nextVal = curr + delta;
-    if (nextVal < minVal) nextVal = minVal;
-    if (nextVal > maxVal) nextVal = maxVal;
-    
-    if (decimals === 0) {
-      el.value = Math.round(nextVal);
-    } else {
-      el.value = parseFloat(nextVal.toFixed(decimals));
-    }
   }
 };
