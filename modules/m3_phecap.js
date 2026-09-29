@@ -22,7 +22,7 @@ window.M3_PheCap = {
           border-bottom: 1px solid #cbd5e1;
         }
 
-        /* Layout หลัก: ฝั่งซ้าย 260px ฝั่งขวาขยายเต็ม */
+        /* Layout หลัก */
         .m3-main-layout {
           display: grid;
           grid-template-columns: 260px minmax(0, 1fr);
@@ -277,7 +277,7 @@ window.M3_PheCap = {
           border-top: 1px solid #e2e8f0;
         }
 
-        /* --- STYLES SCENARIO 1 (ปรับให้กระชับ สมส่วน) --- */
+        /* --- STYLES SCENARIO 1 --- */
         .scen1-grid-layout {
           display: grid;
           grid-template-columns: 180px minmax(0, 1fr);
@@ -372,14 +372,14 @@ window.M3_PheCap = {
           display: flex;
           flex-direction: column;
           gap: 5px;
-          padding: 4px;
+          padding: 6px 4px;
           border-radius: 6px;
           transition: all 0.2s ease;
           border: 1.5px solid transparent;
           min-width: 0;
         }
 
-        /* HIGHLIGHT CLASS สำหรับน้ำหนักที่น้อยกว่า */
+        /* HIGHLIGHT CLASS สำหรับน้ำหนักที่น้อยกว่า (คงกรอบเขียวอ่อนไว้) */
         .bw-col.highlight-lower {
           background-color: #f0fdf4;
           border-color: #22c55e;
@@ -401,20 +401,6 @@ window.M3_PheCap = {
           font-size: 0.82rem;
           font-weight: 800;
           color: #0284c7;
-        }
-
-        .badge-lower {
-          display: none;
-          font-size: 0.65rem;
-          background: #16a34a;
-          color: #ffffff;
-          padding: 1px 4px;
-          border-radius: 8px;
-          font-weight: 600;
-          white-space: nowrap;
-        }
-        .bw-col.highlight-lower .badge-lower {
-          display: inline-block;
         }
 
         .calc-row-item {
@@ -505,7 +491,7 @@ window.M3_PheCap = {
               <div class="accordion-content">
                 
                 <div class="scen1-grid-layout">
-                  <!-- ซีกซ้าย: ขนาดยา/วัน (ปรับความกว้างกระชับ 180px) -->
+                  <!-- ซีกซ้าย: ขนาดยา/วัน -->
                   <div class="dose-input-card">
                     <span class="dose-title">ขนาดยา/วัน</span>
                     <div class="stepper-container-inline">
@@ -521,7 +507,7 @@ window.M3_PheCap = {
                   <!-- ซีกขวา: แยกเพศชาย / หญิง -->
                   <div class="gender-split-container">
                     
-                    <!-- ฝั่งเพศชาย (สีฟ้าอ่อน) -->
+                    <!-- ฝั่งเพศชาย -->
                     <div class="gender-box-male">
                       <div class="gender-title-male">เพศชาย</div>
                       <div class="sub-bw-split">
@@ -531,7 +517,6 @@ window.M3_PheCap = {
                           <div class="bw-col-title">
                             <span>real BW</span>
                             <span class="bw-val-sub" id="val-m-real-bw">-</span>
-                            <span class="badge-lower">(ใช้น้ำหนักนี้)</span>
                           </div>
                           <div class="calc-row-item">
                             <span>Vmax:</span>
@@ -550,7 +535,6 @@ window.M3_PheCap = {
                           <div class="bw-col-title">
                             <span>IBW</span>
                             <span class="bw-val-sub" id="val-m-ibw-bw">-</span>
-                            <span class="badge-lower">(ใช้น้ำหนักนี้)</span>
                           </div>
                           <div class="calc-row-item">
                             <span>Vmax:</span>
@@ -567,7 +551,7 @@ window.M3_PheCap = {
 
                     <div class="gender-divider-line"></div>
 
-                    <!-- ฝั่งเพศหญิง (สีชมพูอ่อน) -->
+                    <!-- ฝั่งเพศหญิง -->
                     <div class="gender-box-female">
                       <div class="gender-title-female">เพศหญิง</div>
                       <div class="sub-bw-split">
@@ -577,10 +561,10 @@ window.M3_PheCap = {
                           <div class="bw-col-title">
                             <span>real BW</span>
                             <span class="bw-val-sub" id="val-f-real-bw">-</span>
-                            <span class="badge-lower">(ใช้น้ำหนักนี้)</span>
                           </div>
                           <div class="calc-row-item">
                             <span>Vmax:</span>
+                            <span class="calc-val-placeholder" id="m1-f-f-real-cpred-vmax" style="display:none;"></span>
                             <span class="calc-val-placeholder" id="m1-f-real-vmax">-</span>
                           </div>
                           <div class="calc-row-item">
@@ -596,7 +580,6 @@ window.M3_PheCap = {
                           <div class="bw-col-title">
                             <span>IBW</span>
                             <span class="bw-val-sub" id="val-f-ibw-bw">-</span>
-                            <span class="badge-lower">(ใช้น้ำหนักนี้)</span>
                           </div>
                           <div class="calc-row-item">
                             <span>Vmax:</span>
@@ -715,7 +698,6 @@ window.M3_PheCap = {
     });
   },
 
-  // คำนวณ Scenario 1
   calculateScenario1: function() {
     let bw = parseFloat(document.getElementById('m3-bw')?.value) || 0;
     let ht = parseFloat(document.getElementById('m3-ht')?.value) || 0;
@@ -745,7 +727,7 @@ window.M3_PheCap = {
     // คำนวณ Vmax และ Cทำนาย (ทศนิยม 3 หลัก)
     this.computeAndDisplay('m1-m-real', bw, dose);
     this.computeAndDisplay('m1-m-ibw', ibwMale, dose);
-    this.computeAndDisplay('m1-f-f-real', bw, dose); // male/female ID
+    this.computeAndDisplay('m1-f-real', bw, dose);
     this.computeAndDisplay('m1-f-ibw', ibwFemale, dose);
 
     // ไฮไลท์ฝั่งน้ำหนักที่น้อยกว่า
@@ -787,7 +769,6 @@ window.M3_PheCap = {
         if (elCpred) elCpred.innerText = 'Infinity';
       } else {
         let cpred = (4 * 0.92 * 1 * dose) / denom;
-        // ปรับเป็นทศนิยม 3 หลัก
         if (elCpred) elCpred.innerText = cpred.toFixed(3);
       }
     } else {
