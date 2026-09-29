@@ -435,7 +435,7 @@ window.M3_PheCap = {
           display: grid;
           grid-template-columns: minmax(280px, 1fr) 2px minmax(240px, 1fr);
           gap: 16px;
-          align-items: center;
+          align-items: start;
           padding: 6px 0;
         }
         @media (max-width: 680px) {
@@ -474,7 +474,7 @@ window.M3_PheCap = {
         .scen-result-group {
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 10px;
           padding: 8px;
           background: #f8fafc;
           border: 1px solid #e2e8f0;
@@ -507,14 +507,24 @@ window.M3_PheCap = {
         /* Notice / Warning area below Acc3 result */
         .scen3-notice-box {
           font-size: 0.82rem;
-          color: #d97706;
-          background: #fffbe3;
-          border: 1px dashed #fcd34d;
+          font-weight: 700;
+          color: #b45309;
+          background: #fef3c7;
+          border: 1.5px dashed #f59e0b;
           border-radius: 6px;
-          padding: 6px 10px;
-          min-height: 28px;
-          display: flex;
+          padding: 8px 10px;
+          display: none; /* ซ่อนเป็นค่าเริ่มต้น */
           align-items: center;
+          line-height: 1.35;
+        }
+
+        /* Footnote Acc 3 */
+        .scen3-footnote-box {
+          font-size: 0.8rem;
+          color: #64748b;
+          line-height: 1.4;
+          padding-top: 4px;
+          border-top: 1px solid #e2e8f0;
         }
       </style>
 
@@ -816,16 +826,22 @@ window.M3_PheCap = {
 
                   <div class="scen-layout-divider"></div>
 
-                  <!-- ฝั่งขวา: Display ผลลัพธ์ + เผื่อพื้นที่ข้อความเตือน -->
+                  <!-- ฝั่งขวา: Display ผลลัพธ์ + พื้นที่ข้อความเตือน + Footnote -->
                   <div class="scen-result-group">
                     <div class="scen-result-card">
                       <span class="scen-result-label">Cทำนาย =</span>
                       <span class="scen-result-val" id="m3-s3-cpred">-</span>
                     </div>
 
-                    <!-- เผื่อพื้นที่ใต้ส่วนคำนวณสำหรับข้อความเตือน/หมายเหตุ -->
+                    <!-- ข้อความเตือน (แสดงเฉพาะ CrCl < 10) -->
                     <div class="scen3-notice-box" id="m3-s3-notice">
-                      * (เตรียมพื้นที่สำหรับข้อความเตือน/หมายเหตุเพิ่มเติม)
+                      ⚠️ กรณี ESRD (CrCl&lt;10) ให้นำค่าที่คำนวณได้ มา ÷ 0.44
+                    </div>
+
+                    <!-- Footnote เฉพาะของ Acc.3 -->
+                    <div class="scen3-footnote-box">
+                      (1) คำนวณ C correct ด้วยสูตรปกติ (หาร 0.9) ก่อน<br>
+                      (2) ถ้าเป็น ESRD ให้นำผลลัพธ์จากข้อ 1 มาหารด้วย 0.44 อีกที
                     </div>
                   </div>
                 </div>
@@ -1024,12 +1040,35 @@ window.M3_PheCap = {
   calculateScenario3: function() {
     let css = parseFloat(document.getElementById('m3-s3-css')?.value) || 0;
     let alb = parseFloat(document.getElementById('m3-s3-alb')?.value) || 0;
-    let crcl = parseFloat(document.getElementById('m3-s3-crcl')?.value) || 0;
+    let crclInput = document.getElementById('m3-s3-crcl')?.value;
+    let crcl = parseFloat(crclInput) || 0;
+    let hasCrCl = crclInput !== '' && !isNaN(crcl);
 
-    // ฟังก์ชันคำนวณของ Acc3 (จะใส่สูตรคำนวณจริงเมื่อผู้ใช้แจ้งสูตร)
+    const noticeBox = document.getElementById('m3-s3-notice');
+
+    // ตรวจสอบการแสดงข้อความเตือนเมื่อ CrCl < 10
+    if (hasCrCl && crcl < 10) {
+      if (noticeBox) noticeBox.style.display = 'flex';
+    } else {
+      if (noticeBox) noticeBox.style.display = 'none';
+    }
+
+    // คำนวณ Cทำนาย
     if (css > 0 && alb > 0) {
-      // ตัวอย่างรอคำนวณสูตร
-      // this.setText('m3-s3-cpred', ...);
+      let denom = (0.9 * (alb / 4.4)) + 0.1;
+      if (denom <= 0) {
+        this.setText('m3-s3-cpred', 'Infinity');
+        return;
+      }
+
+      let cpred = css / denom;
+
+      // หากกรอก CrCl < 10 ให้นำค่าขั้นต้นมา ÷ 0.44
+      if (hasCrCl && crcl < 10) {
+        cpred = cpred / 0.44;
+      }
+
+      this.setText('m3-s3-cpred', cpred.toFixed(3));
     } else {
       this.setText('m3-s3-cpred', '-');
     }
