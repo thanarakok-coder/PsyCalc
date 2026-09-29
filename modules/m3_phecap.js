@@ -161,6 +161,10 @@ window.M3_PheCap = {
           color: #475569;
           white-space: nowrap;
         }
+        .unit-spacer {
+          width: 50px; /* ความกว้างจำลองแทน mg/day */
+          flex-shrink: 0;
+        }
 
         .action-toggle-btns {
           display: grid;
@@ -697,7 +701,7 @@ window.M3_PheCap = {
                       </div>
                     </div>
 
-                    <!-- ระดับยาที่ SS -->
+                    <!-- ระดับยาที่ SS (ปรับความกว้างให้สั้นเท่ากับบรรทัดอื่นโดยใช้ unit-spacer) -->
                     <div class="scen2-field-row">
                       <span class="scen2-label">ระดับยาที่ SS</span>
                       <div class="stepper-container-inline">
@@ -706,6 +710,7 @@ window.M3_PheCap = {
                           <input type="text" id="m3-s2-css" placeholder="0">
                           <button type="button" class="btn-step" id="m3-s2-css-inc">+</button>
                         </div>
+                        <div class="unit-spacer"></div>
                       </div>
                     </div>
 
@@ -902,11 +907,23 @@ window.M3_PheCap = {
     let css = parseFloat(document.getElementById('m3-s2-css')?.value) || 0;
     let pdose = this.parseFormattedNumber(document.getElementById('m3-s2-pdose')?.value);
 
-    // ฟังก์ชันคำนวณของ Acc2 (จะใส่สูตรคำนวณจริงเมื่อได้สูตรจากผู้ใช้)
-    if (dose > 0 && css > 0 && pdose > 0) {
-      // ตัวอย่างการแสดงผลเบื้องต้น
-      // this.setText('m3-s2-vmax', ...);
-      // this.setText('m3-s2-cpred', ...);
+    // คำนวณ Vmax = ((0.92 * 1 * Dose) * (4 + Css)) / Css
+    if (dose > 0 && css > 0) {
+      let vmax = ((0.92 * 1 * dose) * (4 + css)) / css;
+      this.setText('m3-s2-vmax', this.formatNumberWithComma(vmax, 2));
+
+      // คำนวณ Cทำนาย = (4 * (0.92 * 1 * Dose_predict)) / (Vmax - (0.92 * 1 * Dose_predict))
+      if (pdose > 0) {
+        let denom = vmax - (0.92 * 1 * pdose);
+        if (denom <= 0) {
+          this.setText('m3-s2-cpred', 'Infinity');
+        } else {
+          let cpred = (4 * (0.92 * 1 * pdose)) / denom;
+          this.setText('m3-s2-cpred', cpred.toFixed(3));
+        }
+      } else {
+        this.setText('m3-s2-cpred', '-');
+      }
     } else {
       this.setText('m3-s2-vmax', '-');
       this.setText('m3-s2-cpred', '-');
