@@ -379,7 +379,6 @@ window.M3_PheCap = {
           min-width: 0;
         }
 
-        /* HIGHLIGHT CLASS สำหรับน้ำหนักที่น้อยกว่า (คงกรอบเขียวอ่อนไว้) */
         .bw-col.highlight-lower {
           background-color: #f0fdf4;
           border-color: #22c55e;
@@ -425,6 +424,80 @@ window.M3_PheCap = {
           color: #2563eb;
           text-align: right;
           word-break: break-all;
+        }
+
+        /* --- STYLES SCENARIO 2 --- */
+        .scen2-layout {
+          display: grid;
+          grid-template-columns: minmax(280px, 1fr) 2px minmax(240px, 1fr);
+          gap: 16px;
+          align-items: center;
+          padding: 6px 0;
+        }
+        @media (max-width: 680px) {
+          .scen2-layout {
+            grid-template-columns: 1fr;
+          }
+          .scen2-divider {
+            display: none;
+          }
+        }
+
+        .scen2-divider {
+          background-color: #cbd5e1;
+          align-self: stretch;
+        }
+
+        .scen2-input-group {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .scen2-field-row {
+          display: grid;
+          grid-template-columns: 120px 1fr;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .scen2-label {
+          font-size: 0.92rem;
+          font-weight: 700;
+          color: #1e293b;
+        }
+
+        .scen2-result-group {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          padding: 8px;
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
+        }
+
+        .scen2-result-card {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: #ffffff;
+          border: 1.5px solid #3b82f6;
+          border-radius: 6px;
+          padding: 8px 12px;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .scen2-result-label {
+          font-size: 1rem;
+          font-weight: 800;
+          color: #0f172a;
+        }
+
+        .scen2-result-val {
+          font-size: 1.15rem;
+          font-weight: 800;
+          color: #2563eb;
         }
       </style>
 
@@ -564,7 +637,6 @@ window.M3_PheCap = {
                           </div>
                           <div class="calc-row-item">
                             <span>Vmax:</span>
-                            <span class="calc-val-placeholder" id="m1-f-f-real-cpred-vmax" style="display:none;"></span>
                             <span class="calc-val-placeholder" id="m1-f-real-vmax">-</span>
                           </div>
                           <div class="calc-row-item">
@@ -600,14 +672,74 @@ window.M3_PheCap = {
               </div>
             </div>
 
-            <!-- Scenario 2 - 5 -->
+            <!-- Scenario 2 -->
             <div class="accordion-item" id="m3-scen-2">
               <div class="accordion-header">
                 <span class="accordion-icon">▼</span>
                 <span>กรณีเคยเจาะระดับยา 1 ครั้ง (Steady State อย่างน้อย 7 วัน)</span>
               </div>
               <div class="accordion-content">
-                <p style="color: #64748b; font-size: 0.9rem;">(เตรียมใส่ฟอร์มและสูตรคำนวณของ Scenario 2)</p>
+                
+                <div class="scen2-layout">
+                  <!-- ฝั่งซ้าย: Input -->
+                  <div class="scen2-input-group">
+                    
+                    <!-- ขนาดยา/วัน -->
+                    <div class="scen2-field-row">
+                      <span class="scen2-label">ขนาดยา/วัน</span>
+                      <div class="stepper-container-inline">
+                        <div class="stepper-box">
+                          <button type="button" class="btn-step" id="m3-s2-dose-dec">-</button>
+                          <input type="text" id="m3-s2-dose" placeholder="0">
+                          <button type="button" class="btn-step" id="m3-s2-dose-inc">+</button>
+                        </div>
+                        <span class="unit-text">mg/day</span>
+                      </div>
+                    </div>
+
+                    <!-- ระดับยาที่ SS -->
+                    <div class="scen2-field-row">
+                      <span class="scen2-label">ระดับยาที่ SS</span>
+                      <div class="stepper-container-inline">
+                        <div class="stepper-box">
+                          <button type="button" class="btn-step" id="m3-s2-css-dec">-</button>
+                          <input type="text" id="m3-s2-css" placeholder="0">
+                          <button type="button" class="btn-step" id="m3-s2-css-inc">+</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Dose ที่จะทำนาย -->
+                    <div class="scen2-field-row">
+                      <span class="scen2-label">Dose ที่จะทำนาย</span>
+                      <div class="stepper-container-inline">
+                        <div class="stepper-box">
+                          <button type="button" class="btn-step" id="m3-s2-pdose-dec">-</button>
+                          <input type="text" id="m3-s2-pdose" placeholder="0">
+                          <button type="button" class="btn-step" id="m3-s2-pdose-inc">+</button>
+                        </div>
+                        <span class="unit-text">mg/day</span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="scen2-divider"></div>
+
+                  <!-- ฝั่งขวา: Display ผลลัพธ์ -->
+                  <div class="scen2-result-group">
+                    <div class="scen2-result-card">
+                      <span class="scen2-result-label">Vmax =</span>
+                      <span class="scen2-result-val" id="m3-s2-vmax">-</span>
+                    </div>
+
+                    <div class="scen2-result-card">
+                      <span class="scen2-result-label">Cทำนาย =</span>
+                      <span class="scen2-result-val" id="m3-s2-cpred">-</span>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
 
@@ -655,15 +787,16 @@ window.M3_PheCap = {
     const btnClear = document.getElementById('m3-btn-clear-left');
     if (btnClear) {
       btnClear.addEventListener('click', () => {
-        ['m3-bw', 'm3-ht', 'm3-dose'].forEach(id => {
+        ['m3-bw', 'm3-ht', 'm3-dose', 'm3-s2-dose', 'm3-s2-css', 'm3-s2-pdose'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.value = '';
         });
         this.calculateScenario1();
+        this.calculateScenario2();
       });
     }
 
-    // Input Listeners
+    // Input Listeners Acc 1
     ['m3-bw', 'm3-ht', 'm3-dose'].forEach(id => {
       document.getElementById(id)?.addEventListener('input', () => this.calculateScenario1());
     });
@@ -675,14 +808,36 @@ window.M3_PheCap = {
     document.getElementById('m3-ht-dec')?.addEventListener('click', () => this.stepInput('m3-ht', -1, 0, 250, 2));
     document.getElementById('m3-ht-inc')?.addEventListener('click', () => this.stepInput('m3-ht', 1, 0, 250, 2));
 
-    // Stepper Dose (+- 100)
+    // Stepper Dose Acc 1 (+- 100)
     document.getElementById('m3-dose-dec')?.addEventListener('click', () => this.stepDoseInput('m3-dose', -100));
     document.getElementById('m3-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m3-dose', 100));
 
-    // Blur formatters
+    // Blur formatters Acc 1
     this.formatInputOnBlur('m3-bw', 2);
     this.formatInputOnBlur('m3-ht', 2);
     this.formatDoseOnBlur('m3-dose');
+
+    // --- ACCORDION 2 EVENTS ---
+    ['m3-s2-dose', 'm3-s2-css', 'm3-s2-pdose'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', () => this.calculateScenario2());
+    });
+
+    // Stepper Acc 2 Dose (+- 100)
+    document.getElementById('m3-s2-dose-dec')?.addEventListener('click', () => this.stepDoseInput('m3-s2-dose', -100, () => this.calculateScenario2()));
+    document.getElementById('m3-s2-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m3-s2-dose', 100, () => this.calculateScenario2()));
+
+    // Stepper Acc 2 CSS (+- 0.1)
+    document.getElementById('m3-s2-css-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s2-css', -0.1, 0, 100, 3, () => this.calculateScenario2()));
+    document.getElementById('m3-s2-css-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s2-css', 0.1, 0, 100, 3, () => this.calculateScenario2()));
+
+    // Stepper Acc 2 Predicted Dose (+- 100)
+    document.getElementById('m3-s2-pdose-dec')?.addEventListener('click', () => this.stepDoseInput('m3-s2-pdose', -100, () => this.calculateScenario2()));
+    document.getElementById('m3-s2-pdose-inc')?.addEventListener('click', () => this.stepDoseInput('m3-s2-pdose', 100, () => this.calculateScenario2()));
+
+    // Blur Formatters Acc 2
+    this.formatDoseOnBlur('m3-s2-dose', () => this.calculateScenario2());
+    this.formatFloatOnBlur('m3-s2-css', 3, () => this.calculateScenario2());
+    this.formatDoseOnBlur('m3-s2-pdose', () => this.calculateScenario2());
 
     // Show/Hide All Accordions
     document.getElementById('m3-btn-show-all')?.addEventListener('click', () => this.toggleAllAccordions(true));
@@ -703,7 +858,6 @@ window.M3_PheCap = {
     let ht = parseFloat(document.getElementById('m3-ht')?.value) || 0;
     let dose = this.parseFormattedNumber(document.getElementById('m3-dose')?.value);
 
-    // เคลียร์ Highlight
     ['col-m-real', 'col-m-ibw', 'col-f-real', 'col-f-ibw'].forEach(id => {
       document.getElementById(id)?.classList.remove('highlight-lower');
     });
@@ -718,33 +872,44 @@ window.M3_PheCap = {
       if (ibwFemale < 0) ibwFemale = 0;
     }
 
-    // แสดงตัวเลข real BW และ IBW ใต้หัวข้อคอลัมน์
     this.setText('val-m-real-bw', bw > 0 ? `${bw} kg` : '-');
     this.setText('val-m-ibw-bw', ibwMale > 0 ? `${ibwMale.toFixed(2)} kg` : '-');
     this.setText('val-f-real-bw', bw > 0 ? `${bw} kg` : '-');
     this.setText('val-f-ibw-bw', ibwFemale > 0 ? `${ibwFemale.toFixed(2)} kg` : '-');
 
-    // คำนวณ Vmax และ Cทำนาย (ทศนิยม 3 หลัก)
     this.computeAndDisplay('m1-m-real', bw, dose);
     this.computeAndDisplay('m1-m-ibw', ibwMale, dose);
     this.computeAndDisplay('m1-f-real', bw, dose);
     this.computeAndDisplay('m1-f-ibw', ibwFemale, dose);
 
-    // ไฮไลท์ฝั่งน้ำหนักที่น้อยกว่า
     if (bw > 0 && ht > 0) {
-      // ฝั่งชาย
       if (bw < ibwMale) {
         document.getElementById('col-m-real')?.classList.add('highlight-lower');
       } else if (ibwMale < bw) {
         document.getElementById('col-m-ibw')?.classList.add('highlight-lower');
       }
 
-      // ฝั่งหญิง
       if (bw < ibwFemale) {
         document.getElementById('col-f-real')?.classList.add('highlight-lower');
       } else if (ibwFemale < bw) {
         document.getElementById('col-f-ibw')?.classList.add('highlight-lower');
       }
+    }
+  },
+
+  calculateScenario2: function() {
+    let dose = this.parseFormattedNumber(document.getElementById('m3-s2-dose')?.value);
+    let css = parseFloat(document.getElementById('m3-s2-css')?.value) || 0;
+    let pdose = this.parseFormattedNumber(document.getElementById('m3-s2-pdose')?.value);
+
+    // ฟังก์ชันคำนวณของ Acc2 (จะใส่สูตรคำนวณจริงเมื่อได้สูตรจากผู้ใช้)
+    if (dose > 0 && css > 0 && pdose > 0) {
+      // ตัวอย่างการแสดงผลเบื้องต้น
+      // this.setText('m3-s2-vmax', ...);
+      // this.setText('m3-s2-cpred', ...);
+    } else {
+      this.setText('m3-s2-vmax', '-');
+      this.setText('m3-s2-cpred', '-');
     }
   },
 
@@ -758,11 +923,9 @@ window.M3_PheCap = {
       return;
     }
 
-    // Vmax = BW * 7
     let vmax = weight * 7;
     if (elVmax) elVmax.innerText = this.formatNumberWithComma(vmax, 2);
 
-    // Cทำนาย = (4 * 0.92 * 1 * Dose) / (Vmax - (0.92 * 1 * Dose))
     if (dose > 0) {
       let denom = vmax - (0.92 * 1 * dose);
       if (denom <= 0) {
@@ -797,7 +960,7 @@ window.M3_PheCap = {
     return parts.join('.');
   },
 
-  formatInputOnBlur: function(id, maxDecimals) {
+  formatInputOnBlur: function(id, maxDecimals, callback) {
     const el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('blur', () => {
@@ -805,15 +968,31 @@ window.M3_PheCap = {
       let val = parseFloat(el.value);
       if (isNaN(val)) {
         el.value = '';
-        return;
+      } else {
+        let factor = Math.pow(10, maxDecimals);
+        el.value = Math.round(val * factor) / factor;
       }
-      let factor = Math.pow(10, maxDecimals);
-      el.value = Math.round(val * factor) / factor;
-      this.calculateScenario1();
+      if (callback) callback();
+      else this.calculateScenario1();
     });
   },
 
-  formatDoseOnBlur: function(id) {
+  formatFloatOnBlur: function(id, maxDecimals, callback) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('blur', () => {
+      if (el.value === '') return;
+      let val = parseFloat(el.value);
+      if (isNaN(val) || val === 0) {
+        el.value = '';
+      } else {
+        el.value = val.toFixed(maxDecimals);
+      }
+      if (callback) callback();
+    });
+  },
+
+  formatDoseOnBlur: function(id, callback) {
     const el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('blur', () => {
@@ -823,7 +1002,8 @@ window.M3_PheCap = {
       } else {
         el.value = this.formatNumberWithComma(num, 2);
       }
-      this.calculateScenario1();
+      if (callback) callback();
+      else this.calculateScenario1();
     });
   },
 
@@ -840,7 +1020,19 @@ window.M3_PheCap = {
     this.calculateScenario1();
   },
 
-  stepDoseInput: function(id, delta) {
+  stepFloatInput: function(id, delta, minVal, maxVal, maxDecimals, callback) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    let curr = parseFloat(el.value) || 0;
+    let nextVal = curr + delta;
+    if (nextVal < minVal) nextVal = minVal;
+    if (nextVal > maxVal) nextVal = maxVal;
+
+    el.value = nextVal.toFixed(maxDecimals);
+    if (callback) callback();
+  },
+
+  stepDoseInput: function(id, delta, callback) {
     const el = document.getElementById(id);
     if (!el) return;
     let curr = this.parseFormattedNumber(el.value);
@@ -848,7 +1040,8 @@ window.M3_PheCap = {
     if (nextVal < 0) nextVal = 0;
 
     el.value = this.formatNumberWithComma(nextVal, 2);
-    this.calculateScenario1();
+    if (callback) callback();
+    else this.calculateScenario1();
   },
 
   toggleAllAccordions: function(show) {
