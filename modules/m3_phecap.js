@@ -8,7 +8,12 @@ window.M3_PheCap = {
           margin: 0 auto;
           font-family: system-ui, -apple-system, sans-serif;
           color: #0f172a;
+          box-sizing: border-box;
         }
+        .m3-wrapper * {
+          box-sizing: border-box;
+        }
+
         .m3-header-title {
           font-size: 1.15rem;
           font-weight: 700;
@@ -17,14 +22,14 @@ window.M3_PheCap = {
           border-bottom: 1px solid #cbd5e1;
         }
 
-        /* Layout หลัก */
+        /* Layout หลัก: ฝั่งซ้าย 260px ฝั่งขวาขยายเต็ม */
         .m3-main-layout {
           display: grid;
-          grid-template-columns: 280px 1fr;
-          gap: 16px;
+          grid-template-columns: 260px minmax(0, 1fr);
+          gap: 14px;
           align-items: start;
         }
-        @media (max-width: 900px) {
+        @media (max-width: 960px) {
           .m3-main-layout {
             grid-template-columns: 1fr;
           }
@@ -35,7 +40,7 @@ window.M3_PheCap = {
           background: #ffffff;
           border: 1px solid #cbd5e1;
           border-radius: 8px;
-          padding: 16px;
+          padding: 14px;
           box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
 
@@ -49,7 +54,7 @@ window.M3_PheCap = {
           font-size: 1.05rem;
           font-weight: 700;
           color: #0f172a;
-          margin-bottom: 14px;
+          margin-bottom: 12px;
           padding-bottom: 6px;
           border-bottom: 2px solid #3b82f6;
           display: flex;
@@ -61,7 +66,7 @@ window.M3_PheCap = {
           background: #fee2e2;
           color: #dc2626;
           border: 1px solid #fca5a5;
-          padding: 4px 10px;
+          padding: 3px 8px;
           border-radius: 4px;
           font-size: 0.8rem;
           font-weight: 700;
@@ -74,11 +79,11 @@ window.M3_PheCap = {
         .field-group-stacked {
           display: flex;
           flex-direction: column;
-          gap: 6px;
-          margin-bottom: 14px;
+          gap: 4px;
+          margin-bottom: 12px;
         }
         .field-group-stacked label {
-          font-size: 1.05rem;
+          font-size: 0.95rem;
           font-weight: 700;
           color: #0f172a;
         }
@@ -86,7 +91,8 @@ window.M3_PheCap = {
         .stepper-container-inline {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 6px;
+          width: 100%;
         }
 
         .stepper-box {
@@ -95,9 +101,10 @@ window.M3_PheCap = {
           flex: 1;
           background: #eff6ff;
           border: 1.5px solid #60a5fa;
-          border-radius: 28px;
-          padding: 4px 8px;
-          height: 48px;
+          border-radius: 24px;
+          padding: 2px 6px;
+          height: 42px;
+          min-width: 0;
         }
         .stepper-box:focus-within {
           border-color: #2563eb;
@@ -105,16 +112,16 @@ window.M3_PheCap = {
         }
 
         .btn-step {
-          width: 34px;
-          height: 34px;
-          min-width: 34px;
-          min-height: 34px;
+          width: 30px;
+          height: 30px;
+          min-width: 30px;
+          min-height: 30px;
           border-radius: 50%;
           border: 1px solid #93c5fd;
           background: #ffffff;
           color: #1d4ed8;
           font-weight: bold;
-          font-size: 1.25rem;
+          font-size: 1.1rem;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -134,11 +141,12 @@ window.M3_PheCap = {
 
         .stepper-box input {
           width: 100%;
+          min-width: 0;
           border: none;
           background: transparent;
           text-align: center;
           font-weight: 800;
-          font-size: 1.25rem;
+          font-size: 1.15rem;
           color: #0f172a;
           outline: none;
         }
@@ -148,27 +156,27 @@ window.M3_PheCap = {
           margin: 0;
         }
         .unit-text {
-          font-size: 0.95rem;
+          font-size: 0.88rem;
           font-weight: 700;
           color: #475569;
-          min-width: 25px;
+          white-space: nowrap;
         }
 
         .action-toggle-btns {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 8px;
-          margin-top: 10px;
-          padding-top: 12px;
+          gap: 6px;
+          margin-top: 8px;
+          padding-top: 10px;
           border-top: 1px dashed #cbd5e1;
         }
         .btn-action-outline {
           background: #ffffff;
           border: 1.5px solid #0284c7;
           color: #0369a1;
-          padding: 8px 0;
+          padding: 6px 0;
           border-radius: 6px;
-          font-size: 0.88rem;
+          font-size: 0.82rem;
           font-weight: 700;
           cursor: pointer;
           text-align: center;
@@ -179,32 +187,31 @@ window.M3_PheCap = {
         }
 
         .module-brand-title {
-          margin-top: 20px;
+          margin-top: 16px;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
           text-align: center;
-          line-height: 1.25;
+          line-height: 1.2;
         }
         .brand-sub {
-          font-size: 0.95rem;
+          font-size: 0.88rem;
           font-weight: 600;
           color: #1e293b;
-          letter-spacing: 0.5px;
         }
         .brand-main {
-          font-size: 1.45rem;
+          font-size: 1.35rem;
           font-weight: 800;
           color: #1e3a8a;
-          letter-spacing: 0.5px;
         }
 
         /* Accordion Component */
         .accordion-list {
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 10px;
+          min-width: 0;
         }
         .accordion-item {
           border: 1.5px solid #cbd5e1;
@@ -219,16 +226,15 @@ window.M3_PheCap = {
 
         .accordion-header {
           background: #f8fafc;
-          padding: 12px 16px;
-          font-size: 1.02rem;
+          padding: 10px 14px;
+          font-size: 0.98rem;
           font-weight: 700;
           color: #1e293b;
           cursor: pointer;
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 10px;
           user-select: none;
-          transition: background 0.15s ease;
         }
         .accordion-header:hover {
           background: #f1f5f9;
@@ -239,15 +245,15 @@ window.M3_PheCap = {
         }
 
         .accordion-icon {
-          width: 24px;
-          height: 24px;
+          width: 22px;
+          height: 22px;
           border-radius: 50%;
           border: 1.5px solid #64748b;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 0.75rem;
-          transition: transform 0.25s ease, border-color 0.25s ease;
+          font-size: 0.7rem;
+          transition: transform 0.25s ease;
           flex-shrink: 0;
         }
         .accordion-item.active .accordion-icon {
@@ -262,23 +268,23 @@ window.M3_PheCap = {
           overflow: hidden;
           transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
           background: #ffffff;
-          padding: 0 16px;
+          padding: 0 12px;
         }
         .accordion-item.active .accordion-content {
           max-height: 1200px;
           transition: max-height 0.3s ease-in-out;
-          padding: 16px;
+          padding: 12px;
           border-top: 1px solid #e2e8f0;
         }
 
-        /* --- STYLES SCENARIO 1 --- */
+        /* --- STYLES SCENARIO 1 (ปรับให้กระชับ สมส่วน) --- */
         .scen1-grid-layout {
           display: grid;
-          grid-template-columns: 240px 1fr;
-          gap: 16px;
+          grid-template-columns: 180px minmax(0, 1fr);
+          gap: 10px;
           align-items: stretch;
         }
-        @media (max-width: 950px) {
+        @media (max-width: 820px) {
           .scen1-grid-layout {
             grid-template-columns: 1fr;
           }
@@ -288,27 +294,28 @@ window.M3_PheCap = {
           background: #f1f5f9;
           border: 1.5px solid #cbd5e1;
           border-radius: 8px;
-          padding: 14px;
+          padding: 10px 8px;
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          gap: 10px;
+          gap: 6px;
         }
         .dose-title {
-          font-size: 1.05rem;
+          font-size: 0.95rem;
           font-weight: 700;
           color: #0f172a;
         }
 
         .gender-split-container {
           display: grid;
-          grid-template-columns: 1fr 2px 1fr;
+          grid-template-columns: minmax(0, 1fr) 2px minmax(0, 1fr);
           border: 1.5px solid #cbd5e1;
           border-radius: 8px;
           overflow: hidden;
+          min-width: 0;
         }
-        @media (max-width: 700px) {
+        @media (max-width: 680px) {
           .gender-split-container {
             grid-template-columns: 1fr;
           }
@@ -318,84 +325,93 @@ window.M3_PheCap = {
         }
 
         .gender-divider-line {
-          background-color: #334155;
+          background-color: #cbd5e1;
           width: 2px;
         }
 
         .gender-box-male {
           background-color: #f0f9ff;
-          padding: 12px;
+          padding: 8px;
+          min-width: 0;
         }
         .gender-box-female {
           background-color: #fdf2f8;
-          padding: 12px;
+          padding: 8px;
+          min-width: 0;
         }
 
         .gender-title-male {
           text-align: center;
-          font-size: 1.05rem;
+          font-size: 0.95rem;
           font-weight: 800;
           color: #0369a1;
-          padding-bottom: 8px;
-          margin-bottom: 12px;
+          padding-bottom: 4px;
+          margin-bottom: 6px;
           border-bottom: 1.5px solid #bae6fd;
         }
         .gender-title-female {
           text-align: center;
-          font-size: 1.05rem;
+          font-size: 0.95rem;
           font-weight: 800;
           color: #be185d;
-          padding-bottom: 8px;
-          margin-bottom: 12px;
+          padding-bottom: 4px;
+          margin-bottom: 6px;
           border-bottom: 1.5px solid #fbcfe8;
         }
 
         .sub-bw-split {
           display: grid;
-          grid-template-columns: 1fr 1px 1fr;
-          gap: 8px;
+          grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+          gap: 4px;
         }
         .dashed-vertical-line {
-          border-left: 1.5px dashed #94a3b8;
+          border-left: 1px dashed #cbd5e1;
         }
 
         .bw-col {
           display: flex;
           flex-direction: column;
-          gap: 8px;
-          padding: 6px;
+          gap: 5px;
+          padding: 4px;
           border-radius: 6px;
           transition: all 0.2s ease;
           border: 1.5px solid transparent;
+          min-width: 0;
         }
 
         /* HIGHLIGHT CLASS สำหรับน้ำหนักที่น้อยกว่า */
         .bw-col.highlight-lower {
-          background-color: #f0fdf4; /* พื้นหลังเขียวอ่อน */
-          border-color: #22c55e;     /* กรอบเขียว */
-          box-shadow: 0 2px 8px rgba(34, 197, 94, 0.15);
+          background-color: #f0fdf4;
+          border-color: #22c55e;
+          box-shadow: 0 2px 6px rgba(34, 197, 94, 0.12);
         }
 
         .bw-col-title {
           font-weight: 700;
-          font-size: 0.95rem;
+          font-size: 0.88rem;
           color: #334155;
           text-align: center;
-          margin-bottom: 2px;
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 2px;
         }
 
+        .bw-val-sub {
+          font-size: 0.82rem;
+          font-weight: 800;
+          color: #0284c7;
+        }
+
         .badge-lower {
           display: none;
-          font-size: 0.7rem;
+          font-size: 0.65rem;
           background: #16a34a;
           color: #ffffff;
-          padding: 1px 6px;
-          border-radius: 10px;
+          padding: 1px 4px;
+          border-radius: 8px;
           font-weight: 600;
+          white-space: nowrap;
         }
         .bw-col.highlight-lower .badge-lower {
           display: inline-block;
@@ -405,17 +421,24 @@ window.M3_PheCap = {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          font-size: 0.9rem;
+          font-size: 0.83rem;
           font-weight: 600;
           color: #1e293b;
-          background: rgba(255, 255, 255, 0.85);
-          padding: 6px 8px;
+          background: rgba(255, 255, 255, 0.9);
+          padding: 4px 6px;
           border-radius: 4px;
           border: 1px dashed #cbd5e1;
+          gap: 2px;
+          min-width: 0;
+        }
+        .calc-row-item span:first-child {
+          white-space: nowrap;
         }
         .calc-val-placeholder {
           font-weight: 800;
           color: #2563eb;
+          text-align: right;
+          word-break: break-all;
         }
       </style>
 
@@ -424,7 +447,7 @@ window.M3_PheCap = {
 
         <div class="m3-main-layout">
           
-          <!-- ฝั่งซ้าย: Inputs หลัก (280px) -->
+          <!-- ฝั่งซ้าย: Inputs หลัก (260px) -->
           <div class="m3-card input-card-highlight">
             <div class="card-head-title">
               <span>ข้อมูลผู้ป่วย</span>
@@ -463,14 +486,14 @@ window.M3_PheCap = {
               <button type="button" class="btn-action-outline" id="m3-btn-hide-all">Hide all</button>
             </div>
 
-            <!-- Title 2 บรรทัด -->
+            <!-- Title -->
             <div class="module-brand-title">
               <span class="brand-sub">Phenytoin</span>
               <span class="brand-main">Capsule</span>
             </div>
           </div>
 
-          <!-- ฝั่งขวา: 5 Scenario Accordions -->
+          <!-- ฝั่งขวา: Accordions -->
           <div class="accordion-list" id="m3-accordion-container">
 
             <!-- Scenario 1 -->
@@ -482,17 +505,17 @@ window.M3_PheCap = {
               <div class="accordion-content">
                 
                 <div class="scen1-grid-layout">
-                  <!-- ซีกซ้าย: ขนาดยา/วัน -->
+                  <!-- ซีกซ้าย: ขนาดยา/วัน (ปรับความกว้างกระชับ 180px) -->
                   <div class="dose-input-card">
                     <span class="dose-title">ขนาดยา/วัน</span>
-                    <div class="stepper-container-inline" style="width: 100%;">
+                    <div class="stepper-container-inline">
                       <div class="stepper-box">
                         <button type="button" class="btn-step" id="m3-dose-dec">-</button>
                         <input type="text" id="m3-dose" placeholder="0">
                         <button type="button" class="btn-step" id="m3-dose-inc">+</button>
                       </div>
                     </div>
-                    <span class="unit-text" style="font-size: 1rem;">mg/day</span>
+                    <span class="unit-text">mg/day</span>
                   </div>
 
                   <!-- ซีกขวา: แยกเพศชาย / หญิง -->
@@ -507,6 +530,7 @@ window.M3_PheCap = {
                         <div class="bw-col" id="col-m-real">
                           <div class="bw-col-title">
                             <span>real BW</span>
+                            <span class="bw-val-sub" id="val-m-real-bw">-</span>
                             <span class="badge-lower">(ใช้น้ำหนักนี้)</span>
                           </div>
                           <div class="calc-row-item">
@@ -525,6 +549,7 @@ window.M3_PheCap = {
                         <div class="bw-col" id="col-m-ibw">
                           <div class="bw-col-title">
                             <span>IBW</span>
+                            <span class="bw-val-sub" id="val-m-ibw-bw">-</span>
                             <span class="badge-lower">(ใช้น้ำหนักนี้)</span>
                           </div>
                           <div class="calc-row-item">
@@ -551,6 +576,7 @@ window.M3_PheCap = {
                         <div class="bw-col" id="col-f-real">
                           <div class="bw-col-title">
                             <span>real BW</span>
+                            <span class="bw-val-sub" id="val-f-real-bw">-</span>
                             <span class="badge-lower">(ใช้น้ำหนักนี้)</span>
                           </div>
                           <div class="calc-row-item">
@@ -559,7 +585,7 @@ window.M3_PheCap = {
                           </div>
                           <div class="calc-row-item">
                             <span>Cทำนาย:</span>
-                            <span class="calc-val-placeholder" id="m1-f-real-cpred">-</span>
+                            <span class="calc-val-placeholder" id="m1-f-f-real-cpred">-</span>
                           </div>
                         </div>
 
@@ -569,6 +595,7 @@ window.M3_PheCap = {
                         <div class="bw-col" id="col-f-ibw">
                           <div class="bw-col-title">
                             <span>IBW</span>
+                            <span class="bw-val-sub" id="val-f-ibw-bw">-</span>
                             <span class="badge-lower">(ใช้น้ำหนักนี้)</span>
                           </div>
                           <div class="calc-row-item">
@@ -597,7 +624,7 @@ window.M3_PheCap = {
                 <span>กรณีเคยเจาะระดับยา 1 ครั้ง (Steady State อย่างน้อย 7 วัน)</span>
               </div>
               <div class="accordion-content">
-                <p style="color: #64748b;">(เตรียมใส่ฟอร์มและสูตรคำนวณของ Scenario 2)</p>
+                <p style="color: #64748b; font-size: 0.9rem;">(เตรียมใส่ฟอร์มและสูตรคำนวณของ Scenario 2)</p>
               </div>
             </div>
 
@@ -607,7 +634,7 @@ window.M3_PheCap = {
                 <span>กรณีผล Alb. ต่ำกว่าปกติ</span>
               </div>
               <div class="accordion-content">
-                <p style="color: #64748b;">(เตรียมใส่ฟอร์มและสูตรคำนวณของ Scenario 3)</p>
+                <p style="color: #64748b; font-size: 0.9rem;">(เตรียมใส่ฟอร์มและสูตรคำนวณของ Scenario 3)</p>
               </div>
             </div>
 
@@ -617,7 +644,7 @@ window.M3_PheCap = {
                 <span>กรณีได้รับ VPA ร่วมด้วย</span>
               </div>
               <div class="accordion-content">
-                <p style="color: #64748b;">(เตรียมใส่ฟอร์มและสูตรคำนวณของ Scenario 4)</p>
+                <p style="color: #64748b; font-size: 0.9rem;">(เตรียมใส่ฟอร์มและสูตรคำนวณของ Scenario 4)</p>
               </div>
             </div>
 
@@ -627,7 +654,7 @@ window.M3_PheCap = {
                 <span>กรณีระดับยาเกิน TH range</span>
               </div>
               <div class="accordion-content">
-                <p style="color: #64748b;">(เตรียมใส่ฟอร์มและสูตรคำนวณของ Scenario 5)</p>
+                <p style="color: #64748b; font-size: 0.9rem;">(เตรียมใส่ฟอร์มและสูตรคำนวณของ Scenario 5)</p>
               </div>
             </div>
 
@@ -653,24 +680,24 @@ window.M3_PheCap = {
       });
     }
 
-    // Input Listeners สำหรับคำนวณอัตโนมัติ Real-time
+    // Input Listeners
     ['m3-bw', 'm3-ht', 'm3-dose'].forEach(id => {
       document.getElementById(id)?.addEventListener('input', () => this.calculateScenario1());
     });
 
-    // Stepper buttons (BW / Ht)
-    document.getElementById('m3-bw-dec')?.addEventListener('click', () => this.stepInput('m3-bw', -1, 0, 300, 3));
-    document.getElementById('m3-bw-inc')?.addEventListener('click', () => this.stepInput('m3-bw', 1, 0, 300, 3));
+    // Steppers BW / Ht
+    document.getElementById('m3-bw-dec')?.addEventListener('click', () => this.stepInput('m3-bw', -1, 0, 300, 2));
+    document.getElementById('m3-bw-inc')?.addEventListener('click', () => this.stepInput('m3-bw', 1, 0, 300, 2));
 
     document.getElementById('m3-ht-dec')?.addEventListener('click', () => this.stepInput('m3-ht', -1, 0, 250, 2));
     document.getElementById('m3-ht-inc')?.addEventListener('click', () => this.stepInput('m3-ht', 1, 0, 250, 2));
 
-    // Stepper button (Dose - เพิ่มลดทีละ 100 mg)
+    // Stepper Dose (+- 100)
     document.getElementById('m3-dose-dec')?.addEventListener('click', () => this.stepDoseInput('m3-dose', -100));
     document.getElementById('m3-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m3-dose', 100));
 
-    // Format บน Blur
-    this.formatInputOnBlur('m3-bw', 3);
+    // Blur formatters
+    this.formatInputOnBlur('m3-bw', 2);
     this.formatInputOnBlur('m3-ht', 2);
     this.formatDoseOnBlur('m3-dose');
 
@@ -688,7 +715,7 @@ window.M3_PheCap = {
     });
   },
 
-  // ระบบคำนวณสำหรับ Scenario 1
+  // คำนวณ Scenario 1
   calculateScenario1: function() {
     let bw = parseFloat(document.getElementById('m3-bw')?.value) || 0;
     let ht = parseFloat(document.getElementById('m3-ht')?.value) || 0;
@@ -699,7 +726,6 @@ window.M3_PheCap = {
       document.getElementById(id)?.classList.remove('highlight-lower');
     });
 
-    // คำนวณ IBW (ชาย / หญิง)
     let ibwMale = 0;
     let ibwFemale = 0;
 
@@ -710,18 +736,19 @@ window.M3_PheCap = {
       if (ibwFemale < 0) ibwFemale = 0;
     }
 
-    // คำนวณ Vmax และ Cทำนาย สำหรับแต่ละหมวด
-    // Male real BW
-    this.computeAndDisplay('m1-m-real', bw, dose);
-    // Male IBW
-    this.computeAndDisplay('m1-m-ibw', ibwMale, dose);
+    // แสดงตัวเลข real BW และ IBW ใต้หัวข้อคอลัมน์
+    this.setText('val-m-real-bw', bw > 0 ? `${bw} kg` : '-');
+    this.setText('val-m-ibw-bw', ibwMale > 0 ? `${ibwMale.toFixed(2)} kg` : '-');
+    this.setText('val-f-real-bw', bw > 0 ? `${bw} kg` : '-');
+    this.setText('val-f-ibw-bw', ibwFemale > 0 ? `${ibwFemale.toFixed(2)} kg` : '-');
 
-    // Female real BW
-    this.computeAndDisplay('m1-f-real', bw, dose);
-    // Female IBW
+    // คำนวณ Vmax และ Cทำนาย (ทศนิยม 3 หลัก)
+    this.computeAndDisplay('m1-m-real', bw, dose);
+    this.computeAndDisplay('m1-m-ibw', ibwMale, dose);
+    this.computeAndDisplay('m1-f-f-real', bw, dose); // male/female ID
     this.computeAndDisplay('m1-f-ibw', ibwFemale, dose);
 
-    // ไฮไลท์คอลัมน์ที่ค่าน้ำหนักน้อยกว่า (เปรียบเทียบ real BW vs IBW)
+    // ไฮไลท์ฝั่งน้ำหนักที่น้อยกว่า
     if (bw > 0 && ht > 0) {
       // ฝั่งชาย
       if (bw < ibwMale) {
@@ -739,7 +766,6 @@ window.M3_PheCap = {
     }
   },
 
-  // Helper คำนวณ Vmax & Cทำนาย
   computeAndDisplay: function(prefix, weight, dose) {
     const elVmax = document.getElementById(`${prefix}-vmax`);
     const elCpred = document.getElementById(`${prefix}-cpred`);
@@ -758,24 +784,28 @@ window.M3_PheCap = {
     if (dose > 0) {
       let denom = vmax - (0.92 * 1 * dose);
       if (denom <= 0) {
-        if (elCpred) elCpred.innerText = 'Infinity'; // ตัวหารติดลบหรือเท่ากับ 0
+        if (elCpred) elCpred.innerText = 'Infinity';
       } else {
         let cpred = (4 * 0.92 * 1 * dose) / denom;
-        if (elCpred) elCpred.innerText = cpred.toFixed(2);
+        // ปรับเป็นทศนิยม 3 หลัก
+        if (elCpred) elCpred.innerText = cpred.toFixed(3);
       }
     } else {
       if (elCpred) elCpred.innerText = '-';
     }
   },
 
-  // Helper แปลง String มี comma เป็นตัวเลข
+  setText: function(id, text) {
+    const el = document.getElementById(id);
+    if (el) el.innerText = text;
+  },
+
   parseFormattedNumber: function(str) {
     if (!str) return 0;
     let clean = str.toString().replace(/,/g, '');
     return parseFloat(clean) || 0;
   },
 
-  // Helper ใส่ Comma + ลบ .00
   formatNumberWithComma: function(num, maxDecimals = 2) {
     if (isNaN(num) || num === 0) return '';
     let factor = Math.pow(10, maxDecimals);
