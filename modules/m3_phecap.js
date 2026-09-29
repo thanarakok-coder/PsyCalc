@@ -162,7 +162,7 @@ window.M3_PheCap = {
           white-space: nowrap;
         }
         .unit-spacer {
-          width: 50px; /* ความกว้างจำลองแทน mg/day */
+          width: 50px;
           flex-shrink: 0;
         }
 
@@ -430,8 +430,8 @@ window.M3_PheCap = {
           word-break: break-all;
         }
 
-        /* --- STYLES SCENARIO 2 --- */
-        .scen2-layout {
+        /* --- STYLES SCENARIO 2 & 3 COMMON LAYOUT --- */
+        .scen-two-col-layout {
           display: grid;
           grid-template-columns: minmax(280px, 1fr) 2px minmax(240px, 1fr);
           gap: 16px;
@@ -439,39 +439,39 @@ window.M3_PheCap = {
           padding: 6px 0;
         }
         @media (max-width: 680px) {
-          .scen2-layout {
+          .scen-two-col-layout {
             grid-template-columns: 1fr;
           }
-          .scen2-divider {
+          .scen-layout-divider {
             display: none;
           }
         }
 
-        .scen2-divider {
+        .scen-layout-divider {
           background-color: #cbd5e1;
           align-self: stretch;
         }
 
-        .scen2-input-group {
+        .scen-input-group {
           display: flex;
           flex-direction: column;
           gap: 10px;
         }
 
-        .scen2-field-row {
+        .scen-field-row {
           display: grid;
           grid-template-columns: 120px 1fr;
           align-items: center;
           gap: 8px;
         }
 
-        .scen2-label {
+        .scen-label {
           font-size: 0.92rem;
           font-weight: 700;
           color: #1e293b;
         }
 
-        .scen2-result-group {
+        .scen-result-group {
           display: flex;
           flex-direction: column;
           gap: 12px;
@@ -481,7 +481,7 @@ window.M3_PheCap = {
           border-radius: 8px;
         }
 
-        .scen2-result-card {
+        .scen-result-card {
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -492,16 +492,29 @@ window.M3_PheCap = {
           box-shadow: 0 1px 3px rgba(0,0,0,0.03);
         }
 
-        .scen2-result-label {
+        .scen-result-label {
           font-size: 1rem;
           font-weight: 800;
           color: #0f172a;
         }
 
-        .scen2-result-val {
+        .scen-result-val {
           font-size: 1.15rem;
           font-weight: 800;
           color: #2563eb;
+        }
+
+        /* Notice / Warning area below Acc3 result */
+        .scen3-notice-box {
+          font-size: 0.82rem;
+          color: #d97706;
+          background: #fffbe3;
+          border: 1px dashed #fcd34d;
+          border-radius: 6px;
+          padding: 6px 10px;
+          min-height: 28px;
+          display: flex;
+          align-items: center;
         }
       </style>
 
@@ -684,13 +697,13 @@ window.M3_PheCap = {
               </div>
               <div class="accordion-content">
                 
-                <div class="scen2-layout">
+                <div class="scen-two-col-layout">
                   <!-- ฝั่งซ้าย: Input -->
-                  <div class="scen2-input-group">
+                  <div class="scen-input-group">
                     
                     <!-- ขนาดยา/วัน -->
-                    <div class="scen2-field-row">
-                      <span class="scen2-label">ขนาดยา/วัน</span>
+                    <div class="scen-field-row">
+                      <span class="scen-label">ขนาดยา/วัน</span>
                       <div class="stepper-container-inline">
                         <div class="stepper-box">
                           <button type="button" class="btn-step" id="m3-s2-dose-dec">-</button>
@@ -701,9 +714,9 @@ window.M3_PheCap = {
                       </div>
                     </div>
 
-                    <!-- ระดับยาที่ SS (ปรับความกว้างให้สั้นเท่ากับบรรทัดอื่นโดยใช้ unit-spacer) -->
-                    <div class="scen2-field-row">
-                      <span class="scen2-label">ระดับยาที่ SS</span>
+                    <!-- ระดับยาที่ SS -->
+                    <div class="scen-field-row">
+                      <span class="scen-label">ระดับยาที่ SS</span>
                       <div class="stepper-container-inline">
                         <div class="stepper-box">
                           <button type="button" class="btn-step" id="m3-s2-css-dec">-</button>
@@ -715,8 +728,8 @@ window.M3_PheCap = {
                     </div>
 
                     <!-- Dose ที่จะทำนาย -->
-                    <div class="scen2-field-row">
-                      <span class="scen2-label">Dose ที่จะทำนาย</span>
+                    <div class="scen-field-row">
+                      <span class="scen-label">Dose ที่จะทำนาย</span>
                       <div class="stepper-container-inline">
                         <div class="stepper-box">
                           <button type="button" class="btn-step" id="m3-s2-pdose-dec">-</button>
@@ -729,18 +742,18 @@ window.M3_PheCap = {
 
                   </div>
 
-                  <div class="scen2-divider"></div>
+                  <div class="scen-layout-divider"></div>
 
                   <!-- ฝั่งขวา: Display ผลลัพธ์ -->
-                  <div class="scen2-result-group">
-                    <div class="scen2-result-card">
-                      <span class="scen2-result-label">Vmax =</span>
-                      <span class="scen2-result-val" id="m3-s2-vmax">-</span>
+                  <div class="scen-result-group">
+                    <div class="scen-result-card">
+                      <span class="scen-result-label">Vmax =</span>
+                      <span class="scen-result-val" id="m3-s2-vmax">-</span>
                     </div>
 
-                    <div class="scen2-result-card">
-                      <span class="scen2-result-label">Cทำนาย =</span>
-                      <span class="scen2-result-val" id="m3-s2-cpred">-</span>
+                    <div class="scen-result-card">
+                      <span class="scen-result-label">Cทำนาย =</span>
+                      <span class="scen-result-val" id="m3-s2-cpred">-</span>
                     </div>
                   </div>
                 </div>
@@ -748,13 +761,75 @@ window.M3_PheCap = {
               </div>
             </div>
 
+            <!-- Scenario 3 -->
             <div class="accordion-item" id="m3-scen-3">
               <div class="accordion-header">
                 <span class="accordion-icon">▼</span>
                 <span>กรณีผล Alb. ต่ำกว่าปกติ</span>
               </div>
               <div class="accordion-content">
-                <p style="color: #64748b; font-size: 0.9rem;">(เตรียมใส่ฟอร์มและสูตรคำนวณของ Scenario 3)</p>
+                
+                <div class="scen-two-col-layout">
+                  <!-- ฝั่งซ้าย: Inputs (3 ตัว) -->
+                  <div class="scen-input-group">
+                    
+                    <!-- ระดับยาที่ SS -->
+                    <div class="scen-field-row">
+                      <span class="scen-label">ระดับยาที่ SS</span>
+                      <div class="stepper-container-inline">
+                        <div class="stepper-box">
+                          <button type="button" class="btn-step" id="m3-s3-css-dec">-</button>
+                          <input type="text" id="m3-s3-css" placeholder="0">
+                          <button type="button" class="btn-step" id="m3-s3-css-inc">+</button>
+                        </div>
+                        <div class="unit-spacer"></div>
+                      </div>
+                    </div>
+
+                    <!-- ระดับ Alb. -->
+                    <div class="scen-field-row">
+                      <span class="scen-label">ระดับ Alb.</span>
+                      <div class="stepper-container-inline">
+                        <div class="stepper-box">
+                          <button type="button" class="btn-step" id="m3-s3-alb-dec">-</button>
+                          <input type="text" id="m3-s3-alb" placeholder="0">
+                          <button type="button" class="btn-step" id="m3-s3-alb-inc">+</button>
+                        </div>
+                        <div class="unit-spacer"></div>
+                      </div>
+                    </div>
+
+                    <!-- CrCl (ml/min) -->
+                    <div class="scen-field-row">
+                      <span class="scen-label">CrCl</span>
+                      <div class="stepper-container-inline">
+                        <div class="stepper-box">
+                          <button type="button" class="btn-step" id="m3-s3-crcl-dec">-</button>
+                          <input type="text" id="m3-s3-crcl" placeholder="0">
+                          <button type="button" class="btn-step" id="m3-s3-crcl-inc">+</button>
+                        </div>
+                        <span class="unit-text">ml/min</span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="scen-layout-divider"></div>
+
+                  <!-- ฝั่งขวา: Display ผลลัพธ์ + เผื่อพื้นที่ข้อความเตือน -->
+                  <div class="scen-result-group">
+                    <div class="scen-result-card">
+                      <span class="scen-result-label">Cทำนาย =</span>
+                      <span class="scen-result-val" id="m3-s3-cpred">-</span>
+                    </div>
+
+                    <!-- เผื่อพื้นที่ใต้ส่วนคำนวณสำหรับข้อความเตือน/หมายเหตุ -->
+                    <div class="scen3-notice-box" id="m3-s3-notice">
+                      * (เตรียมพื้นที่สำหรับข้อความเตือน/หมายเหตุเพิ่มเติม)
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
 
@@ -792,12 +867,13 @@ window.M3_PheCap = {
     const btnClear = document.getElementById('m3-btn-clear-left');
     if (btnClear) {
       btnClear.addEventListener('click', () => {
-        ['m3-bw', 'm3-ht', 'm3-dose', 'm3-s2-dose', 'm3-s2-css', 'm3-s2-pdose'].forEach(id => {
+        ['m3-bw', 'm3-ht', 'm3-dose', 'm3-s2-dose', 'm3-s2-css', 'm3-s2-pdose', 'm3-s3-css', 'm3-s3-alb', 'm3-s3-crcl'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.value = '';
         });
         this.calculateScenario1();
         this.calculateScenario2();
+        this.calculateScenario3();
       });
     }
 
@@ -827,22 +903,39 @@ window.M3_PheCap = {
       document.getElementById(id)?.addEventListener('input', () => this.calculateScenario2());
     });
 
-    // Stepper Acc 2 Dose (+- 100)
     document.getElementById('m3-s2-dose-dec')?.addEventListener('click', () => this.stepDoseInput('m3-s2-dose', -100, () => this.calculateScenario2()));
     document.getElementById('m3-s2-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m3-s2-dose', 100, () => this.calculateScenario2()));
 
-    // Stepper Acc 2 CSS (+- 0.1)
     document.getElementById('m3-s2-css-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s2-css', -0.1, 0, 100, 3, () => this.calculateScenario2()));
     document.getElementById('m3-s2-css-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s2-css', 0.1, 0, 100, 3, () => this.calculateScenario2()));
 
-    // Stepper Acc 2 Predicted Dose (+- 100)
     document.getElementById('m3-s2-pdose-dec')?.addEventListener('click', () => this.stepDoseInput('m3-s2-pdose', -100, () => this.calculateScenario2()));
     document.getElementById('m3-s2-pdose-inc')?.addEventListener('click', () => this.stepDoseInput('m3-s2-pdose', 100, () => this.calculateScenario2()));
 
-    // Blur Formatters Acc 2
     this.formatDoseOnBlur('m3-s2-dose', () => this.calculateScenario2());
     this.formatFloatOnBlur('m3-s2-css', 3, () => this.calculateScenario2());
     this.formatDoseOnBlur('m3-s2-pdose', () => this.calculateScenario2());
+
+    // --- ACCORDION 3 EVENTS ---
+    ['m3-s3-css', 'm3-s3-alb', 'm3-s3-crcl'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', () => this.calculateScenario3());
+    });
+
+    // Stepper CSS Acc 3 (+- 0.1)
+    document.getElementById('m3-s3-css-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s3-css', -0.1, 0, 100, 3, () => this.calculateScenario3()));
+    document.getElementById('m3-s3-css-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s3-css', 0.1, 0, 100, 3, () => this.calculateScenario3()));
+
+    // Stepper Alb. Acc 3 (+- 0.1)
+    document.getElementById('m3-s3-alb-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s3-alb', -0.1, 0, 10, 2, () => this.calculateScenario3()));
+    document.getElementById('m3-s3-alb-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s3-alb', 0.1, 0, 10, 2, () => this.calculateScenario3()));
+
+    // Stepper CrCl Acc 3 (+- 1)
+    document.getElementById('m3-s3-crcl-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s3-crcl', -1, 0, 300, 2, () => this.calculateScenario3()));
+    document.getElementById('m3-s3-crcl-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s3-crcl', 1, 0, 300, 2, () => this.calculateScenario3()));
+
+    this.formatFloatOnBlur('m3-s3-css', 3, () => this.calculateScenario3());
+    this.formatFloatOnBlur('m3-s3-alb', 2, () => this.calculateScenario3());
+    this.formatFloatOnBlur('m3-s3-crcl', 2, () => this.calculateScenario3());
 
     // Show/Hide All Accordions
     document.getElementById('m3-btn-show-all')?.addEventListener('click', () => this.toggleAllAccordions(true));
@@ -907,12 +1000,10 @@ window.M3_PheCap = {
     let css = parseFloat(document.getElementById('m3-s2-css')?.value) || 0;
     let pdose = this.parseFormattedNumber(document.getElementById('m3-s2-pdose')?.value);
 
-    // คำนวณ Vmax = ((0.92 * 1 * Dose) * (4 + Css)) / Css
     if (dose > 0 && css > 0) {
       let vmax = ((0.92 * 1 * dose) * (4 + css)) / css;
       this.setText('m3-s2-vmax', this.formatNumberWithComma(vmax, 2));
 
-      // คำนวณ Cทำนาย = (4 * (0.92 * 1 * Dose_predict)) / (Vmax - (0.92 * 1 * Dose_predict))
       if (pdose > 0) {
         let denom = vmax - (0.92 * 1 * pdose);
         if (denom <= 0) {
@@ -927,6 +1018,20 @@ window.M3_PheCap = {
     } else {
       this.setText('m3-s2-vmax', '-');
       this.setText('m3-s2-cpred', '-');
+    }
+  },
+
+  calculateScenario3: function() {
+    let css = parseFloat(document.getElementById('m3-s3-css')?.value) || 0;
+    let alb = parseFloat(document.getElementById('m3-s3-alb')?.value) || 0;
+    let crcl = parseFloat(document.getElementById('m3-s3-crcl')?.value) || 0;
+
+    // ฟังก์ชันคำนวณของ Acc3 (จะใส่สูตรคำนวณจริงเมื่อผู้ใช้แจ้งสูตร)
+    if (css > 0 && alb > 0) {
+      // ตัวอย่างรอคำนวณสูตร
+      // this.setText('m3-s3-cpred', ...);
+    } else {
+      this.setText('m3-s3-cpred', '-');
     }
   },
 
