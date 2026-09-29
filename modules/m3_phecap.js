@@ -430,7 +430,7 @@ window.M3_PheCap = {
           word-break: break-all;
         }
 
-        /* --- STYLES SCENARIO 2 & 3 COMMON LAYOUT --- */
+        /* --- STYLES SCENARIO 2, 3 & 4 COMMON LAYOUT --- */
         .scen-two-col-layout {
           display: grid;
           grid-template-columns: minmax(280px, 1fr) 2px minmax(240px, 1fr);
@@ -849,16 +849,61 @@ window.M3_PheCap = {
               </div>
             </div>
 
+            <!-- Scenario 4: กรณีได้รับ VPA ร่วมด้วย -->
             <div class="accordion-item" id="m3-scen-4">
               <div class="accordion-header">
                 <span class="accordion-icon">▼</span>
                 <span>กรณีได้รับ VPA ร่วมด้วย</span>
               </div>
               <div class="accordion-content">
-                <p style="color: #64748b; font-size: 0.9rem;">(เตรียมใส่ฟอร์มและสูตรคำนวณของ Scenario 4)</p>
+                
+                <div class="scen-two-col-layout">
+                  <!-- ฝั่งซ้าย: Inputs (2 ตัว) -->
+                  <div class="scen-input-group">
+                    
+                    <!-- ระดับยาที่ SS -->
+                    <div class="scen-field-row">
+                      <span class="scen-label">ระดับยาที่ SS</span>
+                      <div class="stepper-container-inline">
+                        <div class="stepper-box">
+                          <button type="button" class="btn-step" id="m3-s4-css-dec">-</button>
+                          <input type="text" id="m3-s4-css" placeholder="0">
+                          <button type="button" class="btn-step" id="m3-s4-css-inc">+</button>
+                        </div>
+                        <div class="unit-spacer"></div>
+                      </div>
+                    </div>
+
+                    <!-- ระดับยา VPA -->
+                    <div class="scen-field-row">
+                      <span class="scen-label">ระดับยา VPA</span>
+                      <div class="stepper-container-inline">
+                        <div class="stepper-box">
+                          <button type="button" class="btn-step" id="m3-s4-vpa-dec">-</button>
+                          <input type="text" id="m3-s4-vpa" placeholder="0">
+                          <button type="button" class="btn-step" id="m3-s4-vpa-inc">+</button>
+                        </div>
+                        <div class="unit-spacer"></div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="scen-layout-divider"></div>
+
+                  <!-- ฝั่งขวา: Display ผลลัพธ์ -->
+                  <div class="scen-result-group">
+                    <div class="scen-result-card">
+                      <span class="scen-result-label">Cทำนาย =</span>
+                      <span class="scen-result-val" id="m3-s4-cpred">-</span>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
 
+            <!-- Scenario 5 -->
             <div class="accordion-item" id="m3-scen-5">
               <div class="accordion-header">
                 <span class="accordion-icon">▼</span>
@@ -883,13 +928,14 @@ window.M3_PheCap = {
     const btnClear = document.getElementById('m3-btn-clear-left');
     if (btnClear) {
       btnClear.addEventListener('click', () => {
-        ['m3-bw', 'm3-ht', 'm3-dose', 'm3-s2-dose', 'm3-s2-css', 'm3-s2-pdose', 'm3-s3-css', 'm3-s3-alb', 'm3-s3-crcl'].forEach(id => {
+        ['m3-bw', 'm3-ht', 'm3-dose', 'm3-s2-dose', 'm3-s2-css', 'm3-s2-pdose', 'm3-s3-css', 'm3-s3-alb', 'm3-s3-crcl', 'm3-s4-css', 'm3-s4-vpa'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.value = '';
         });
         this.calculateScenario1();
         this.calculateScenario2();
         this.calculateScenario3();
+        this.calculateScenario4();
       });
     }
 
@@ -952,6 +998,22 @@ window.M3_PheCap = {
     this.formatFloatOnBlur('m3-s3-css', 3, () => this.calculateScenario3());
     this.formatFloatOnBlur('m3-s3-alb', 2, () => this.calculateScenario3());
     this.formatFloatOnBlur('m3-s3-crcl', 2, () => this.calculateScenario3());
+
+    // --- ACCORDION 4 EVENTS ---
+    ['m3-s4-css', 'm3-s4-vpa'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', () => this.calculateScenario4());
+    });
+
+    // Stepper CSS Acc 4 (+- 0.1)
+    document.getElementById('m3-s4-css-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s4-css', -0.1, 0, 100, 3, () => this.calculateScenario4()));
+    document.getElementById('m3-s4-css-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s4-css', 0.1, 0, 100, 3, () => this.calculateScenario4()));
+
+    // Stepper VPA Acc 4 (+- 0.1)
+    document.getElementById('m3-s4-vpa-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s4-vpa', -0.1, 0, 300, 3, () => this.calculateScenario4()));
+    document.getElementById('m3-s4-vpa-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s4-vpa', 0.1, 0, 300, 3, () => this.calculateScenario4()));
+
+    this.formatFloatOnBlur('m3-s4-css', 3, () => this.calculateScenario4());
+    this.formatFloatOnBlur('m3-s4-vpa', 3, () => this.calculateScenario4());
 
     // Show/Hide All Accordions
     document.getElementById('m3-btn-show-all')?.addEventListener('click', () => this.toggleAllAccordions(true));
@@ -1071,6 +1133,18 @@ window.M3_PheCap = {
       this.setText('m3-s3-cpred', cpred.toFixed(3));
     } else {
       this.setText('m3-s3-cpred', '-');
+    }
+  },
+
+  calculateScenario4: function() {
+    let css = parseFloat(document.getElementById('m3-s4-css')?.value) || 0;
+    let vpa = parseFloat(document.getElementById('m3-s4-vpa')?.value) || 0;
+
+    if (css > 0 && vpa > 0) {
+      let cpred = ((0.095 + (0.001 * vpa)) * css) / 0.1;
+      this.setText('m3-s4-cpred', cpred.toFixed(3));
+    } else {
+      this.setText('m3-s4-cpred', '-');
     }
   },
 
