@@ -97,32 +97,42 @@ window.M3_PheCap = {
           flex: 1;
           background: #eff6ff;
           border: 1.5px solid #60a5fa;
-          border-radius: 24px;
-          padding: 2px 6px;
-          height: 44px;
+          border-radius: 28px;
+          padding: 4px 8px;
+          height: 48px;
         }
         .stepper-box:focus-within {
           border-color: #2563eb;
           box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
+        /* ปุ่ม Stepper วงกลมแท้ */
         .btn-step {
-          width: 32px;
-          height: 32px;
+          width: 34px;
+          height: 34px;
+          min-width: 34px;
+          min-height: 34px;
           border-radius: 50%;
           border: 1px solid #93c5fd;
           background: #ffffff;
           color: #1d4ed8;
           font-weight: bold;
-          font-size: 1.2rem;
+          font-size: 1.25rem;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
           user-select: none;
+          padding: 0;
+          line-height: 1;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+          transition: background 0.15s ease, transform 0.05s ease;
         }
         .btn-step:hover {
           background: #dbeafe;
+        }
+        .btn-step:active {
+          transform: scale(0.95);
         }
 
         .stepper-box input {
@@ -172,12 +182,26 @@ window.M3_PheCap = {
           background: #e0f2fe;
         }
 
+        /* Title สไตล์ใหม่ 2 บรรทัด */
         .module-brand-title {
           margin-top: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
           text-align: center;
-          font-size: 1.25rem;
-          font-weight: 800;
-          color: #1e3a8a;
+          line-height: 1.25;
+        }
+        .brand-sub {
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: #1e293b; /* สีดำ/เทาเข้ม */
+          letter-spacing: 0.5px;
+        }
+        .brand-main {
+          font-size: 1.45rem;
+          font-weight: 800; /* BOLD */
+          color: #1e3a8a; /* สีน้ำเงินเข้ม */
           letter-spacing: 0.5px;
         }
 
@@ -265,26 +289,26 @@ window.M3_PheCap = {
               <button type="button" id="m3-btn-clear-left" class="btn-clear-mini">Clear</button>
             </div>
 
-            <!-- น้ำหนัก (BW) -->
+            <!-- น้ำหนัก (BW) - Max 3 decimals -->
             <div class="field-group-stacked">
               <label for="m3-bw">น้ำหนัก</label>
               <div class="stepper-container-inline">
                 <div class="stepper-box">
                   <button type="button" class="btn-step" id="m3-bw-dec">-</button>
-                  <input type="number" id="m3-bw" step="0.01" placeholder="0">
+                  <input type="number" id="m3-bw" step="any" placeholder="0">
                   <button type="button" class="btn-step" id="m3-bw-inc">+</button>
                 </div>
                 <span class="unit-text">kg</span>
               </div>
             </div>
 
-            <!-- ส่วนสูง (Ht) -->
+            <!-- ส่วนสูง (Ht) - Max 2 decimals -->
             <div class="field-group-stacked">
               <label for="m3-ht">ส่วนสูง</label>
               <div class="stepper-container-inline">
                 <div class="stepper-box">
                   <button type="button" class="btn-step" id="m3-ht-dec">-</button>
-                  <input type="number" id="m3-ht" step="0.01" placeholder="0">
+                  <input type="number" id="m3-ht" step="any" placeholder="0">
                   <button type="button" class="btn-step" id="m3-ht-inc">+</button>
                 </div>
                 <span class="unit-text">cm</span>
@@ -297,8 +321,10 @@ window.M3_PheCap = {
               <button type="button" class="btn-action-outline" id="m3-btn-hide-all">Hide all</button>
             </div>
 
+            <!-- Title ใหม่ 2 บรรทัด -->
             <div class="module-brand-title">
-              Phenytoin Capsule
+              <span class="brand-sub">Phenytoin</span>
+              <span class="brand-main">Capsule</span>
             </div>
           </div>
 
@@ -366,11 +392,9 @@ window.M3_PheCap = {
       </div>
     `;
 
-    // Bind Event Listeners สำหรับ UI M3
     this.bindEvents();
   },
 
-  // ผูกระบบ Event Listeners โดยตรง
   bindEvents: function() {
     // Clear ปุ่มฝั่งซ้าย
     const btnClear = document.getElementById('m3-btn-clear-left');
@@ -383,13 +407,16 @@ window.M3_PheCap = {
       });
     }
 
-    // Stepper buttons (BW)
-    document.getElementById('m3-bw-dec')?.addEventListener('click', () => this.stepInput('m3-bw', -1, 0, 300, 2));
-    document.getElementById('m3-bw-inc')?.addEventListener('click', () => this.stepInput('m3-bw', 1, 0, 300, 2));
+    // Stepper buttons - น้ำหนักทศนิยมไม่เกิน 3 ตำแหน่ง / ส่วนสูงทศนิยมไม่เกิน 2 ตำแหน่ง
+    document.getElementById('m3-bw-dec')?.addEventListener('click', () => this.stepInput('m3-bw', -1, 0, 300, 3));
+    document.getElementById('m3-bw-inc')?.addEventListener('click', () => this.stepInput('m3-bw', 1, 0, 300, 3));
 
-    // Stepper buttons (Ht)
     document.getElementById('m3-ht-dec')?.addEventListener('click', () => this.stepInput('m3-ht', -1, 0, 250, 2));
     document.getElementById('m3-ht-inc')?.addEventListener('click', () => this.stepInput('m3-ht', 1, 0, 250, 2));
+
+    // ควบคุมการคีย์ทศนิยมหน้างาน
+    this.formatInputOnBlur('m3-bw', 3);
+    this.formatInputOnBlur('m3-ht', 2);
 
     // Enter Key
     document.getElementById('m3-bw')?.addEventListener('keydown', (e) => {
@@ -413,8 +440,26 @@ window.M3_PheCap = {
     });
   },
 
+  // จัดการการพิมพ์และการจัดรูปแบบตัวเลขเมื่อหลุดโฟกัส (Blur)
+  formatInputOnBlur: function(id, maxDecimals) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('blur', () => {
+      if (el.value === '') return;
+      let val = parseFloat(el.value);
+      if (isNaN(val)) {
+        el.value = '';
+        return;
+      }
+      // ตัดทศนิยมส่วนเกินตามกำหนด และแปลงกลับเป็น Number เพื่อลบ .00 ทิ้งอัตโนมัติ
+      let factor = Math.pow(10, maxDecimals);
+      let rounded = Math.round(val * factor) / factor;
+      el.value = rounded;
+    });
+  },
+
   // Stepper Calculation
-  stepInput: function(id, delta, minVal, maxVal, decimals) {
+  stepInput: function(id, delta, minVal, maxVal, maxDecimals) {
     const el = document.getElementById(id);
     if (!el) return;
     let curr = parseFloat(el.value) || 0;
@@ -422,10 +467,12 @@ window.M3_PheCap = {
     if (nextVal < minVal) nextVal = minVal;
     if (nextVal > maxVal) nextVal = maxVal;
 
-    el.value = (decimals === 0) ? Math.round(nextVal) : parseFloat(nextVal.toFixed(decimals));
+    // ตัดทศนิยมส่วนเกินและลบทศนิยมซูเปอร์ฟลูอัส (.00)
+    let factor = Math.pow(10, maxDecimals);
+    let rounded = Math.round(nextVal * factor) / factor;
+    el.value = rounded;
   },
 
-  // Toggle All Accordions helper
   toggleAllAccordions: function(show) {
     const items = document.querySelectorAll('#m3-accordion-container .accordion-item');
     items.forEach(item => {
