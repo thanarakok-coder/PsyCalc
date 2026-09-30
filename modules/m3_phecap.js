@@ -673,6 +673,14 @@ window.M3_PheCap = {
           color: #2563eb;
           padding: 2px 6px;
           text-align: center;
+          transition: all 0.2s ease;
+        }
+
+        .scen5-val-box.highlight-cell {
+          background-color: #f0fdf4;
+          border: 1.5px solid #22c55e;
+          color: #15803d;
+          box-shadow: 0 2px 6px rgba(34, 197, 94, 0.15);
         }
 
         .scen5-v-line {
@@ -1496,7 +1504,84 @@ window.M3_PheCap = {
   },
 
   calculateScenario5: function() {
-    // (ฟังก์ชันสำหรับคำนวณทาง Pharmacokinetics ของ Scenario 5 จะมาใส่ต่อในสเต็ปถัดไป)
+    let dose = this.parseFormattedNumber(document.getElementById('m3-s5-dose')?.value);
+    let c1 = parseFloat(document.getElementById('m3-s5-c1')?.value) || 0;
+    let c2 = parseFloat(document.getElementById('m3-s5-c2')?.value) || 0;
+    let cTarget = parseFloat(document.getElementById('m3-s5-ctarget')?.value) || 0;
+
+    let realBW = parseFloat(document.getElementById('m3-bw')?.value) || 0;
+    let ht = parseFloat(document.getElementById('m3-ht')?.value) || 0;
+
+    // Reset Highlights
+    ['m3-s5-vd-real', 'm3-s5-vd-ibw-m', 'm3-s5-vd-ibw-f', 'm3-s5-offday-real', 'm3-s5-offday-ibw-m', 'm3-s5-offday-ibw-f'].forEach(id => {
+      document.getElementById(id)?.classList.remove('highlight-cell');
+    });
+
+    // 1. Vmax Calculation
+    let vmax = 0;
+    if (dose > 0 && c1 > 0) {
+      vmax = ((0.92 * 1 * dose) * (4 + c1)) / c1;
+      this.setText('m3-s5-vmax', this.formatNumberWithComma(vmax, 2));
+    } else {
+      this.setText('m3-s5-vmax', '-');
+    }
+
+    // 2. IBW
+    let ibwMale = 0;
+    let ibwFemale = 0;
+    if (ht > 0) {
+      ibwMale = 50 + 2.3 * ((ht / 2.54) - 60);
+      ibwFemale = 45.5 + 2.3 * ((ht / 2.54) - 60);
+      if (ibwMale < 0) ibwMale = 0;
+      if (ibwFemale < 0) ibwFemale = 0;
+    }
+
+    // 3. Vd
+    let vdReal = realBW > 0 ? 0.65 * realBW : 0;
+    let vdIbwM = (ibwMale > 0 && c1 > 0 && c2 > 0) ? 0.65 * (ibwMale + 1.33 * (c1 - c2)) : 0;
+    let vdIbwF = (ibwFemale > 0 && c1 > 0 && c2 > 0) ? 0.65 * (ibwFemale + 1.33 * (c1 - c2)) : 0;
+
+    this.setText('m3-s5-vd-real', vdReal > 0 ? vdReal.toFixed(2) : '-');
+    this.setText('m3-s5-vd-ibw-m', vdIbwM > 0 ? vdIbwM.toFixed(2) : '-');
+    this.setText('m3-s5-vd-ibw-f', vdIbwF > 0 ? vdIbwF.toFixed(2) : '-');
+
+    // 4. Hold Days
+    if (vmax > 0 && c1 > 0 && c2 > 0 && c1 > c2) {
+      let numFactor = (4 * Math.log(c1 / c2)) + (c1 - c2);
+
+      let holdReal = vdReal > 0 ? numFactor / (vmax / vdReal) : 0;
+      let holdIbwM = vdIbwM > 0 ? numFactor / (vmax / vdIbwM) : 0;
+      let holdIbwF = vdIbwF > 0 ? numFactor / (vmax / vdIbwF) : 0;
+
+      this.setText('m3-s5-offday-real', holdReal > 0 ? Math.max(0, holdReal).toFixed(1) : '-');
+      this.setText('m3-s5-offday-ibw-m', holdIbwM > 0 ? Math.max(0, holdIbwM).toFixed(1) : '-');
+      this.setText('m3-s5-offday-ibw-f', holdIbwF > 0 ? Math.max(0, holdIbwF).toFixed(1) : '-');
+    } else {
+      this.setText('m3-s5-offday-real', '-');
+      this.setText('m3-s5-offday-ibw-m', '-');
+      this.setText('m3-s5-offday-ibw-f', '-');
+    }
+
+    // 5. Recommended Dose
+    if (vmax > 0 && cTarget > 0) {
+      let recDose = (vmax * cTarget) / ((4 + cTarget) * 0.92);
+      this.setText('m3-s5-rec-dose', this.formatNumberWithComma(recDose, 0) + ' mg');
+    } else {
+      this.setText('m3-s5-rec-dose', '-');
+    }
+
+    // 6. Highlight Logic (real BW < 60 kg vs >= 60 kg)
+    if (realBW > 0) {
+      if (realBW < 60) {
+        document.getElementById('m3-s5-vd-real')?.classList.add('highlight-cell');
+        document.getElementById('m3-s5-offday-real')?.classList.add('highlight-cell');
+      } else {
+        document.getElementById('m3-s5-vd-ibw-m')?.classList.add('highlight-cell');
+        document.getElementById('m3-s5-vd-ibw-f')?.classList.add('highlight-cell');
+        document.getElementById('m3-s5-offday-ibw-m')?.classList.add('highlight-cell');
+        document.getElementById('m3-s5-offday-ibw-f')?.classList.add('highlight-cell');
+      }
+    }
   },
 
   computeAndDisplay: function(prefix, weight, dose) {
