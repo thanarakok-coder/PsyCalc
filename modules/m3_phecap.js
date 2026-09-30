@@ -876,7 +876,7 @@ window.M3_PheCap = {
                           </div>
                           <div class="calc-row-item">
                             <span>Cทำนาย:</span>
-                            <span class="calc-val-placeholder" id="m1-f-f-real-cpred">-</span>
+                            <span class="calc-val-placeholder" id="m1-f-real-cpred">-</span>
                           </div>
                         </div>
 
