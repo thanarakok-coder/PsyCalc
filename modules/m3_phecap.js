@@ -275,7 +275,7 @@ window.M3_PheCap = {
           padding: 0 12px;
         }
         .accordion-item.active .accordion-content {
-          max-height: 1200px;
+          max-height: 1400px;
           transition: max-height 0.3s ease-in-out;
           padding: 12px;
           border-top: 1px solid #e2e8f0;
@@ -513,7 +513,7 @@ window.M3_PheCap = {
           border: 1.5px dashed #f59e0b;
           border-radius: 6px;
           padding: 8px 10px;
-          display: none; /* ซ่อนเป็นค่าเริ่มต้น */
+          display: none;
           align-items: center;
           line-height: 1.35;
         }
@@ -525,6 +525,191 @@ window.M3_PheCap = {
           line-height: 1.4;
           padding-top: 4px;
           border-top: 1px solid #e2e8f0;
+        }
+
+        /* --- STYLES SCENARIO 5 SPECIFIC LAYOUT --- */
+        .scen5-layout {
+          display: grid;
+          grid-template-columns: 290px 2px minmax(0, 1fr);
+          gap: 14px;
+          align-items: start;
+          padding: 6px 0;
+        }
+        @media (max-width: 900px) {
+          .scen5-layout {
+            grid-template-columns: 1fr;
+          }
+          .scen5-divider {
+            display: none;
+          }
+        }
+
+        .scen5-divider {
+          background-color: #cbd5e1;
+          align-self: stretch;
+        }
+
+        .scen5-input-col {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .scen5-field-row {
+          display: grid;
+          grid-template-columns: 120px 1fr;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .scen5-label-sub {
+          font-size: 0.78rem;
+          color: #64748b;
+          font-weight: 600;
+        }
+
+        .scen5-vmax-card {
+          background: #eff6ff;
+          border: 1.5px solid #3b82f6;
+          border-radius: 8px;
+          padding: 8px 12px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 2px;
+        }
+
+        .scen5-display-col {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        /* Table Structure สำหรับ Scenario 5 */
+        .scen5-table-container {
+          border: 1.5px solid #cbd5e1;
+          border-radius: 8px;
+          overflow: hidden;
+          background: #ffffff;
+        }
+
+        .scen5-table-header {
+          display: grid;
+          grid-template-columns: 1.2fr 2px 1fr 1px 1fr;
+          background: #f1f5f9;
+          border-bottom: 1.5px solid #cbd5e1;
+          font-weight: 800;
+          font-size: 0.88rem;
+          color: #1e293b;
+          text-align: center;
+          align-items: center;
+        }
+
+        .scen5-ibw-header-group {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .scen5-ibw-title {
+          padding: 4px 0;
+          border-bottom: 1px solid #cbd5e1;
+          background: #e2e8f0;
+          font-size: 0.85rem;
+        }
+
+        .scen5-ibw-sub-cols {
+          display: grid;
+          grid-template-columns: 1fr 1px 1fr;
+        }
+
+        .scen5-col-head {
+          padding: 6px 4px;
+        }
+
+        .scen5-table-body {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .scen5-table-row {
+          display: grid;
+          grid-template-columns: 1.2fr 2px 1fr 1px 1fr;
+          border-bottom: 1px solid #e2e8f0;
+          align-items: center;
+        }
+        .scen5-table-row:last-child {
+          border-bottom: none;
+        }
+
+        .scen5-row-label {
+          padding: 10px 8px;
+          font-size: 0.9rem;
+          font-weight: 700;
+          color: #334155;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+
+        .scen5-cell-box {
+          padding: 8px 6px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .scen5-val-box {
+          width: 100%;
+          min-height: 38px;
+          background: #f8fafc;
+          border: 1.5px dashed #94a3b8;
+          border-radius: 6px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 800;
+          font-size: 1rem;
+          color: #2563eb;
+          padding: 2px 6px;
+          text-align: center;
+        }
+
+        .scen5-v-line {
+          background-color: #cbd5e1;
+          align-self: stretch;
+        }
+
+        .scen5-dose-recommend-card {
+          background: #f0fdf4;
+          border: 1.5px solid #22c55e;
+          border-radius: 8px;
+          padding: 10px 14px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .scen5-dose-label {
+          font-size: 1.05rem;
+          font-weight: 800;
+          color: #15803d;
+        }
+
+        .scen5-dose-val-box {
+          min-width: 160px;
+          height: 42px;
+          background: #ffffff;
+          border: 2px solid #16a34a;
+          border-radius: 6px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.2rem;
+          font-weight: 800;
+          color: #15803d;
+          padding: 0 12px;
         }
       </style>
 
@@ -903,14 +1088,149 @@ window.M3_PheCap = {
               </div>
             </div>
 
-            <!-- Scenario 5 -->
+            <!-- Scenario 5: กรณีระดับยาเกิน TH range -->
             <div class="accordion-item" id="m3-scen-5">
               <div class="accordion-header">
                 <span class="accordion-icon">▼</span>
                 <span>กรณีระดับยาเกิน TH range</span>
               </div>
               <div class="accordion-content">
-                <p style="color: #64748b; font-size: 0.9rem;">(เตรียมใส่ฟอร์มและสูตรคำนวณของ Scenario 5)</p>
+                
+                <div class="scen5-layout">
+                  <!-- ฝั่งซ้าย: Inputs (4 ช่อง) + Vmax Display -->
+                  <div class="scen5-input-col">
+                    
+                    <!-- 1. ขนาดยา/วัน -->
+                    <div class="scen5-field-row">
+                      <span class="scen-label">ขนาดยา/วัน</span>
+                      <div class="stepper-container-inline">
+                        <div class="stepper-box">
+                          <button type="button" class="btn-step" id="m3-s5-dose-dec">-</button>
+                          <input type="text" id="m3-s5-dose" placeholder="0">
+                          <button type="button" class="btn-step" id="m3-s5-dose-inc">+</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- 2. ระดับยา C1 -->
+                    <div class="scen5-field-row">
+                      <div>
+                        <div class="scen-label">ระดับยา C<sub>1</sub></div>
+                        <div class="scen5-label-sub">(C ที่วัดได้)</div>
+                      </div>
+                      <div class="stepper-container-inline">
+                        <div class="stepper-box">
+                          <button type="button" class="btn-step" id="m3-s5-c1-dec">-</button>
+                          <input type="text" id="m3-s5-c1" placeholder="0">
+                          <button type="button" class="btn-step" id="m3-s5-c1-inc">+</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- 3. ระดับยา C2 -->
+                    <div class="scen5-field-row">
+                      <div>
+                        <div class="scen-label">ระดับยา C<sub>2</sub></div>
+                        <div class="scen5-label-sub">(C ที่วัดได้)</div>
+                      </div>
+                      <div class="stepper-container-inline">
+                        <div class="stepper-box">
+                          <button type="button" class="btn-step" id="m3-s5-c2-dec">-</button>
+                          <input type="text" id="m3-s5-c2" placeholder="0">
+                          <button type="button" class="btn-step" id="m3-s5-c2-inc">+</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Vmax Display Block -->
+                    <div class="scen5-vmax-card">
+                      <span class="scen-result-label">V<sub>max</sub> =</span>
+                      <span class="scen-result-val" id="m3-s5-vmax">-</span>
+                    </div>
+
+                    <!-- 4. C ที่ต้องการ -->
+                    <div class="scen5-field-row">
+                      <span class="scen-label">C ที่ต้องการ</span>
+                      <div class="stepper-container-inline">
+                        <div class="stepper-box">
+                          <button type="button" class="btn-step" id="m3-s5-ctarget-dec">-</button>
+                          <input type="text" id="m3-s5-ctarget" placeholder="0">
+                          <button type="button" class="btn-step" id="m3-s5-ctarget-inc">+</button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="scen5-divider"></div>
+
+                  <!-- ฝั่งขวา: Display Table & Dose Recommendation -->
+                  <div class="scen5-display-col">
+                    
+                    <div class="scen5-table-container">
+                      <!-- Table Header -->
+                      <div class="scen5-table-header">
+                        <div class="scen5-col-head"></div>
+                        <div class="scen5-v-line"></div>
+                        <div class="scen5-col-head">real BW</div>
+                        <div class="scen5-v-line"></div>
+                        <div class="scen5-ibw-header-group">
+                          <div class="scen5-ibw-title">IBW</div>
+                          <div class="scen5-ibw-sub-cols">
+                            <div class="scen5-col-head">ชาย</div>
+                            <div class="scen5-v-line"></div>
+                            <div class="scen5-col-head">หญิง</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Table Body -->
+                      <div class="scen5-table-body">
+                        
+                        <!-- Row 1: Vd -->
+                        <div class="scen5-table-row">
+                          <div class="scen5-row-label">Vd =</div>
+                          <div class="scen5-v-line"></div>
+                          <div class="scen5-cell-box">
+                            <div class="scen5-val-box" id="m3-s5-vd-real">-</div>
+                          </div>
+                          <div class="scen5-v-line"></div>
+                          <div class="scen5-cell-box">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%;">
+                              <div class="scen5-val-box" id="m3-s5-vd-ibw-m">-</div>
+                              <div class="scen5-val-box" id="m3-s5-vd-ibw-f">-</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Row 2: วันหยุดยา -->
+                        <div class="scen5-table-row">
+                          <div class="scen5-row-label">วันหยุดยา =</div>
+                          <div class="scen5-v-line"></div>
+                          <div class="scen5-cell-box">
+                            <div class="scen5-val-box" id="m3-s5-offday-real">-</div>
+                          </div>
+                          <div class="scen5-v-line"></div>
+                          <div class="scen5-cell-box">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%;">
+                              <div class="scen5-val-box" id="m3-s5-offday-ibw-m">-</div>
+                              <div class="scen5-val-box" id="m3-s5-offday-ibw-f">-</div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <!-- Dose ขนาดยาที่แนะนำ -->
+                    <div class="scen5-dose-recommend-card">
+                      <span class="scen5-dose-label">Dose ขนาดยาที่แนะนำ</span>
+                      <div class="scen5-dose-val-box" id="m3-s5-rec-dose">-</div>
+                    </div>
+
+                  </div>
+                </div>
+
               </div>
             </div>
 
@@ -928,7 +1248,7 @@ window.M3_PheCap = {
     const btnClear = document.getElementById('m3-btn-clear-left');
     if (btnClear) {
       btnClear.addEventListener('click', () => {
-        ['m3-bw', 'm3-ht', 'm3-dose', 'm3-s2-dose', 'm3-s2-css', 'm3-s2-pdose', 'm3-s3-css', 'm3-s3-alb', 'm3-s3-crcl', 'm3-s4-css', 'm3-s4-vpa'].forEach(id => {
+        ['m3-bw', 'm3-ht', 'm3-dose', 'm3-s2-dose', 'm3-s2-css', 'm3-s2-pdose', 'm3-s3-css', 'm3-s3-alb', 'm3-s3-crcl', 'm3-s4-css', 'm3-s4-vpa', 'm3-s5-dose', 'm3-s5-c1', 'm3-s5-c2', 'm3-s5-ctarget'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.value = '';
         });
@@ -936,28 +1256,32 @@ window.M3_PheCap = {
         this.calculateScenario2();
         this.calculateScenario3();
         this.calculateScenario4();
+        this.calculateScenario5();
       });
     }
 
     // Input Listeners Acc 1
     ['m3-bw', 'm3-ht', 'm3-dose'].forEach(id => {
-      document.getElementById(id)?.addEventListener('input', () => this.calculateScenario1());
+      document.getElementById(id)?.addEventListener('input', () => {
+        this.calculateScenario1();
+        this.calculateScenario5();
+      });
     });
 
     // Steppers BW / Ht
-    document.getElementById('m3-bw-dec')?.addEventListener('click', () => this.stepInput('m3-bw', -1, 0, 300, 2));
-    document.getElementById('m3-bw-inc')?.addEventListener('click', () => this.stepInput('m3-bw', 1, 0, 300, 2));
+    document.getElementById('m3-bw-dec')?.addEventListener('click', () => this.stepInput('m3-bw', -1, 0, 300, 2, () => { this.calculateScenario1(); this.calculateScenario5(); }));
+    document.getElementById('m3-bw-inc')?.addEventListener('click', () => this.stepInput('m3-bw', 1, 0, 300, 2, () => { this.calculateScenario1(); this.calculateScenario5(); }));
 
-    document.getElementById('m3-ht-dec')?.addEventListener('click', () => this.stepInput('m3-ht', -1, 0, 250, 2));
-    document.getElementById('m3-ht-inc')?.addEventListener('click', () => this.stepInput('m3-ht', 1, 0, 250, 2));
+    document.getElementById('m3-ht-dec')?.addEventListener('click', () => this.stepInput('m3-ht', -1, 0, 250, 2, () => { this.calculateScenario1(); this.calculateScenario5(); }));
+    document.getElementById('m3-ht-inc')?.addEventListener('click', () => this.stepInput('m3-ht', 1, 0, 250, 2, () => { this.calculateScenario1(); this.calculateScenario5(); }));
 
     // Stepper Dose Acc 1 (+- 100)
     document.getElementById('m3-dose-dec')?.addEventListener('click', () => this.stepDoseInput('m3-dose', -100));
     document.getElementById('m3-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m3-dose', 100));
 
     // Blur formatters Acc 1
-    this.formatInputOnBlur('m3-bw', 2);
-    this.formatInputOnBlur('m3-ht', 2);
+    this.formatInputOnBlur('m3-bw', 2, () => { this.calculateScenario1(); this.calculateScenario5(); });
+    this.formatInputOnBlur('m3-ht', 2, () => { this.calculateScenario1(); this.calculateScenario5(); });
     this.formatDoseOnBlur('m3-dose');
 
     // --- ACCORDION 2 EVENTS ---
@@ -1014,6 +1338,32 @@ window.M3_PheCap = {
 
     this.formatFloatOnBlur('m3-s4-css', 3, () => this.calculateScenario4());
     this.formatFloatOnBlur('m3-s4-vpa', 3, () => this.calculateScenario4());
+
+    // --- ACCORDION 5 EVENTS ---
+    ['m3-s5-dose', 'm3-s5-c1', 'm3-s5-c2', 'm3-s5-ctarget'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', () => this.calculateScenario5());
+    });
+
+    // Stepper Dose Acc 5 (+- 100)
+    document.getElementById('m3-s5-dose-dec')?.addEventListener('click', () => this.stepDoseInput('m3-s5-dose', -100, () => this.calculateScenario5()));
+    document.getElementById('m3-s5-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m3-s5-dose', 100, () => this.calculateScenario5()));
+
+    // Stepper C1 Acc 5 (+- 0.1)
+    document.getElementById('m3-s5-c1-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s5-c1', -0.1, 0, 200, 3, () => this.calculateScenario5()));
+    document.getElementById('m3-s5-c1-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s5-c1', 0.1, 0, 200, 3, () => this.calculateScenario5()));
+
+    // Stepper C2 Acc 5 (+- 0.1)
+    document.getElementById('m3-s5-c2-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s5-c2', -0.1, 0, 200, 3, () => this.calculateScenario5()));
+    document.getElementById('m3-s5-c2-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s5-c2', 0.1, 0, 200, 3, () => this.calculateScenario5()));
+
+    // Stepper C Target Acc 5 (+- 0.1)
+    document.getElementById('m3-s5-ctarget-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s5-ctarget', -0.1, 0, 200, 3, () => this.calculateScenario5()));
+    document.getElementById('m3-s5-ctarget-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s5-ctarget', 0.1, 0, 200, 3, () => this.calculateScenario5()));
+
+    this.formatDoseOnBlur('m3-s5-dose', () => this.calculateScenario5());
+    this.formatFloatOnBlur('m3-s5-c1', 3, () => this.calculateScenario5());
+    this.formatFloatOnBlur('m3-s5-c2', 3, () => this.calculateScenario5());
+    this.formatFloatOnBlur('m3-s5-ctarget', 3, () => this.calculateScenario5());
 
     // Show/Hide All Accordions
     document.getElementById('m3-btn-show-all')?.addEventListener('click', () => this.toggleAllAccordions(true));
@@ -1108,14 +1458,12 @@ window.M3_PheCap = {
 
     const noticeBox = document.getElementById('m3-s3-notice');
 
-    // ตรวจสอบการแสดงข้อความเตือนเมื่อ CrCl < 10
     if (hasCrCl && crcl < 10) {
       if (noticeBox) noticeBox.style.display = 'flex';
     } else {
       if (noticeBox) noticeBox.style.display = 'none';
     }
 
-    // คำนวณ Cทำนาย
     if (css > 0 && alb > 0) {
       let denom = (0.9 * (alb / 4.4)) + 0.1;
       if (denom <= 0) {
@@ -1125,7 +1473,6 @@ window.M3_PheCap = {
 
       let cpred = css / denom;
 
-      // หากกรอก CrCl < 10 ให้นำค่าขั้นต้นมา ÷ 0.44
       if (hasCrCl && crcl < 10) {
         cpred = cpred / 0.44;
       }
@@ -1146,6 +1493,10 @@ window.M3_PheCap = {
     } else {
       this.setText('m3-s4-cpred', '-');
     }
+  },
+
+  calculateScenario5: function() {
+    // (ฟังก์ชันสำหรับคำนวณทาง Pharmacokinetics ของ Scenario 5 จะมาใส่ต่อในสเต็ปถัดไป)
   },
 
   computeAndDisplay: function(prefix, weight, dose) {
@@ -1242,7 +1593,7 @@ window.M3_PheCap = {
     });
   },
 
-  stepInput: function(id, delta, minVal, maxVal, maxDecimals) {
+  stepInput: function(id, delta, minVal, maxVal, maxDecimals, callback) {
     const el = document.getElementById(id);
     if (!el) return;
     let curr = parseFloat(el.value) || 0;
@@ -1252,7 +1603,8 @@ window.M3_PheCap = {
 
     let factor = Math.pow(10, maxDecimals);
     el.value = Math.round(nextVal * factor) / factor;
-    this.calculateScenario1();
+    if (callback) callback();
+    else this.calculateScenario1();
   },
 
   stepFloatInput: function(id, delta, minVal, maxVal, maxDecimals, callback) {
