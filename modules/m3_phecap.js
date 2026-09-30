@@ -71,9 +71,11 @@ window.M3_PheCap = {
           font-size: 0.8rem;
           font-weight: 700;
           cursor: pointer;
+          transition: all 0.15s ease;
         }
         .btn-clear-mini:hover {
           background: #fca5a5;
+          color: #991b1b;
         }
 
         .field-group-stacked {
@@ -210,7 +212,7 @@ window.M3_PheCap = {
           color: #1e3a8a;
         }
 
-        /* Accordion Component */
+        /* Accordion Component Base */
         .accordion-list {
           display: flex;
           flex-direction: column;
@@ -222,37 +224,30 @@ window.M3_PheCap = {
           border-radius: 8px;
           overflow: hidden;
           background: #ffffff;
-          transition: border-color 0.2s ease;
-        }
-        .accordion-item.active {
-          border-color: #2563eb;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .accordion-header {
-          background: #f8fafc;
           padding: 10px 14px;
           font-size: 0.98rem;
           font-weight: 700;
-          color: #1e293b;
           cursor: pointer;
           display: flex;
           align-items: center;
-          gap: 10px;
+          justify-content: space-between;
           user-select: none;
         }
-        .accordion-header:hover {
-          background: #f1f5f9;
-        }
-        .accordion-item.active .accordion-header {
-          background: #eff6ff;
-          color: #1d4ed8;
+        .accordion-header-title {
+          display: flex;
+          align-items: center;
+          gap: 10px;
         }
 
         .accordion-icon {
           width: 22px;
           height: 22px;
           border-radius: 50%;
-          border: 1.5px solid #64748b;
+          border: 1.5px solid currentColor;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -262,9 +257,6 @@ window.M3_PheCap = {
         }
         .accordion-item.active .accordion-icon {
           transform: rotate(180deg);
-          border-color: #2563eb;
-          background: #2563eb;
-          color: #ffffff;
         }
 
         .accordion-content {
@@ -280,6 +272,38 @@ window.M3_PheCap = {
           padding: 12px;
           border-top: 1px solid #e2e8f0;
         }
+
+        /* --- Theme สีเฉพาะสำหรับแต่ละ Scenario --- */
+        /* Scenario 1: Emerald Theme */
+        #m3-scen-1 { border-color: #a7f3d0; }
+        #m3-scen-1 .accordion-header { background: #ecfdf5; color: #065f46; }
+        #m3-scen-1.active { border-color: #10b981; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.12); }
+        #m3-scen-1.active .accordion-header { background: #d1fae5; color: #047857; }
+
+        /* Scenario 2: Purple Theme */
+        #m3-scen-2 { border-color: #ddd6fe; }
+        #m3-scen-2 .accordion-header { background: #f5f3ff; color: #5b21b6; }
+        #m3-scen-2.active { border-color: #8b5cf6; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.12); }
+        #m3-scen-2.active .accordion-header { background: #ede9fe; color: #6d28d9; }
+
+        /* Scenario 3: Amber Theme */
+        #m3-scen-3 { border-color: #fde68a; }
+        #m3-scen-3 .accordion-header { background: #fffbeb; color: #92400e; }
+        #m3-scen-3.active { border-color: #f59e0b; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.12); }
+        #m3-scen-3.active .accordion-header { background: #fef3c7; color: #b45309; }
+
+        /* Scenario 4: Teal Theme */
+        #m3-scen-4 { border-color: #99f6e4; }
+        #m3-scen-4 .accordion-header { background: #f0fdf4; color: #115e59; }
+        #m3-scen-4.active { border-color: #14b8a6; box-shadow: 0 2px 8px rgba(20, 184, 166, 0.12); }
+        #m3-scen-4.active .accordion-header { background: #ccfbf1; color: #0f766e; }
+
+        /* Scenario 5: Indigo Theme */
+        #m3-scen-5 { border-color: #c7d2fe; }
+        #m3-scen-5 .accordion-header { background: #eef2ff; color: #3730a3; }
+        #m3-scen-5.active { border-color: #6366f1; box-shadow: 0 2px 8px rgba(99, 102, 241, 0.12); }
+        #m3-scen-5.active .accordion-header { background: #e0e7ff; color: #4338ca; }
+
 
         /* --- STYLES SCENARIO 1 --- */
         .scen1-grid-layout {
@@ -574,14 +598,14 @@ window.M3_PheCap = {
         }
 
         .scen5-note-box {
-          font-size: 0.8rem;
+          font-size: 0.82rem;
           font-weight: 600;
           color: #d97706;
           background: #fffbe3;
           border: 1px solid #fde047;
           border-radius: 6px;
-          padding: 6px 8px;
-          line-height: 1.35;
+          padding: 8px 10px;
+          line-height: 1.4;
           margin-top: 2px;
         }
 
@@ -591,7 +615,7 @@ window.M3_PheCap = {
           gap: 10px;
         }
 
-        /* Table Structure สำหรับ Scenario 5 (ตารางกริดที่ปรับให้แนวคอลัมน์และแถวตรงกันสมบูรณ์) */
+        /* Table Structure สำหรับ Scenario 5 */
         .scen5-table-container {
           border: 1.5px solid #cbd5e1;
           border-radius: 8px;
@@ -616,6 +640,16 @@ window.M3_PheCap = {
           display: flex;
           align-items: center;
           justify-content: center;
+        }
+
+        /* สีคอลัมน์ ชาย (ฟ้าอ่อน) / หญิง (ชมพูอ่อน) */
+        .scen5-head-male {
+          background: #e0f2fe !important;
+          color: #0369a1 !important;
+        }
+        .scen5-head-female {
+          background: #fce7f3 !important;
+          color: #be185d !important;
         }
 
         .scen5-ibw-header-span {
@@ -666,10 +700,20 @@ window.M3_PheCap = {
           transition: all 0.2s ease;
         }
 
+        /* Highlight สีคอลัมน์ ชาย / หญิง */
+        .scen5-val-box-male {
+          background-color: #f0f9ff;
+          border-color: #bae6fd;
+        }
+        .scen5-val-box-female {
+          background-color: #fdf2f8;
+          border-color: #fbcfe8;
+        }
+
         .scen5-val-box.highlight-cell {
-          background-color: #f0fdf4;
-          border: 1.5px solid #22c55e;
-          color: #15803d;
+          background-color: #f0fdf4 !important;
+          border: 1.5px solid #22c55e !important;
+          color: #15803d !important;
           box-shadow: 0 2px 6px rgba(34, 197, 94, 0.15);
         }
 
@@ -745,7 +789,7 @@ window.M3_PheCap = {
           <div class="m3-card input-card-highlight">
             <div class="card-head-title">
               <span>ข้อมูลผู้ป่วย</span>
-              <button type="button" id="m3-btn-clear-left" class="btn-clear-mini">Clear</button>
+              <button type="button" id="m3-btn-clear-left" class="btn-clear-mini" title="Clear BW & Ht">Clear</button>
             </div>
 
             <!-- น้ำหนัก (BW) -->
@@ -791,10 +835,13 @@ window.M3_PheCap = {
           <div class="accordion-list" id="m3-accordion-container">
 
             <!-- Scenario 1 -->
-            <div class="accordion-item active" id="m3-scen-1">
+            <div class="accordion-item" id="m3-scen-1">
               <div class="accordion-header">
-                <span class="accordion-icon">▼</span>
-                <span>กรณีไม่ได้รับ VPA , Alb. ปกติ , ไม่เคยเจาะวัดระดับยา</span>
+                <div class="accordion-header-title">
+                  <span class="accordion-icon">▼</span>
+                  <span>กรณีไม่ได้รับ VPA , Alb. ปกติ , ไม่เคยเจาะวัดระดับยา</span>
+                </div>
+                <button type="button" class="btn-clear-mini" id="btn-clear-s1" onclick="event.stopPropagation()">Clear</button>
               </div>
               <div class="accordion-content">
                 
@@ -910,8 +957,11 @@ window.M3_PheCap = {
             <!-- Scenario 2 -->
             <div class="accordion-item" id="m3-scen-2">
               <div class="accordion-header">
-                <span class="accordion-icon">▼</span>
-                <span>กรณีเคยเจาะระดับยา 1 ครั้ง (Steady State อย่างน้อย 7 วัน)</span>
+                <div class="accordion-header-title">
+                  <span class="accordion-icon">▼</span>
+                  <span>กรณีเคยเจาะระดับยา 1 ครั้ง (Steady State อย่างน้อย 7 วัน)</span>
+                </div>
+                <button type="button" class="btn-clear-mini" id="btn-clear-s2" onclick="event.stopPropagation()">Clear</button>
               </div>
               <div class="accordion-content">
                 
@@ -982,8 +1032,11 @@ window.M3_PheCap = {
             <!-- Scenario 3 -->
             <div class="accordion-item" id="m3-scen-3">
               <div class="accordion-header">
-                <span class="accordion-icon">▼</span>
-                <span>กรณีผล Alb. ต่ำกว่าปกติ</span>
+                <div class="accordion-header-title">
+                  <span class="accordion-icon">▼</span>
+                  <span>กรณีผล Alb. ต่ำกว่าปกติ</span>
+                </div>
+                <button type="button" class="btn-clear-mini" id="btn-clear-s3" onclick="event.stopPropagation()">Clear</button>
               </div>
               <div class="accordion-content">
                 
@@ -1043,7 +1096,7 @@ window.M3_PheCap = {
 
                     <!-- ข้อความเตือน (แสดงเฉพาะ CrCl < 10) -->
                     <div class="scen3-notice-box" id="m3-s3-notice">
-                      ⚠️️ เคสนี้ ESRD (CrCl&lt;10) ปรับสูตรการคำนวณแล้ว
+                      ⚠ เคสนี้ ESRD (CrCl&lt;10) ปรับสูตรการคำนวณแล้ว
                     </div>
 
                     <!-- Footnote เฉพาะของ Acc.3 -->
@@ -1060,8 +1113,11 @@ window.M3_PheCap = {
             <!-- Scenario 4: กรณีได้รับ VPA ร่วมด้วย -->
             <div class="accordion-item" id="m3-scen-4">
               <div class="accordion-header">
-                <span class="accordion-icon">▼</span>
-                <span>กรณีได้รับ VPA ร่วมด้วย</span>
+                <div class="accordion-header-title">
+                  <span class="accordion-icon">▼</span>
+                  <span>กรณีได้รับ VPA ร่วมด้วย</span>
+                </div>
+                <button type="button" class="btn-clear-mini" id="btn-clear-s4" onclick="event.stopPropagation()">Clear</button>
               </div>
               <div class="accordion-content">
                 
@@ -1114,8 +1170,11 @@ window.M3_PheCap = {
             <!-- Scenario 5: กรณีระดับยาเกิน TH range -->
             <div class="accordion-item" id="m3-scen-5">
               <div class="accordion-header">
-                <span class="accordion-icon">▼</span>
-                <span>กรณีระดับยาเกิน TH range</span>
+                <div class="accordion-header-title">
+                  <span class="accordion-icon">▼</span>
+                  <span>กรณีระดับยาเกิน TH range</span>
+                </div>
+                <button type="button" class="btn-clear-mini" id="btn-clear-s5" onclick="event.stopPropagation()">Clear</button>
               </div>
               <div class="accordion-content">
                 
@@ -1165,9 +1224,10 @@ window.M3_PheCap = {
                       </div>
                     </div>
 
-                    <!-- Note พื้นที่ว่างใต้ C2 -->
+                    <!-- Note ปรับการขึ้นบรรทัดใหม่ และลบ Note: ออก -->
                     <div class="scen5-note-box">
-                      Note: Criteria: BW &gt;=60 เข้าเกณฑ์ Obesity ใช้ IBW ในการทำนาย
+                      Criteria: BW &gt;=60 เข้าเกณฑ์ Obesity<br>
+                      ใช้ IBW ในการทำนาย
                     </div>
 
                   </div>
@@ -1187,14 +1247,14 @@ window.M3_PheCap = {
                         <div class="scen5-v-line"></div>
                         <div class="scen5-ibw-header-span">IBW</div>
 
-                        <!-- Header Row 2: Sub-headers -->
+                        <!-- Header Row 2: Sub-headers (ปรับสีคอลัมน์ ชาย/หญิง) -->
                         <div class="scen5-head-cell"></div>
                         <div class="scen5-v-line"></div>
                         <div class="scen5-head-cell">real BW</div>
                         <div class="scen5-v-line"></div>
-                        <div class="scen5-head-cell">ชาย</div>
+                        <div class="scen5-head-cell scen5-head-male">ชาย</div>
                         <div class="scen5-v-line-dashed"></div>
-                        <div class="scen5-head-cell">หญิง</div>
+                        <div class="scen5-head-cell scen5-head-female">หญิง</div>
 
                         <!-- Horizontal Divider -->
                         <div class="scen5-h-line"></div>
@@ -1207,11 +1267,11 @@ window.M3_PheCap = {
                         </div>
                         <div class="scen5-v-line"></div>
                         <div class="scen5-cell-box">
-                          <div class="scen5-val-box" id="m3-s5-bw-ibw-m">-</div>
+                          <div class="scen5-val-box scen5-val-box-male" id="m3-s5-bw-ibw-m">-</div>
                         </div>
                         <div class="scen5-v-line-dashed"></div>
                         <div class="scen5-cell-box">
-                          <div class="scen5-val-box" id="m3-s5-bw-ibw-f">-</div>
+                          <div class="scen5-val-box scen5-val-box-female" id="m3-s5-bw-ibw-f">-</div>
                         </div>
 
                         <!-- Horizontal Divider -->
@@ -1225,11 +1285,11 @@ window.M3_PheCap = {
                         </div>
                         <div class="scen5-v-line"></div>
                         <div class="scen5-cell-box">
-                          <div class="scen5-val-box" id="m3-s5-vd-ibw-m">-</div>
+                          <div class="scen5-val-box scen5-val-box-male" id="m3-s5-vd-ibw-m">-</div>
                         </div>
                         <div class="scen5-v-line-dashed"></div>
                         <div class="scen5-cell-box">
-                          <div class="scen5-val-box" id="m3-s5-vd-ibw-f">-</div>
+                          <div class="scen5-val-box scen5-val-box-female" id="m3-s5-vd-ibw-f">-</div>
                         </div>
 
                         <!-- Horizontal Divider -->
@@ -1243,11 +1303,11 @@ window.M3_PheCap = {
                         </div>
                         <div class="scen5-v-line"></div>
                         <div class="scen5-cell-box">
-                          <div class="scen5-val-box" id="m3-s5-offday-ibw-m">-</div>
+                          <div class="scen5-val-box scen5-val-box-male" id="m3-s5-offday-ibw-m">-</div>
                         </div>
                         <div class="scen5-v-line-dashed"></div>
                         <div class="scen5-cell-box">
-                          <div class="scen5-val-box" id="m3-s5-offday-ibw-f">-</div>
+                          <div class="scen5-val-box scen5-val-box-female" id="m3-s5-offday-ibw-f">-</div>
                         </div>
 
                       </div>
@@ -1278,21 +1338,57 @@ window.M3_PheCap = {
   },
 
   bindEvents: function() {
-    // Clear ปุ่มฝั่งซ้าย
-    const btnClear = document.getElementById('m3-btn-clear-left');
-    if (btnClear) {
-      btnClear.addEventListener('click', () => {
-        ['m3-bw', 'm3-ht', 'm3-dose', 'm3-s2-dose', 'm3-s2-css', 'm3-s2-pdose', 'm3-s3-css', 'm3-s3-alb', 'm3-s3-crcl', 'm3-s4-css', 'm3-s4-vpa', 'm3-s5-dose', 'm3-s5-c1', 'm3-s5-c2'].forEach(id => {
+    // 1. Clear ปุ่มฝั่งซ้าย (เคลียร์เฉพาะ BW & Ht ในกรอบตัวเอง)
+    const btnClearLeft = document.getElementById('m3-btn-clear-left');
+    if (btnClearLeft) {
+      btnClearLeft.addEventListener('click', () => {
+        ['m3-bw', 'm3-ht'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.value = '';
         });
         this.calculateScenario1();
-        this.calculateScenario2();
-        this.calculateScenario3();
-        this.calculateScenario4();
         this.calculateScenario5();
       });
     }
+
+    // 2. Clear ปุ่มประจำ Scenario 1 - 5
+    document.getElementById('btn-clear-s1')?.addEventListener('click', () => {
+      const el = document.getElementById('m3-dose');
+      if (el) el.value = '';
+      this.calculateScenario1();
+    });
+
+    document.getElementById('btn-clear-s2')?.addEventListener('click', () => {
+      ['m3-s2-dose', 'm3-s2-css', 'm3-s2-pdose'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      this.calculateScenario2();
+    });
+
+    document.getElementById('btn-clear-s3')?.addEventListener('click', () => {
+      ['m3-s3-css', 'm3-s3-alb', 'm3-s3-crcl'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      this.calculateScenario3();
+    });
+
+    document.getElementById('btn-clear-s4')?.addEventListener('click', () => {
+      ['m3-s4-css', 'm3-s4-vpa'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      this.calculateScenario4();
+    });
+
+    document.getElementById('btn-clear-s5')?.addEventListener('click', () => {
+      ['m3-s5-dose', 'm3-s5-c1', 'm3-s5-c2'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      this.calculateScenario5();
+    });
 
     // Input Listeners Acc 1
     ['m3-bw', 'm3-ht', 'm3-dose'].forEach(id => {
@@ -1341,15 +1437,12 @@ window.M3_PheCap = {
       document.getElementById(id)?.addEventListener('input', () => this.calculateScenario3());
     });
 
-    // Stepper CSS Acc 3 (+- 0.1)
     document.getElementById('m3-s3-css-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s3-css', -0.1, 0, 100, 3, () => this.calculateScenario3()));
     document.getElementById('m3-s3-css-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s3-css', 0.1, 0, 100, 3, () => this.calculateScenario3()));
 
-    // Stepper Alb. Acc 3 (+- 0.1)
     document.getElementById('m3-s3-alb-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s3-alb', -0.1, 0, 10, 2, () => this.calculateScenario3()));
     document.getElementById('m3-s3-alb-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s3-alb', 0.1, 0, 10, 2, () => this.calculateScenario3()));
 
-    // Stepper CrCl Acc 3 (+- 1)
     document.getElementById('m3-s3-crcl-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s3-crcl', -1, 0, 300, 2, () => this.calculateScenario3()));
     document.getElementById('m3-s3-crcl-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s3-crcl', 1, 0, 300, 2, () => this.calculateScenario3()));
 
@@ -1362,11 +1455,9 @@ window.M3_PheCap = {
       document.getElementById(id)?.addEventListener('input', () => this.calculateScenario4());
     });
 
-    // Stepper CSS Acc 4 (+- 0.1)
     document.getElementById('m3-s4-css-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s4-css', -0.1, 0, 100, 3, () => this.calculateScenario4()));
     document.getElementById('m3-s4-css-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s4-css', 0.1, 0, 100, 3, () => this.calculateScenario4()));
 
-    // Stepper VPA Acc 4 (+- 0.1)
     document.getElementById('m3-s4-vpa-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s4-vpa', -0.1, 0, 300, 3, () => this.calculateScenario4()));
     document.getElementById('m3-s4-vpa-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s4-vpa', 0.1, 0, 300, 3, () => this.calculateScenario4()));
 
@@ -1378,15 +1469,12 @@ window.M3_PheCap = {
       document.getElementById(id)?.addEventListener('input', () => this.calculateScenario5());
     });
 
-    // Stepper Dose Acc 5 (+- 100)
     document.getElementById('m3-s5-dose-dec')?.addEventListener('click', () => this.stepDoseInput('m3-s5-dose', -100, () => this.calculateScenario5()));
     document.getElementById('m3-s5-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m3-s5-dose', 100, () => this.calculateScenario5()));
 
-    // Stepper C1 Acc 5 (+- 0.1)
     document.getElementById('m3-s5-c1-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s5-c1', -0.1, 0, 200, 3, () => this.calculateScenario5()));
     document.getElementById('m3-s5-c1-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s5-c1', 0.1, 0, 200, 3, () => this.calculateScenario5()));
 
-    // Stepper C2 Acc 5 (+- 0.1)
     document.getElementById('m3-s5-c2-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s5-c2', -0.1, 0, 200, 3, () => this.calculateScenario5()));
     document.getElementById('m3-s5-c2-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s5-c2', 0.1, 0, 200, 3, () => this.calculateScenario5()));
 
@@ -1398,10 +1486,12 @@ window.M3_PheCap = {
     document.getElementById('m3-btn-show-all')?.addEventListener('click', () => this.toggleAllAccordions(true));
     document.getElementById('m3-btn-hide-all')?.addEventListener('click', () => this.toggleAllAccordions(false));
 
-    // Accordions Toggle
+    // Accordions Toggle Event Listener
     const accHeaders = document.querySelectorAll('#m3-accordion-container .accordion-header');
     accHeaders.forEach(header => {
-      header.addEventListener('click', () => {
+      header.addEventListener('click', (e) => {
+        // หากคลิกที่ปุ่ม Clear ไม่ต้องพับสลับ Accordion
+        if (e.target.classList.contains('btn-clear-mini')) return;
         const item = header.closest('.accordion-item');
         if (item) item.classList.toggle('active');
       });
@@ -1537,7 +1627,7 @@ window.M3_PheCap = {
       document.getElementById(id)?.classList.remove('highlight-cell');
     });
 
-    // 1. Vmax Calculation (ทศนิยม 3 ตำแหน่ง)
+    // 1. Vmax Calculation
     let vmax = 0;
     if (dose > 0 && c1 > 0) {
       vmax = ((0.92 * 1 * dose) * (4 + c1)) / c1;
@@ -1556,12 +1646,11 @@ window.M3_PheCap = {
       if (ibwFemale < 0) ibwFemale = 0;
     }
 
-    // แสดงค่า BW (ทศนิยม 3 ตำแหน่ง / ซ่อนถ้าเป็น 0 หรือไม่ใส่)
     this.setText('m3-s5-bw-real', realBW > 0 ? realBW.toFixed(3) : '-');
     this.setText('m3-s5-bw-ibw-m', ibwMale > 0 ? ibwMale.toFixed(3) : '-');
     this.setText('m3-s5-bw-ibw-f', ibwFemale > 0 ? ibwFemale.toFixed(3) : '-');
 
-    // 3. Vd (ทศนิยม 3 ตำแหน่ง / ซ่อนถ้าเป็น 0)
+    // 3. Vd
     let vdReal = realBW > 0 ? 0.65 * realBW : 0;
     let vdIbwM = (ibwMale > 0 && realBW > 0) ? 0.65 * (ibwMale + 1.33 * (realBW - ibwMale)) : 0;
     let vdIbwF = (ibwFemale > 0 && realBW > 0) ? 0.65 * (ibwFemale + 1.33 * (realBW - ibwFemale)) : 0;
@@ -1570,7 +1659,7 @@ window.M3_PheCap = {
     this.setText('m3-s5-vd-ibw-m', vdIbwM > 0 ? vdIbwM.toFixed(3) : '-');
     this.setText('m3-s5-vd-ibw-f', vdIbwF > 0 ? vdIbwF.toFixed(3) : '-');
 
-    // 4. จำนวนวันที่ต้องหยุดยา (ทศนิยม 3 ตำแหน่ง / ปัดเศษใช้สำหรับแสดงผล hold days tag)
+    // 4. จำนวนวันที่ต้องหยุดยา
     let holdReal = 0;
     let holdIbwM = 0;
     let holdIbwF = 0;
@@ -1591,18 +1680,16 @@ window.M3_PheCap = {
       this.setText('m3-s5-offday-ibw-f', '-');
     }
 
-    // 5. Dose ที่ควรได้รับหลัง hold ยา & การดึงจำนวนวันปัดเศษทางคณิตศาสตร์
+    // 5. Dose ที่ควรได้รับหลัง hold ยา
     let targetDaysValue = 0;
     if (realBW > 0) {
       if (realBW < 60) {
         targetDaysValue = holdReal;
       } else {
-        // กรณี obesity ให้ยึด IBW ชาย เป็นหลักในการนำวันไปโชว์ในแท็ก
         targetDaysValue = holdIbwM;
       }
     }
 
-    // ปัดเศษตามหลักคณิตศาสตร์ทั่วไป (>= .5 ปัดขึ้น, < .5 ปัดลง)
     let roundedDays = Math.round(targetDaysValue);
 
     if (targetDaysValue > 0) {
@@ -1618,7 +1705,7 @@ window.M3_PheCap = {
       this.setText('m3-s5-rec-dose', '- mg');
     }
 
-    // 6. Highlight Logic (real BW < 60 kg vs >= 60 kg)
+    // 6. Highlight Logic
     if (realBW > 0) {
       if (realBW < 60) {
         document.getElementById('m3-s5-bw-real')?.classList.add('highlight-cell');
