@@ -562,12 +562,6 @@ window.M3_PheCap = {
           gap: 6px;
         }
 
-        .scen5-label-sub {
-          font-size: 0.78rem;
-          color: #64748b;
-          font-weight: 600;
-        }
-
         .scen5-vmax-card {
           background: #eff6ff;
           border: 1.5px solid #3b82f6;
@@ -576,6 +570,18 @@ window.M3_PheCap = {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          margin-top: 2px;
+        }
+
+        .scen5-note-box {
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: #d97706;
+          background: #fffbe3;
+          border: 1px solid #fde047;
+          border-radius: 6px;
+          padding: 6px 8px;
+          line-height: 1.35;
           margin-top: 2px;
         }
 
@@ -595,7 +601,7 @@ window.M3_PheCap = {
 
         .scen5-table-header {
           display: grid;
-          grid-template-columns: 1.2fr 2px 1fr 1px 1fr;
+          grid-template-columns: max-content 2px 1fr 1px 2fr;
           background: #f1f5f9;
           border-bottom: 1.5px solid #cbd5e1;
           font-weight: 800;
@@ -624,7 +630,7 @@ window.M3_PheCap = {
         }
 
         .scen5-col-head {
-          padding: 6px 4px;
+          padding: 6px 12px;
         }
 
         .scen5-table-body {
@@ -634,7 +640,7 @@ window.M3_PheCap = {
 
         .scen5-table-row {
           display: grid;
-          grid-template-columns: 1.2fr 2px 1fr 1px 1fr;
+          grid-template-columns: max-content 2px 1fr 1px 2fr;
           border-bottom: 1px solid #e2e8f0;
           align-items: center;
         }
@@ -643,13 +649,15 @@ window.M3_PheCap = {
         }
 
         .scen5-row-label {
-          padding: 10px 8px;
-          font-size: 0.88rem;
+          padding: 10px 12px;
+          font-size: 0.9rem;
           font-weight: 700;
           color: #334155;
           display: flex;
           align-items: center;
-          gap: 4px;
+          justify-content: center;
+          text-align: center;
+          white-space: nowrap;
         }
 
         .scen5-cell-box {
@@ -669,7 +677,7 @@ window.M3_PheCap = {
           align-items: center;
           justify-content: center;
           font-weight: 800;
-          font-size: 1rem;
+          font-size: 1.05rem;
           color: #2563eb;
           padding: 2px 6px;
           text-align: center;
@@ -696,17 +704,27 @@ window.M3_PheCap = {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          gap: 12px;
           box-shadow: 0 1px 3px rgba(0,0,0,0.03);
         }
 
         .scen5-dose-label {
-          font-size: 1rem;
+          font-size: 0.95rem;
           font-weight: 800;
           color: #15803d;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          flex-wrap: wrap;
+        }
+
+        .scen5-hold-days-tag {
+          color: #2563eb;
+          font-weight: 800;
         }
 
         .scen5-dose-val-box {
-          min-width: 160px;
+          min-width: 130px;
           height: 42px;
           background: #ffffff;
           border: 2px solid #16a34a;
@@ -714,10 +732,12 @@ window.M3_PheCap = {
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 1.2rem;
+          font-size: 1.15rem;
           font-weight: 800;
           color: #15803d;
           padding: 0 12px;
+          white-space: nowrap;
+          flex-shrink: 0;
         }
       </style>
 
@@ -1105,7 +1125,7 @@ window.M3_PheCap = {
               <div class="accordion-content">
                 
                 <div class="scen5-layout">
-                  <!-- ฝั่งซ้าย: Inputs (3 ช่อง) + Vmax Display -->
+                  <!-- ฝั่งซ้าย: Inputs (3 ช่อง) + Vmax Display + Note -->
                   <div class="scen5-input-col">
                     
                     <!-- 1. ขนาดยา/วัน -->
@@ -1132,7 +1152,7 @@ window.M3_PheCap = {
                       </div>
                     </div>
 
-                    <!-- Vmax Display Block -->
+                    <!-- Vmax Display Block (แสดงทศนิยม 3 ตำแหน่ง) -->
                     <div class="scen5-vmax-card">
                       <span class="scen-result-label">V<sub>max</sub> =</span>
                       <span class="scen-result-val" id="m3-s5-vmax">-</span>
@@ -1148,6 +1168,11 @@ window.M3_PheCap = {
                           <button type="button" class="btn-step" id="m3-s5-c2-inc">+</button>
                         </div>
                       </div>
+                    </div>
+
+                    <!-- Note พื้นที่ว่างใต้ C2 -->
+                    <div class="scen5-note-box">
+                      Note: Criteria: BW &gt;=60 เข้าเกณฑ์ Obesity ใช้ IBW ในการทำนาย
                     </div>
 
                   </div>
@@ -1174,12 +1199,12 @@ window.M3_PheCap = {
                         </div>
                       </div>
 
-                      <!-- Table Body -->
+                      <!-- Table Body (ลบเครื่องหมาย = ออกทั้งหมด) -->
                       <div class="scen5-table-body">
                         
                         <!-- Row 1: BW -->
                         <div class="scen5-table-row">
-                          <div class="scen5-row-label">BW =</div>
+                          <div class="scen5-row-label">BW</div>
                           <div class="scen5-v-line"></div>
                           <div class="scen5-cell-box">
                             <div class="scen5-val-box" id="m3-s5-bw-real">-</div>
@@ -1195,7 +1220,7 @@ window.M3_PheCap = {
 
                         <!-- Row 2: Vd -->
                         <div class="scen5-table-row">
-                          <div class="scen5-row-label">Vd =</div>
+                          <div class="scen5-row-label">Vd</div>
                           <div class="scen5-v-line"></div>
                           <div class="scen5-cell-box">
                             <div class="scen5-val-box" id="m3-s5-vd-real">-</div>
@@ -1211,7 +1236,7 @@ window.M3_PheCap = {
 
                         <!-- Row 3: จำนวนวันที่ต้องหยุดยา -->
                         <div class="scen5-table-row">
-                          <div class="scen5-row-label">จำนวนวันที่ต้องหยุดยา =</div>
+                          <div class="scen5-row-label">จำนวนวันที่ต้องหยุดยา</div>
                           <div class="scen5-v-line"></div>
                           <div class="scen5-cell-box">
                             <div class="scen5-val-box" id="m3-s5-offday-real">-</div>
@@ -1230,7 +1255,10 @@ window.M3_PheCap = {
 
                     <!-- Dose ที่ควรได้รับหลัง hold ยา -->
                     <div class="scen5-dose-recommend-card">
-                      <span class="scen5-dose-label">Dose ที่ควรได้รับหลัง hold ยา</span>
+                      <span class="scen5-dose-label">
+                        <span>Dose ที่ควรได้รับหลัง hold ยา</span>
+                        <span class="scen5-hold-days-tag" id="m3-s5-hold-days-tag"></span>
+                      </span>
                       <div class="scen5-dose-val-box" id="m3-s5-rec-dose">-</div>
                     </div>
 
@@ -1275,8 +1303,8 @@ window.M3_PheCap = {
     });
 
     // Steppers BW / Ht
-    document.getElementById('m3-bw-dec')?.addEventListener('click', () => this.stepInput('m3-bw', -1, 0, 300, 2, () => { this.calculateScenario1(); this.calculateScenario5(); }));
-    document.getElementById('m3-bw-inc')?.addEventListener('click', () => this.stepInput('m3-bw', 1, 0, 300, 2, () => { this.calculateScenario1(); this.calculateScenario5(); }));
+    document.getElementById('m3-bw-dec')?.addEventListener('click', () => this.stepInput('m3-bw', -1, 0, 300, 3, () => { this.calculateScenario1(); this.calculateScenario5(); }));
+    document.getElementById('m3-bw-inc')?.addEventListener('click', () => this.stepInput('m3-bw', 1, 0, 300, 3, () => { this.calculateScenario1(); this.calculateScenario5(); }));
 
     document.getElementById('m3-ht-dec')?.addEventListener('click', () => this.stepInput('m3-ht', -1, 0, 250, 2, () => { this.calculateScenario1(); this.calculateScenario5(); }));
     document.getElementById('m3-ht-inc')?.addEventListener('click', () => this.stepInput('m3-ht', 1, 0, 250, 2, () => { this.calculateScenario1(); this.calculateScenario5(); }));
@@ -1286,7 +1314,7 @@ window.M3_PheCap = {
     document.getElementById('m3-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m3-dose', 100));
 
     // Blur formatters Acc 1
-    this.formatInputOnBlur('m3-bw', 2, () => { this.calculateScenario1(); this.calculateScenario5(); });
+    this.formatInputOnBlur('m3-bw', 3, () => { this.calculateScenario1(); this.calculateScenario5(); });
     this.formatInputOnBlur('m3-ht', 2, () => { this.calculateScenario1(); this.calculateScenario5(); });
     this.formatDoseOnBlur('m3-dose');
 
@@ -1431,7 +1459,7 @@ window.M3_PheCap = {
 
     if (dose > 0 && css > 0) {
       let vmax = ((0.92 * 1 * dose) * (4 + css)) / css;
-      this.setText('m3-s2-vmax', this.formatNumberWithComma(vmax, 2));
+      this.setText('m3-s2-vmax', this.formatNumberWithComma(vmax, 3));
 
       if (pdose > 0) {
         let denom = vmax - (0.92 * 1 * pdose);
@@ -1509,11 +1537,11 @@ window.M3_PheCap = {
       document.getElementById(id)?.classList.remove('highlight-cell');
     });
 
-    // 1. Vmax Calculation
+    // 1. Vmax Calculation (ทศนิยม 3 ตำแหน่ง)
     let vmax = 0;
     if (dose > 0 && c1 > 0) {
       vmax = ((0.92 * 1 * dose) * (4 + c1)) / c1;
-      this.setText('m3-s5-vmax', this.formatNumberWithComma(vmax, 2));
+      this.setText('m3-s5-vmax', this.formatNumberWithComma(vmax, 3));
     } else {
       this.setText('m3-s5-vmax', '-');
     }
@@ -1528,38 +1556,61 @@ window.M3_PheCap = {
       if (ibwFemale < 0) ibwFemale = 0;
     }
 
-    // แสดงค่า BW
-    this.setText('m3-s5-bw-real', realBW > 0 ? realBW.toFixed(1) : '-');
-    this.setText('m3-s5-bw-ibw-m', ibwMale > 0 ? ibwMale.toFixed(1) : '-');
-    this.setText('m3-s5-bw-ibw-f', ibwFemale > 0 ? ibwFemale.toFixed(1) : '-');
+    // แสดงค่า BW (ทศนิยม 3 ตำแหน่ง / ซ่อนถ้าเป็น 0 หรือไม่ใส่)
+    this.setText('m3-s5-bw-real', realBW > 0 ? realBW.toFixed(3) : '-');
+    this.setText('m3-s5-bw-ibw-m', ibwMale > 0 ? ibwMale.toFixed(3) : '-');
+    this.setText('m3-s5-bw-ibw-f', ibwFemale > 0 ? ibwFemale.toFixed(3) : '-');
 
-    // 3. Vd
+    // 3. Vd (ทศนิยม 3 ตำแหน่ง / ซ่อนถ้าเป็น 0)
     let vdReal = realBW > 0 ? 0.65 * realBW : 0;
     let vdIbwM = (ibwMale > 0 && realBW > 0) ? 0.65 * (ibwMale + 1.33 * (realBW - ibwMale)) : 0;
     let vdIbwF = (ibwFemale > 0 && realBW > 0) ? 0.65 * (ibwFemale + 1.33 * (realBW - ibwFemale)) : 0;
 
-    this.setText('m3-s5-vd-real', vdReal > 0 ? vdReal.toFixed(2) : '-');
-    this.setText('m3-s5-vd-ibw-m', vdIbwM > 0 ? vdIbwM.toFixed(2) : '-');
-    this.setText('m3-s5-vd-ibw-f', vdIbwF > 0 ? vdIbwF.toFixed(2) : '-');
+    this.setText('m3-s5-vd-real', vdReal > 0 ? vdReal.toFixed(3) : '-');
+    this.setText('m3-s5-vd-ibw-m', vdIbwM > 0 ? vdIbwM.toFixed(3) : '-');
+    this.setText('m3-s5-vd-ibw-f', vdIbwF > 0 ? vdIbwF.toFixed(3) : '-');
 
-    // 4. จำนวนวันที่ต้องหยุดยา (Hold Days - ใช้ Natural Logarithm: Math.log)
+    // 4. จำนวนวันที่ต้องหยุดยา (ทศนิยม 3 ตำแหน่ง / ปัดเศษใช้สำหรับแสดงผล hold days tag)
+    let holdReal = 0;
+    let holdIbwM = 0;
+    let holdIbwF = 0;
+
     if (vmax > 0 && c1 > 0 && c2 > 0 && c1 > c2) {
       let numFactor = (4 * Math.log(c1 / c2)) + (c1 - c2);
 
-      let holdReal = vdReal > 0 ? numFactor / (vmax / vdReal) : 0;
-      let holdIbwM = vdIbwM > 0 ? numFactor / (vmax / vdIbwM) : 0;
-      let holdIbwF = vdIbwF > 0 ? numFactor / (vmax / vdIbwF) : 0;
+      holdReal = vdReal > 0 ? numFactor / (vmax / vdReal) : 0;
+      holdIbwM = vdIbwM > 0 ? numFactor / (vmax / vdIbwM) : 0;
+      holdIbwF = vdIbwF > 0 ? numFactor / (vmax / vdIbwF) : 0;
 
-      this.setText('m3-s5-offday-real', holdReal > 0 ? holdReal.toFixed(1) : '-');
-      this.setText('m3-s5-offday-ibw-m', holdIbwM > 0 ? holdIbwM.toFixed(1) : '-');
-      this.setText('m3-s5-offday-ibw-f', holdIbwF > 0 ? holdIbwF.toFixed(1) : '-');
+      this.setText('m3-s5-offday-real', holdReal > 0 ? holdReal.toFixed(3) : '-');
+      this.setText('m3-s5-offday-ibw-m', holdIbwM > 0 ? holdIbwM.toFixed(3) : '-');
+      this.setText('m3-s5-offday-ibw-f', holdIbwF > 0 ? holdIbwF.toFixed(3) : '-');
     } else {
       this.setText('m3-s5-offday-real', '-');
       this.setText('m3-s5-offday-ibw-m', '-');
       this.setText('m3-s5-offday-ibw-f', '-');
     }
 
-    // 5. Dose ที่ควรได้รับหลัง hold ยา (ต่อท้าย mg)
+    // 5. Dose ที่ควรได้รับหลัง hold ยา & การดึงจำนวนวันปัดเศษทางคณิตศาสตร์
+    let targetDaysValue = 0;
+    if (realBW > 0) {
+      if (realBW < 60) {
+        targetDaysValue = holdReal;
+      } else {
+        // กรณี obesity ให้ยึด IBW ชาย เป็นหลักในการนำวันไปโชว์ในแท็ก
+        targetDaysValue = holdIbwM;
+      }
+    }
+
+    // ปัดเศษตามหลักคณิตศาสตร์ทั่วไป (>= .5 ปัดขึ้น, < .5 ปัดลง)
+    let roundedDays = Math.round(targetDaysValue);
+
+    if (targetDaysValue > 0) {
+      this.setText('m3-s5-hold-days-tag', `[${roundedDays}] วัน`);
+    } else {
+      this.setText('m3-s5-hold-days-tag', '');
+    }
+
     if (vmax > 0 && c2 > 0) {
       let recDose = (vmax * c2) / ((4 + c2) * 0.92);
       this.setText('m3-s5-rec-dose', this.formatNumberWithComma(recDose, 2) + ' mg');
@@ -1595,7 +1646,7 @@ window.M3_PheCap = {
     }
 
     let vmax = weight * 7;
-    if (elVmax) elVmax.innerText = this.formatNumberWithComma(vmax, 2);
+    if (elVmax) elVmax.innerText = this.formatNumberWithComma(vmax, 3);
 
     if (dose > 0) {
       let denom = vmax - (0.92 * 1 * dose);
