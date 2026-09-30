@@ -591,7 +591,7 @@ window.M3_PheCap = {
           gap: 10px;
         }
 
-        /* Table Structure สำหรับ Scenario 5 */
+        /* Table Structure สำหรับ Scenario 5 (ตารางกริดที่ปรับให้แนวคอลัมน์และแถวตรงกันสมบูรณ์) */
         .scen5-table-container {
           border: 1.5px solid #cbd5e1;
           border-radius: 8px;
@@ -599,53 +599,34 @@ window.M3_PheCap = {
           background: #ffffff;
         }
 
-        .scen5-table-header {
+        .scen5-table-grid {
           display: grid;
-          grid-template-columns: max-content 2px 1fr 1px 2fr;
-          background: #f1f5f9;
-          border-bottom: 1.5px solid #cbd5e1;
+          grid-template-columns: 150px 2px 1fr 1px 1fr 1px 1fr;
+          align-items: center;
+        }
+
+        .scen5-head-cell {
+          padding: 8px;
           font-weight: 800;
           font-size: 0.88rem;
           color: #1e293b;
           text-align: center;
-          align-items: center;
-        }
-
-        .scen5-ibw-header-group {
+          background: #f1f5f9;
+          height: 100%;
           display: flex;
-          flex-direction: column;
-          width: 100%;
+          align-items: center;
+          justify-content: center;
         }
 
-        .scen5-ibw-title {
-          padding: 4px 0;
-          border-bottom: 1px solid #cbd5e1;
+        .scen5-ibw-header-span {
+          grid-column: span 3;
           background: #e2e8f0;
+          border-bottom: 1px solid #cbd5e1;
+          padding: 4px 0;
+          font-weight: 800;
           font-size: 0.85rem;
-        }
-
-        .scen5-ibw-sub-cols {
-          display: grid;
-          grid-template-columns: 1fr 1px 1fr;
-        }
-
-        .scen5-col-head {
-          padding: 6px 12px;
-        }
-
-        .scen5-table-body {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .scen5-table-row {
-          display: grid;
-          grid-template-columns: max-content 2px 1fr 1px 2fr;
-          border-bottom: 1px solid #e2e8f0;
-          align-items: center;
-        }
-        .scen5-table-row:last-child {
-          border-bottom: none;
+          color: #1e293b;
+          text-align: center;
         }
 
         .scen5-row-label {
@@ -655,16 +636,17 @@ window.M3_PheCap = {
           color: #334155;
           display: flex;
           align-items: center;
-          justify-content: center;
-          text-align: center;
+          justify-content: flex-start;
+          text-align: left;
           white-space: nowrap;
         }
 
         .scen5-cell-box {
-          padding: 8px 6px;
+          padding: 6px;
           display: flex;
           align-items: center;
           justify-content: center;
+          width: 100%;
         }
 
         .scen5-val-box {
@@ -694,6 +676,19 @@ window.M3_PheCap = {
         .scen5-v-line {
           background-color: #cbd5e1;
           align-self: stretch;
+          width: 100%;
+        }
+
+        .scen5-v-line-dashed {
+          background-color: #e2e8f0;
+          align-self: stretch;
+          width: 100%;
+        }
+
+        .scen5-h-line {
+          grid-column: span 7;
+          height: 1px;
+          background-color: #e2e8f0;
         }
 
         .scen5-dose-recommend-card {
@@ -1048,7 +1043,7 @@ window.M3_PheCap = {
 
                     <!-- ข้อความเตือน (แสดงเฉพาะ CrCl < 10) -->
                     <div class="scen3-notice-box" id="m3-s3-notice">
-                      ⚠️ เคสนี้ ESRD (CrCl&lt;10) ปรับสูตรการคำนวณแล้ว
+                      ⚠️️ เคสนี้ ESRD (CrCl&lt;10) ปรับสูตรการคำนวณแล้ว
                     </div>
 
                     <!-- Footnote เฉพาะของ Acc.3 -->
@@ -1183,71 +1178,76 @@ window.M3_PheCap = {
                   <div class="scen5-display-col">
                     
                     <div class="scen5-table-container">
-                      <!-- Table Header -->
-                      <div class="scen5-table-header">
-                        <div class="scen5-col-head"></div>
-                        <div class="scen5-v-line"></div>
-                        <div class="scen5-col-head">real BW</div>
-                        <div class="scen5-v-line"></div>
-                        <div class="scen5-ibw-header-group">
-                          <div class="scen5-ibw-title">IBW</div>
-                          <div class="scen5-ibw-sub-cols">
-                            <div class="scen5-col-head">ชาย</div>
-                            <div class="scen5-v-line"></div>
-                            <div class="scen5-col-head">หญิง</div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Table Body (ลบเครื่องหมาย = ออกทั้งหมด) -->
-                      <div class="scen5-table-body">
+                      <div class="scen5-table-grid">
                         
+                        <!-- Header Row 1: IBW Span -->
+                        <div class="scen5-head-cell"></div>
+                        <div class="scen5-v-line"></div>
+                        <div class="scen5-head-cell"></div>
+                        <div class="scen5-v-line"></div>
+                        <div class="scen5-ibw-header-span">IBW</div>
+
+                        <!-- Header Row 2: Sub-headers -->
+                        <div class="scen5-head-cell"></div>
+                        <div class="scen5-v-line"></div>
+                        <div class="scen5-head-cell">real BW</div>
+                        <div class="scen5-v-line"></div>
+                        <div class="scen5-head-cell">ชาย</div>
+                        <div class="scen5-v-line-dashed"></div>
+                        <div class="scen5-head-cell">หญิง</div>
+
+                        <!-- Horizontal Divider -->
+                        <div class="scen5-h-line"></div>
+
                         <!-- Row 1: BW -->
-                        <div class="scen5-table-row">
-                          <div class="scen5-row-label">BW</div>
-                          <div class="scen5-v-line"></div>
-                          <div class="scen5-cell-box">
-                            <div class="scen5-val-box" id="m3-s5-bw-real">-</div>
-                          </div>
-                          <div class="scen5-v-line"></div>
-                          <div class="scen5-cell-box">
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%;">
-                              <div class="scen5-val-box" id="m3-s5-bw-ibw-m">-</div>
-                              <div class="scen5-val-box" id="m3-s5-bw-ibw-f">-</div>
-                            </div>
-                          </div>
+                        <div class="scen5-row-label">BW</div>
+                        <div class="scen5-v-line"></div>
+                        <div class="scen5-cell-box">
+                          <div class="scen5-val-box" id="m3-s5-bw-real">-</div>
                         </div>
+                        <div class="scen5-v-line"></div>
+                        <div class="scen5-cell-box">
+                          <div class="scen5-val-box" id="m3-s5-bw-ibw-m">-</div>
+                        </div>
+                        <div class="scen5-v-line-dashed"></div>
+                        <div class="scen5-cell-box">
+                          <div class="scen5-val-box" id="m3-s5-bw-ibw-f">-</div>
+                        </div>
+
+                        <!-- Horizontal Divider -->
+                        <div class="scen5-h-line"></div>
 
                         <!-- Row 2: Vd -->
-                        <div class="scen5-table-row">
-                          <div class="scen5-row-label">Vd</div>
-                          <div class="scen5-v-line"></div>
-                          <div class="scen5-cell-box">
-                            <div class="scen5-val-box" id="m3-s5-vd-real">-</div>
-                          </div>
-                          <div class="scen5-v-line"></div>
-                          <div class="scen5-cell-box">
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%;">
-                              <div class="scen5-val-box" id="m3-s5-vd-ibw-m">-</div>
-                              <div class="scen5-val-box" id="m3-s5-vd-ibw-f">-</div>
-                            </div>
-                          </div>
+                        <div class="scen5-row-label">Vd</div>
+                        <div class="scen5-v-line"></div>
+                        <div class="scen5-cell-box">
+                          <div class="scen5-val-box" id="m3-s5-vd-real">-</div>
+                        </div>
+                        <div class="scen5-v-line"></div>
+                        <div class="scen5-cell-box">
+                          <div class="scen5-val-box" id="m3-s5-vd-ibw-m">-</div>
+                        </div>
+                        <div class="scen5-v-line-dashed"></div>
+                        <div class="scen5-cell-box">
+                          <div class="scen5-val-box" id="m3-s5-vd-ibw-f">-</div>
                         </div>
 
+                        <!-- Horizontal Divider -->
+                        <div class="scen5-h-line"></div>
+
                         <!-- Row 3: จำนวนวันที่ต้องหยุดยา -->
-                        <div class="scen5-table-row">
-                          <div class="scen5-row-label">จำนวนวันที่ต้องหยุดยา</div>
-                          <div class="scen5-v-line"></div>
-                          <div class="scen5-cell-box">
-                            <div class="scen5-val-box" id="m3-s5-offday-real">-</div>
-                          </div>
-                          <div class="scen5-v-line"></div>
-                          <div class="scen5-cell-box">
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%;">
-                              <div class="scen5-val-box" id="m3-s5-offday-ibw-m">-</div>
-                              <div class="scen5-val-box" id="m3-s5-offday-ibw-f">-</div>
-                            </div>
-                          </div>
+                        <div class="scen5-row-label">จำนวนวันที่ต้องหยุดยา</div>
+                        <div class="scen5-v-line"></div>
+                        <div class="scen5-cell-box">
+                          <div class="scen5-val-box" id="m3-s5-offday-real">-</div>
+                        </div>
+                        <div class="scen5-v-line"></div>
+                        <div class="scen5-cell-box">
+                          <div class="scen5-val-box" id="m3-s5-offday-ibw-m">-</div>
+                        </div>
+                        <div class="scen5-v-line-dashed"></div>
+                        <div class="scen5-cell-box">
+                          <div class="scen5-val-box" id="m3-s5-offday-ibw-f">-</div>
                         </div>
 
                       </div>
