@@ -41,7 +41,7 @@ window.M1_LiCss = {
           flex-direction: column;
         }
 
-        /* [จุด A] การ์ดฝั่งซ้าย: กระจายช่องไฟ (Spacing) ให้เท่ากันสม่ำเสมอ */
+        /* การ์ดฝั่งซ้าย: กระจายช่องไฟ (Spacing) ให้เท่ากันสม่ำเสมอ */
         .input-card-highlight {
           background: #f8fafc;
           border: 1.5px solid #93c5fd;
@@ -53,7 +53,7 @@ window.M1_LiCss = {
         .input-fields-container {
           display: flex;
           flex-direction: column;
-          gap: 12px; /* กระจายช่องไฟระหว่างบรรทัดให้เท่ากัน */
+          gap: 12px;
         }
 
         .card-head-title {
@@ -106,17 +106,17 @@ window.M1_LiCss = {
           flex: 1;
         }
 
-        /* Stepper Box */
+        /* Stepper Box สไตล์ Phenytoin Capsule */
         .stepper-box {
           display: flex;
           align-items: center;
           flex: 1;
-          background: #eff6ff;
+          background: #f0f7ff;
           border: 1.5px solid #60a5fa;
-          border-radius: 8px;
-          padding: 2px 6px;
-          height: 42px;
-          box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
+          border-radius: 28px;
+          padding: 3px 4px;
+          height: 44px;
+          box-sizing: border-box;
           transition: all 0.2s ease;
         }
         .stepper-box:focus-within {
@@ -124,25 +124,35 @@ window.M1_LiCss = {
           box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
+        /* ปุ่มกดวงกลมสีขาวขอบฟ้าแบบ Phenytoin Capsule */
         .btn-step {
-          width: 32px;
-          height: 32px;
+          width: 34px;
+          height: 34px;
           border-radius: 50%;
-          border: 1px solid #93c5fd;
+          border: 1.5px solid #60a5fa;
           background: #ffffff;
-          color: #1d4ed8;
-          font-weight: bold;
-          font-size: 1.2rem;
+          color: #2563eb;
+          font-weight: 800;
+          font-size: 1.25rem;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
           user-select: none;
-          box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+          flex-shrink: 0;
+          padding: 0;
+          line-height: 1;
+          transition: all 0.15s ease;
         }
         .btn-step:hover {
+          background: #eff6ff;
+          border-color: #2563eb;
+          color: #1d4ed8;
+        }
+        .btn-step:active {
+          transform: scale(0.95);
           background: #dbeafe;
-          color: #1e40af;
         }
 
         .stepper-box input {
@@ -246,12 +256,10 @@ window.M1_LiCss = {
           }
         }
         
-        /* [จุด B] ปรับเพิ่มขนาดกรอบเติมค่ามาทางซ้ายอีก 15% (ลด label width เหลือ 110px) */
         .steady-input-label {
           width: 110px !important;
         }
 
-        /* [จุด C] จัดโครงสร้างผลการคำนวณ Recommended Dose */
         .rec-out-list {
           display: flex;
           flex-direction: column;
@@ -274,7 +282,6 @@ window.M1_LiCss = {
           border-bottom: none;
         }
         
-        /* Label ซ้ายฝั่งผลลัพธ์ */
         .rec-out-label {
           color: #334155;
           font-weight: 600;
@@ -287,19 +294,18 @@ window.M1_LiCss = {
           font-weight: 500;
         }
 
-        /* Result Right Value Style */
         .rec-out-val-container {
           text-align: right;
           white-space: nowrap;
         }
         .rec-out-num {
           font-weight: 800;
-          font-size: 1.2rem; /* เน้นตัวเลขเด่นชัด */
+          font-size: 1.2rem;
           color: #0f172a;
         }
         .rec-out-unit {
           font-weight: 500;
-          font-size: 0.82rem; /* ปรับตัวอักษร เม็ด/วัน ให้เล็กนุ่มลง */
+          font-size: 0.82rem;
           color: #64748b;
           margin-left: 2px;
         }
@@ -318,7 +324,6 @@ window.M1_LiCss = {
                 <button type="button" id="m1-btn-clear-left" class="btn-clear-mini">Clear</button>
               </div>
 
-              <!-- [จุด A] รวมอยู่ใน Container และใช้ gap กระจายช่องไฟให้เท่ากัน -->
               <div class="input-fields-container">
                 <!-- 1. BW -->
                 <div class="field-group-inline">
@@ -374,7 +379,7 @@ window.M1_LiCss = {
               </div>
             </div>
 
-            <!-- 5. ขนาดยาที่ได้รับ (จัดระยะช่องไฟส่วนล่างให้กลมกลืน) -->
+            <!-- 5. ขนาดยาที่ได้รับ -->
             <div style="padding-top: 12px; border-top: 1px dashed #cbd5e1; margin-top: 12px;">
               <div class="field-group-inline">
                 <label for="m1-dose">ขนาดยาที่ได้รับ <br><small style="font-weight:normal; color:#64748b;">(Cap/day)</small></label>
@@ -439,7 +444,6 @@ window.M1_LiCss = {
               </div>
 
               <div class="rec-split-grid">
-                <!-- [จุด B] ปรับขยายกรอบเติมค่ามาทางซ้าย -->
                 <div style="display: flex; flex-direction: column; justify-content: center; gap: 10px;">
                   <div class="field-group-inline">
                     <label for="m1-rec-dose" class="steady-input-label">ขนาดยาที่ได้รับ <br><small style="font-weight:normal; color:#64748b;">(Cap/day)</small></label>
@@ -466,7 +470,6 @@ window.M1_LiCss = {
                   </div>
                 </div>
 
-                <!-- [จุด C] ปรับแต่งข้อความและขนาดอักษรผลการคำนวณ -->
                 <div class="rec-out-list">
                   <div class="rec-out-item">
                     <span class="rec-out-label">Minimum dose</span>
