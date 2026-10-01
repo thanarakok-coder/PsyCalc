@@ -113,7 +113,7 @@ window.M1_LiCss = {
           flex: 1;
           background: #eff6ff;
           border: 1.5px solid #60a5fa;
-          border-radius: 24px;
+          border-radius: 8px;
           padding: 2px 6px;
           height: 42px;
           box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
