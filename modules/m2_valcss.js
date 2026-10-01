@@ -104,17 +104,17 @@ window.M2_ValCss = {
           flex: 1;
         }
 
-        /* Stepper Box */
+        /* Stepper Box สไตล์ Phenytoin Capsule */
         .stepper-box {
           display: flex;
           align-items: center;
           flex: 1;
-          background: #eff6ff;
+          background: #f0f7ff;
           border: 1.5px solid #60a5fa;
-          border-radius: 8px;
-          padding: 2px 6px;
-          height: 42px;
-          box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
+          border-radius: 28px;
+          padding: 3px 4px;
+          height: 44px;
+          box-sizing: border-box;
           transition: all 0.2s ease;
         }
         .stepper-box:focus-within {
@@ -122,25 +122,35 @@ window.M2_ValCss = {
           box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
+        /* ปุ่มกดวงกลมสีขาวขอบฟ้าแบบ Phenytoin Capsule */
         .btn-step {
-          width: 32px;
-          height: 32px;
+          width: 34px;
+          height: 34px;
           border-radius: 50%;
-          border: 1px solid #93c5fd;
+          border: 1.5px solid #60a5fa;
           background: #ffffff;
-          color: #1d4ed8;
-          font-weight: bold;
-          font-size: 1.2rem;
+          color: #2563eb;
+          font-weight: 800;
+          font-size: 1.25rem;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
           user-select: none;
-          box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+          flex-shrink: 0;
+          padding: 0;
+          line-height: 1;
+          transition: all 0.15s ease;
         }
         .btn-step:hover {
+          background: #eff6ff;
+          border-color: #2563eb;
+          color: #1d4ed8;
+        }
+        .btn-step:active {
+          transform: scale(0.95);
           background: #dbeafe;
-          color: #1e40af;
         }
 
         .stepper-box input {
@@ -234,14 +244,12 @@ window.M2_ValCss = {
           border-bottom: none;
         }
         
-        /* เพิ่มขนาดฟอนต์ขึ้น ~15% ปรับเป็นสีดำเข้ม ตัวหนาเด่น */
         .rec-out-label {
           color: #0f172a;
           font-weight: 700;
           font-size: 1.02rem;
           line-height: 1.3;
         }
-        /* เพิ่มขนาดฟอนต์ในวงเล็บขึ้น ~15% คงสีเทาและการขึ้นบรรทัดใหม่ */
         .rec-out-label small {
           font-size: 0.9rem;
           color: #64748b;
@@ -412,7 +420,6 @@ window.M2_ValCss = {
     });
   },
 
-  // Helper สำหรับใส่ comma หลักพัน
   formatNumber: function(num, decimals = 2) {
     if (isNaN(num) || num === null || num === undefined) return '-';
     return Number(num).toLocaleString('en-US', {
