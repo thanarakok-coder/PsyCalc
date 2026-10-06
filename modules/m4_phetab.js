@@ -1,8 +1,8 @@
-window.M3_PheCap = {
+window.M4_PheTab = {
   render: function(container) {
     container.innerHTML = `
       <style>
-        .m3-wrapper {
+        .m4-wrapper {
           padding: 12px;
           max-width: 1380px;
           margin: 0 auto;
@@ -10,11 +10,11 @@ window.M3_PheCap = {
           color: #0f172a;
           box-sizing: border-box;
         }
-        .m3-wrapper * {
+        .m4-wrapper * {
           box-sizing: border-box;
         }
 
-        .m3-header-title {
+        .m4-header-title {
           font-size: 1.15rem;
           font-weight: 700;
           margin-bottom: 12px;
@@ -23,20 +23,20 @@ window.M3_PheCap = {
         }
 
         /* Layout หลัก */
-        .m3-main-layout {
+        .m4-main-layout {
           display: grid;
           grid-template-columns: 260px minmax(0, 1fr);
           gap: 14px;
           align-items: start;
         }
         @media (max-width: 960px) {
-          .m3-main-layout {
+          .m4-main-layout {
             grid-template-columns: 1fr;
           }
         }
 
         /* Card Frame */
-        .m3-card {
+        .m4-card {
           background: #ffffff;
           border: 1px solid #cbd5e1;
           border-radius: 8px;
@@ -209,7 +209,7 @@ window.M3_PheCap = {
         .brand-main {
           font-size: 1.35rem;
           font-weight: 800;
-          color: #1e3a8a;
+          color: #AA683E;
         }
 
         /* Accordion Component Base */
@@ -274,30 +274,30 @@ window.M3_PheCap = {
         }
 
         /* --- Theme สีเฉพาะสำหรับแต่ละ Scenario --- */
-        #m3-scen-1 { border-color: #a7f3d0; }
-        #m3-scen-1 .accordion-header { background: #ecfdf5; color: #065f46; }
-        #m3-scen-1.active { border-color: #10b981; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.12); }
-        #m3-scen-1.active .accordion-header { background: #d1fae5; color: #047857; }
+        #m4-scen-1 { border-color: #a7f3d0; }
+        #m4-scen-1 .accordion-header { background: #ecfdf5; color: #065f46; }
+        #m4-scen-1.active { border-color: #10b981; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.12); }
+        #m4-scen-1.active .accordion-header { background: #d1fae5; color: #047857; }
 
-        #m3-scen-2 { border-color: #ddd6fe; }
-        #m3-scen-2 .accordion-header { background: #f5f3ff; color: #5b21b6; }
-        #m3-scen-2.active { border-color: #8b5cf6; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.12); }
-        #m3-scen-2.active .accordion-header { background: #ede9fe; color: #6d28d9; }
+        #m4-scen-2 { border-color: #ddd6fe; }
+        #m4-scen-2 .accordion-header { background: #f5f3ff; color: #5b21b6; }
+        #m4-scen-2.active { border-color: #8b5cf6; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.12); }
+        #m4-scen-2.active .accordion-header { background: #ede9fe; color: #6d28d9; }
 
-        #m3-scen-3 { border-color: #fde68a; }
-        #m3-scen-3 .accordion-header { background: #fffbeb; color: #92400e; }
-        #m3-scen-3.active { border-color: #f59e0b; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.12); }
-        #m3-scen-3.active .accordion-header { background: #fef3c7; color: #b45309; }
+        #m4-scen-3 { border-color: #fde68a; }
+        #m4-scen-3 .accordion-header { background: #fffbeb; color: #92400e; }
+        #m4-scen-3.active { border-color: #f59e0b; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.12); }
+        #m4-scen-3.active .accordion-header { background: #fef3c7; color: #b45309; }
 
-        #m3-scen-4 { border-color: #99f6e4; }
-        #m3-scen-4 .accordion-header { background: #f0fdf4; color: #115e59; }
-        #m3-scen-4.active { border-color: #14b8a6; box-shadow: 0 2px 8px rgba(20, 184, 166, 0.12); }
-        #m3-scen-4.active .accordion-header { background: #ccfbf1; color: #0f766e; }
+        #m4-scen-4 { border-color: #99f6e4; }
+        #m4-scen-4 .accordion-header { background: #f0fdf4; color: #115e59; }
+        #m4-scen-4.active { border-color: #14b8a6; box-shadow: 0 2px 8px rgba(20, 184, 166, 0.12); }
+        #m4-scen-4.active .accordion-header { background: #ccfbf1; color: #0f766e; }
 
-        #m3-scen-5 { border-color: #c7d2fe; }
-        #m3-scen-5 .accordion-header { background: #eef2ff; color: #3730a3; }
-        #m3-scen-5.active { border-color: #6366f1; box-shadow: 0 2px 8px rgba(99, 102, 241, 0.12); }
-        #m3-scen-5.active .accordion-header { background: #e0e7ff; color: #4338ca; }
+        #m4-scen-5 { border-color: #c7d2fe; }
+        #m4-scen-5 .accordion-header { background: #eef2ff; color: #3730a3; }
+        #m4-scen-5.active { border-color: #6366f1; box-shadow: 0 2px 8px rgba(99, 102, 241, 0.12); }
+        #m4-scen-5.active .accordion-header { background: #e0e7ff; color: #4338ca; }
 
         /* --- STYLES SCENARIO 1 --- */
         .scen1-grid-layout {
@@ -757,26 +757,26 @@ window.M3_PheCap = {
         }
       </style>
 
-      <div class="m3-wrapper">
-        <div class="m3-header-title">M3: PheCap - Phenytoin Capsule Dosing Adjustment</div>
+      <div class="m4-wrapper">
+        <div class="m4-header-title">M4: PheTab - Phenytoin InfaTab Dosing Adjustment</div>
 
-        <div class="m3-main-layout">
+        <div class="m4-main-layout">
           
           <!-- ฝั่งซ้าย: Inputs หลัก (260px) -->
-          <div class="m3-card input-card-highlight">
+          <div class="m4-card input-card-highlight">
             <div class="card-head-title">
               <span>ข้อมูลผู้ป่วย</span>
-              <button type="button" id="m3-btn-clear-left" class="btn-clear-mini" title="Clear BW & Ht">Clear</button>
+              <button type="button" id="m4-btn-clear-left" class="btn-clear-mini" title="Clear BW & Ht">Clear</button>
             </div>
 
             <!-- น้ำหนัก (BW) -->
             <div class="field-group-stacked">
-              <label for="m3-bw">น้ำหนัก</label>
+              <label for="m4-bw">น้ำหนัก</label>
               <div class="stepper-container-inline">
                 <div class="stepper-box">
-                  <button type="button" class="btn-step" id="m3-bw-dec">-</button>
-                  <input type="number" id="m3-bw" step="any" placeholder="0">
-                  <button type="button" class="btn-step" id="m3-bw-inc">+</button>
+                  <button type="button" class="btn-step" id="m4-bw-dec">-</button>
+                  <input type="number" id="m4-bw" step="any" placeholder="0">
+                  <button type="button" class="btn-step" id="m4-bw-inc">+</button>
                 </div>
                 <span class="unit-text">kg</span>
               </div>
@@ -784,12 +784,12 @@ window.M3_PheCap = {
 
             <!-- ส่วนสูง (Ht) -->
             <div class="field-group-stacked">
-              <label for="m3-ht">ส่วนสูง</label>
+              <label for="m4-ht">ส่วนสูง</label>
               <div class="stepper-container-inline">
                 <div class="stepper-box">
-                  <button type="button" class="btn-step" id="m3-ht-dec">-</button>
-                  <input type="number" id="m3-ht" step="any" placeholder="0">
-                  <button type="button" class="btn-step" id="m3-ht-inc">+</button>
+                  <button type="button" class="btn-step" id="m4-ht-dec">-</button>
+                  <input type="number" id="m4-ht" step="any" placeholder="0">
+                  <button type="button" class="btn-step" id="m4-ht-inc">+</button>
                 </div>
                 <span class="unit-text">cm</span>
               </div>
@@ -797,22 +797,22 @@ window.M3_PheCap = {
 
             <!-- ปุ่ม Show All / Hide All -->
             <div class="action-toggle-btns">
-              <button type="button" class="btn-action-outline" id="m3-btn-show-all">Show all</button>
-              <button type="button" class="btn-action-outline" id="m3-btn-hide-all">Hide all</button>
+              <button type="button" class="btn-action-outline" id="m4-btn-show-all">Show all</button>
+              <button type="button" class="btn-action-outline" id="m4-btn-hide-all">Hide all</button>
             </div>
 
             <!-- Title -->
             <div class="module-brand-title">
               <span class="brand-sub">Phenytoin</span>
-              <span class="brand-main">Capsule</span>
+              <span class="brand-main">InfaTab</span>
             </div>
           </div>
 
           <!-- ฝั่งขวา: Accordions -->
-          <div class="accordion-list" id="m3-accordion-container">
+          <div class="accordion-list" id="m4-accordion-container">
 
             <!-- Scenario 1 -->
-            <div class="accordion-item" id="m3-scen-1">
+            <div class="accordion-item" id="m4-scen-1">
               <div class="accordion-header">
                 <div class="accordion-header-title">
                   <span class="accordion-icon">▼</span>
@@ -828,9 +828,9 @@ window.M3_PheCap = {
                     <span class="dose-title">ขนาดยา/วัน</span>
                     <div class="stepper-container-inline">
                       <div class="stepper-box">
-                        <button type="button" class="btn-step" id="m3-dose-dec">-</button>
-                        <input type="text" id="m3-dose" placeholder="0">
-                        <button type="button" class="btn-step" id="m3-dose-inc">+</button>
+                        <button type="button" class="btn-step" id="m4-dose-dec">-</button>
+                        <input type="text" id="m4-dose" placeholder="0">
+                        <button type="button" class="btn-step" id="m4-dose-inc">+</button>
                       </div>
                     </div>
                     <span class="unit-text">mg/day</span>
@@ -932,7 +932,7 @@ window.M3_PheCap = {
             </div>
 
             <!-- Scenario 2 -->
-            <div class="accordion-item" id="m3-scen-2">
+            <div class="accordion-item" id="m4-scen-2">
               <div class="accordion-header">
                 <div class="accordion-header-title">
                   <span class="accordion-icon">▼</span>
@@ -951,9 +951,9 @@ window.M3_PheCap = {
                       <span class="scen-label">ขนาดยา/วัน</span>
                       <div class="stepper-container-inline">
                         <div class="stepper-box">
-                          <button type="button" class="btn-step" id="m3-s2-dose-dec">-</button>
-                          <input type="text" id="m3-s2-dose" placeholder="0">
-                          <button type="button" class="btn-step" id="m3-s2-dose-inc">+</button>
+                          <button type="button" class="btn-step" id="m4-s2-dose-dec">-</button>
+                          <input type="text" id="m4-s2-dose" placeholder="0">
+                          <button type="button" class="btn-step" id="m4-s2-dose-inc">+</button>
                         </div>
                         <span class="unit-text">mg/day</span>
                       </div>
@@ -964,9 +964,9 @@ window.M3_PheCap = {
                       <span class="scen-label">ระดับยาที่ SS</span>
                       <div class="stepper-container-inline">
                         <div class="stepper-box">
-                          <button type="button" class="btn-step" id="m3-s2-css-dec">-</button>
-                          <input type="text" id="m3-s2-css" placeholder="0">
-                          <button type="button" class="btn-step" id="m3-s2-css-inc">+</button>
+                          <button type="button" class="btn-step" id="m4-s2-css-dec">-</button>
+                          <input type="text" id="m4-s2-css" placeholder="0">
+                          <button type="button" class="btn-step" id="m4-s2-css-inc">+</button>
                         </div>
                         <div class="unit-spacer"></div>
                       </div>
@@ -977,9 +977,9 @@ window.M3_PheCap = {
                       <span class="scen-label">Dose ที่จะทำนาย</span>
                       <div class="stepper-container-inline">
                         <div class="stepper-box">
-                          <button type="button" class="btn-step" id="m3-s2-pdose-dec">-</button>
-                          <input type="text" id="m3-s2-pdose" placeholder="0">
-                          <button type="button" class="btn-step" id="m3-s2-pdose-inc">+</button>
+                          <button type="button" class="btn-step" id="m4-s2-pdose-dec">-</button>
+                          <input type="text" id="m4-s2-pdose" placeholder="0">
+                          <button type="button" class="btn-step" id="m4-s2-pdose-inc">+</button>
                         </div>
                         <span class="unit-text">mg/day</span>
                       </div>
@@ -993,12 +993,12 @@ window.M3_PheCap = {
                   <div class="scen-result-group">
                     <div class="scen-result-card">
                       <span class="scen-result-label">Vmax =</span>
-                      <span class="scen-result-val" id="m3-s2-vmax">-</span>
+                      <span class="scen-result-val" id="m4-s2-vmax">-</span>
                     </div>
 
                     <div class="scen-result-card">
                       <span class="scen-result-label">Cทำนาย =</span>
-                      <span class="scen-result-val" id="m3-s2-cpred">-</span>
+                      <span class="scen-result-val" id="m4-s2-cpred">-</span>
                     </div>
                   </div>
                 </div>
@@ -1007,7 +1007,7 @@ window.M3_PheCap = {
             </div>
 
             <!-- Scenario 3 -->
-            <div class="accordion-item" id="m3-scen-3">
+            <div class="accordion-item" id="m4-scen-3">
               <div class="accordion-header">
                 <div class="accordion-header-title">
                   <span class="accordion-icon">▼</span>
@@ -1026,9 +1026,9 @@ window.M3_PheCap = {
                       <span class="scen-label">ระดับยาที่ SS</span>
                       <div class="stepper-container-inline">
                         <div class="stepper-box">
-                          <button type="button" class="btn-step" id="m3-s3-css-dec">-</button>
-                          <input type="text" id="m3-s3-css" placeholder="0">
-                          <button type="button" class="btn-step" id="m3-s3-css-inc">+</button>
+                          <button type="button" class="btn-step" id="m4-s3-css-dec">-</button>
+                          <input type="text" id="m4-s3-css" placeholder="0">
+                          <button type="button" class="btn-step" id="m4-s3-css-inc">+</button>
                         </div>
                         <div class="unit-spacer"></div>
                       </div>
@@ -1039,9 +1039,9 @@ window.M3_PheCap = {
                       <span class="scen-label">ระดับ Alb.</span>
                       <div class="stepper-container-inline">
                         <div class="stepper-box">
-                          <button type="button" class="btn-step" id="m3-s3-alb-dec">-</button>
-                          <input type="text" id="m3-s3-alb" placeholder="0">
-                          <button type="button" class="btn-step" id="m3-s3-alb-inc">+</button>
+                          <button type="button" class="btn-step" id="m4-s3-alb-dec">-</button>
+                          <input type="text" id="m4-s3-alb" placeholder="0">
+                          <button type="button" class="btn-step" id="m4-s3-alb-inc">+</button>
                         </div>
                         <div class="unit-spacer"></div>
                       </div>
@@ -1052,9 +1052,9 @@ window.M3_PheCap = {
                       <span class="scen-label">CrCl</span>
                       <div class="stepper-container-inline">
                         <div class="stepper-box">
-                          <button type="button" class="btn-step" id="m3-s3-crcl-dec">-</button>
-                          <input type="text" id="m3-s3-crcl" placeholder="0">
-                          <button type="button" class="btn-step" id="m3-s3-crcl-inc">+</button>
+                          <button type="button" class="btn-step" id="m4-s3-crcl-dec">-</button>
+                          <input type="text" id="m4-s3-crcl" placeholder="0">
+                          <button type="button" class="btn-step" id="m4-s3-crcl-inc">+</button>
                         </div>
                         <span class="unit-text">ml/min</span>
                       </div>
@@ -1068,11 +1068,11 @@ window.M3_PheCap = {
                   <div class="scen-result-group">
                     <div class="scen-result-card">
                       <span class="scen-result-label">Cทำนาย =</span>
-                      <span class="scen-result-val" id="m3-s3-cpred">-</span>
+                      <span class="scen-result-val" id="m4-s3-cpred">-</span>
                     </div>
 
                     <!-- ข้อความเตือน (แสดงเฉพาะ CrCl < 10) -->
-                    <div class="scen3-notice-box" id="m3-s3-notice">
+                    <div class="scen3-notice-box" id="m4-s3-notice">
                       ⚠ เคสนี้ ESRD (CrCl&lt;10) ปรับสูตรการคำนวณแล้ว
                     </div>
 
@@ -1088,7 +1088,7 @@ window.M3_PheCap = {
             </div>
 
             <!-- Scenario 4: กรณีได้รับ VPA ร่วมด้วย -->
-            <div class="accordion-item" id="m3-scen-4">
+            <div class="accordion-item" id="m4-scen-4">
               <div class="accordion-header">
                 <div class="accordion-header-title">
                   <span class="accordion-icon">▼</span>
@@ -1107,9 +1107,9 @@ window.M3_PheCap = {
                       <span class="scen-label">ระดับยาที่ SS</span>
                       <div class="stepper-container-inline">
                         <div class="stepper-box">
-                          <button type="button" class="btn-step" id="m3-s4-css-dec">-</button>
-                          <input type="text" id="m3-s4-css" placeholder="0">
-                          <button type="button" class="btn-step" id="m3-s4-css-inc">+</button>
+                          <button type="button" class="btn-step" id="m4-s4-css-dec">-</button>
+                          <input type="text" id="m4-s4-css" placeholder="0">
+                          <button type="button" class="btn-step" id="m4-s4-css-inc">+</button>
                         </div>
                         <div class="unit-spacer"></div>
                       </div>
@@ -1120,9 +1120,9 @@ window.M3_PheCap = {
                       <span class="scen-label">ระดับยา VPA</span>
                       <div class="stepper-container-inline">
                         <div class="stepper-box">
-                          <button type="button" class="btn-step" id="m3-s4-vpa-dec">-</button>
-                          <input type="text" id="m3-s4-vpa" placeholder="0">
-                          <button type="button" class="btn-step" id="m3-s4-vpa-inc">+</button>
+                          <button type="button" class="btn-step" id="m4-s4-vpa-dec">-</button>
+                          <input type="text" id="m4-s4-vpa" placeholder="0">
+                          <button type="button" class="btn-step" id="m4-s4-vpa-inc">+</button>
                         </div>
                         <div class="unit-spacer"></div>
                       </div>
@@ -1136,7 +1136,7 @@ window.M3_PheCap = {
                   <div class="scen-result-group">
                     <div class="scen-result-card">
                       <span class="scen-result-label">Cทำนาย =</span>
-                      <span class="scen-result-val" id="m3-s4-cpred">-</span>
+                      <span class="scen-result-val" id="m4-s4-cpred">-</span>
                     </div>
                   </div>
                 </div>
@@ -1145,7 +1145,7 @@ window.M3_PheCap = {
             </div>
 
             <!-- Scenario 5: กรณีระดับยาเกิน TH range -->
-            <div class="accordion-item" id="m3-scen-5">
+            <div class="accordion-item" id="m4-scen-5">
               <div class="accordion-header">
                 <div class="accordion-header-title">
                   <span class="accordion-icon">▼</span>
@@ -1164,9 +1164,9 @@ window.M3_PheCap = {
                       <span class="scen-label">ขนาดยา/วัน</span>
                       <div class="stepper-container-inline">
                         <div class="stepper-box">
-                          <button type="button" class="btn-step" id="m3-s5-dose-dec">-</button>
-                          <input type="text" id="m3-s5-dose" placeholder="0">
-                          <button type="button" class="btn-step" id="m3-s5-dose-inc">+</button>
+                          <button type="button" class="btn-step" id="m4-s5-dose-dec">-</button>
+                          <input type="text" id="m4-s5-dose" placeholder="0">
+                          <button type="button" class="btn-step" id="m4-s5-dose-inc">+</button>
                         </div>
                       </div>
                     </div>
@@ -1176,9 +1176,9 @@ window.M3_PheCap = {
                       <span class="scen-label">C ที่วัดได้ (C1)</span>
                       <div class="stepper-container-inline">
                         <div class="stepper-box">
-                          <button type="button" class="btn-step" id="m3-s5-c1-dec">-</button>
-                          <input type="text" id="m3-s5-c1" placeholder="0">
-                          <button type="button" class="btn-step" id="m3-s5-c1-inc">+</button>
+                          <button type="button" class="btn-step" id="m4-s5-c1-dec">-</button>
+                          <input type="text" id="m4-s5-c1" placeholder="0">
+                          <button type="button" class="btn-step" id="m4-s5-c1-inc">+</button>
                         </div>
                       </div>
                     </div>
@@ -1186,7 +1186,7 @@ window.M3_PheCap = {
                     <!-- Vmax Display Block -->
                     <div class="scen5-vmax-card">
                       <span class="scen-result-label">V<sub>max</sub> =</span>
-                      <span class="scen-result-val" id="m3-s5-vmax">-</span>
+                      <span class="scen-result-val" id="m4-s5-vmax">-</span>
                     </div>
 
                     <!-- 3. C ที่ต้องการ (C2) -->
@@ -1194,9 +1194,9 @@ window.M3_PheCap = {
                       <span class="scen-label">C ที่ต้องการ (C2)</span>
                       <div class="stepper-container-inline">
                         <div class="stepper-box">
-                          <button type="button" class="btn-step" id="m3-s5-c2-dec">-</button>
-                          <input type="text" id="m3-s5-c2" placeholder="0">
-                          <button type="button" class="btn-step" id="m3-s5-c2-inc">+</button>
+                          <button type="button" class="btn-step" id="m4-s5-c2-dec">-</button>
+                          <input type="text" id="m4-s5-c2" placeholder="0">
+                          <button type="button" class="btn-step" id="m4-s5-c2-inc">+</button>
                         </div>
                       </div>
                     </div>
@@ -1216,36 +1216,36 @@ window.M3_PheCap = {
                         <div class="scen5-sub-bw-split">
                           
                           <!-- Male: real BW -->
-                          <div class="scen5-bw-col" id="m3-s5-col-m-real">
+                          <div class="scen5-bw-col" id="m4-s5-col-m-real">
                             <div class="scen5-bw-col-title">
                               <span>real BW</span>
-                              <span class="bw-val-sub" id="m3-s5-val-m-real-bw">-</span>
+                              <span class="bw-val-sub" id="m4-s5-val-m-real-bw">-</span>
                             </div>
                             <div class="scen5-calc-row-item">
                               <span>Vd:</span>
-                              <span class="scen5-calc-val-placeholder" id="m3-s5-vd-m-real">-</span>
+                              <span class="scen5-calc-val-placeholder" id="m4-s5-vd-m-real">-</span>
                             </div>
                             <div class="scen5-calc-row-item">
                               <span>จำนวนวันที่ต้องหยุดยา:</span>
-                              <span class="scen5-calc-val-placeholder" id="m3-s5-offday-m-real">-</span>
+                              <span class="scen5-calc-val-placeholder" id="m4-s5-offday-m-real">-</span>
                             </div>
                           </div>
 
                           <div class="dashed-vertical-line"></div>
 
                           <!-- Male: IBW -->
-                          <div class="scen5-bw-col" id="m3-s5-col-m-ibw">
+                          <div class="scen5-bw-col" id="m4-s5-col-m-ibw">
                             <div class="scen5-bw-col-title">
                               <span>IBW</span>
-                              <span class="bw-val-sub" id="m3-s5-val-m-ibw-bw">-</span>
+                              <span class="bw-val-sub" id="m4-s5-val-m-ibw-bw">-</span>
                             </div>
                             <div class="scen5-calc-row-item">
                               <span>Vd:</span>
-                              <span class="scen5-calc-val-placeholder" id="m3-s5-vd-m-ibw">-</span>
+                              <span class="scen5-calc-val-placeholder" id="m4-s5-vd-m-ibw">-</span>
                             </div>
                             <div class="scen5-calc-row-item">
                               <span>จำนวนวันที่ต้องหยุดยา:</span>
-                              <span class="scen5-calc-val-placeholder" id="m3-s5-offday-m-ibw">-</span>
+                              <span class="scen5-calc-val-placeholder" id="m4-s5-offday-m-ibw">-</span>
                             </div>
                           </div>
 
@@ -1260,36 +1260,36 @@ window.M3_PheCap = {
                         <div class="scen5-sub-bw-split">
                           
                           <!-- Female: real BW -->
-                          <div class="scen5-bw-col" id="m3-s5-col-f-real">
+                          <div class="scen5-bw-col" id="m4-s5-col-f-real">
                             <div class="scen5-bw-col-title">
                               <span>real BW</span>
-                              <span class="bw-val-sub" id="m3-s5-val-f-real-bw">-</span>
+                              <span class="bw-val-sub" id="m4-s5-val-f-real-bw">-</span>
                             </div>
                             <div class="scen5-calc-row-item">
                               <span>Vd:</span>
-                              <span class="scen5-calc-val-placeholder" id="m3-s5-vd-f-real">-</span>
+                              <span class="scen5-calc-val-placeholder" id="m4-s5-vd-f-real">-</span>
                             </div>
                             <div class="scen5-calc-row-item">
                               <span>จำนวนวันที่ต้องหยุดยา:</span>
-                              <span class="scen5-calc-val-placeholder" id="m3-s5-offday-f-real">-</span>
+                              <span class="scen5-calc-val-placeholder" id="m4-s5-offday-f-real">-</span>
                             </div>
                           </div>
 
                           <div class="dashed-vertical-line"></div>
 
                           <!-- Female: IBW -->
-                          <div class="scen5-bw-col" id="m3-s5-col-f-ibw">
+                          <div class="scen5-bw-col" id="m4-s5-col-f-ibw">
                             <div class="scen5-bw-col-title">
                               <span>IBW</span>
-                              <span class="bw-val-sub" id="m3-s5-val-f-ibw-bw">-</span>
+                              <span class="bw-val-sub" id="m4-s5-val-f-ibw-bw">-</span>
                             </div>
                             <div class="scen5-calc-row-item">
                               <span>Vd:</span>
-                              <span class="scen5-calc-val-placeholder" id="m3-s5-vd-f-ibw">-</span>
+                              <span class="scen5-calc-val-placeholder" id="m4-s5-vd-f-ibw">-</span>
                             </div>
                             <div class="scen5-calc-row-item">
                               <span>จำนวนวันที่ต้องหยุดยา:</span>
-                              <span class="scen5-calc-val-placeholder" id="m3-s5-offday-f-ibw">-</span>
+                              <span class="scen5-calc-val-placeholder" id="m4-s5-offday-f-ibw">-</span>
                             </div>
                           </div>
 
@@ -1302,9 +1302,9 @@ window.M3_PheCap = {
                     <div class="scen5-dose-recommend-card">
                       <span class="scen5-dose-label">
                         <span>Dose ที่ควรได้รับหลัง hold ยา</span>
-                        <span class="scen5-hold-days-tag" id="m3-s5-hold-days-tag"></span>
+                        <span class="scen5-hold-days-tag" id="m4-s5-hold-days-tag"></span>
                       </span>
-                      <div class="scen5-dose-val-box" id="m3-s5-rec-dose">-</div>
+                      <div class="scen5-dose-val-box" id="m4-s5-rec-dose">-</div>
                     </div>
 
                   </div>
@@ -1324,10 +1324,10 @@ window.M3_PheCap = {
 
   bindEvents: function() {
     // 1. Clear ปุ่มฝั่งซ้าย (เคลียร์เฉพาะ BW & Ht ในกรอบตัวเอง)
-    const btnClearLeft = document.getElementById('m3-btn-clear-left');
+    const btnClearLeft = document.getElementById('m4-btn-clear-left');
     if (btnClearLeft) {
       btnClearLeft.addEventListener('click', () => {
-        ['m3-bw', 'm3-ht'].forEach(id => {
+        ['m4-bw', 'm4-ht'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.value = '';
         });
@@ -1338,13 +1338,13 @@ window.M3_PheCap = {
 
     // 2. Clear ปุ่มประจำ Scenario 1 - 5
     document.getElementById('btn-clear-s1')?.addEventListener('click', () => {
-      const el = document.getElementById('m3-dose');
+      const el = document.getElementById('m4-dose');
       if (el) el.value = '';
       this.calculateScenario1();
     });
 
     document.getElementById('btn-clear-s2')?.addEventListener('click', () => {
-      ['m3-s2-dose', 'm3-s2-css', 'm3-s2-pdose'].forEach(id => {
+      ['m4-s2-dose', 'm4-s2-css', 'm4-s2-pdose'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = '';
       });
@@ -1352,7 +1352,7 @@ window.M3_PheCap = {
     });
 
     document.getElementById('btn-clear-s3')?.addEventListener('click', () => {
-      ['m3-s3-css', 'm3-s3-alb', 'm3-s3-crcl'].forEach(id => {
+      ['m4-s3-css', 'm4-s3-alb', 'm4-s3-crcl'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = '';
       });
@@ -1360,7 +1360,7 @@ window.M3_PheCap = {
     });
 
     document.getElementById('btn-clear-s4')?.addEventListener('click', () => {
-      ['m3-s4-css', 'm3-s4-vpa'].forEach(id => {
+      ['m4-s4-css', 'm4-s4-vpa'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = '';
       });
@@ -1368,7 +1368,7 @@ window.M3_PheCap = {
     });
 
     document.getElementById('btn-clear-s5')?.addEventListener('click', () => {
-      ['m3-s5-dose', 'm3-s5-c1', 'm3-s5-c2'].forEach(id => {
+      ['m4-s5-dose', 'm4-s5-c1', 'm4-s5-c2'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = '';
       });
@@ -1376,7 +1376,7 @@ window.M3_PheCap = {
     });
 
     // Input Listeners Acc 1
-    ['m3-bw', 'm3-ht', 'm3-dose'].forEach(id => {
+    ['m4-bw', 'm4-ht', 'm4-dose'].forEach(id => {
       document.getElementById(id)?.addEventListener('input', () => {
         this.calculateScenario1();
         this.calculateScenario5();
@@ -1384,95 +1384,95 @@ window.M3_PheCap = {
     });
 
     // Steppers BW / Ht
-    document.getElementById('m3-bw-dec')?.addEventListener('click', () => this.stepInput('m3-bw', -1, 0, 300, 3, () => { this.calculateScenario1(); this.calculateScenario5(); }));
-    document.getElementById('m3-bw-inc')?.addEventListener('click', () => this.stepInput('m3-bw', 1, 0, 300, 3, () => { this.calculateScenario1(); this.calculateScenario5(); }));
+    document.getElementById('m4-bw-dec')?.addEventListener('click', () => this.stepInput('m4-bw', -1, 0, 300, 3, () => { this.calculateScenario1(); this.calculateScenario5(); }));
+    document.getElementById('m4-bw-inc')?.addEventListener('click', () => this.stepInput('m4-bw', 1, 0, 300, 3, () => { this.calculateScenario1(); this.calculateScenario5(); }));
 
-    document.getElementById('m3-ht-dec')?.addEventListener('click', () => this.stepInput('m3-ht', -1, 0, 250, 2, () => { this.calculateScenario1(); this.calculateScenario5(); }));
-    document.getElementById('m3-ht-inc')?.addEventListener('click', () => this.stepInput('m3-ht', 1, 0, 250, 2, () => { this.calculateScenario1(); this.calculateScenario5(); }));
+    document.getElementById('m4-ht-dec')?.addEventListener('click', () => this.stepInput('m4-ht', -1, 0, 250, 2, () => { this.calculateScenario1(); this.calculateScenario5(); }));
+    document.getElementById('m4-ht-inc')?.addEventListener('click', () => this.stepInput('m4-ht', 1, 0, 250, 2, () => { this.calculateScenario1(); this.calculateScenario5(); }));
 
-    // Stepper Dose Acc 1 (+- 100)
-    document.getElementById('m3-dose-dec')?.addEventListener('click', () => this.stepDoseInput('m3-dose', -100));
-    document.getElementById('m3-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m3-dose', 100));
+    // Stepper Dose Acc 1 (+- 50)
+    document.getElementById('m4-dose-dec')?.addEventListener('click', () => this.stepDoseInput('m4-dose', -50));
+    document.getElementById('m4-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m4-dose', 50));
 
     // Blur formatters Acc 1
-    this.formatInputOnBlur('m3-bw', 3, () => { this.calculateScenario1(); this.calculateScenario5(); });
-    this.formatInputOnBlur('m3-ht', 2, () => { this.calculateScenario1(); this.calculateScenario5(); });
-    this.formatDoseOnBlur('m3-dose');
+    this.formatInputOnBlur('m4-bw', 3, () => { this.calculateScenario1(); this.calculateScenario5(); });
+    this.formatInputOnBlur('m4-ht', 2, () => { this.calculateScenario1(); this.calculateScenario5(); });
+    this.formatDoseOnBlur('m4-dose');
 
     // --- ACCORDION 2 EVENTS ---
-    ['m3-s2-dose', 'm3-s2-css', 'm3-s2-pdose'].forEach(id => {
+    ['m4-s2-dose', 'm4-s2-css', 'm4-s2-pdose'].forEach(id => {
       document.getElementById(id)?.addEventListener('input', () => this.calculateScenario2());
     });
 
-    document.getElementById('m3-s2-dose-dec')?.addEventListener('click', () => this.stepDoseInput('m3-s2-dose', -100, () => this.calculateScenario2()));
-    document.getElementById('m3-s2-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m3-s2-dose', 100, () => this.calculateScenario2()));
+    document.getElementById('m4-s2-dose-dec')?.addEventListener('click', () => this.stepDoseInput('m4-s2-dose', -50, () => this.calculateScenario2()));
+    document.getElementById('m4-s2-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m4-s2-dose', 50, () => this.calculateScenario2()));
 
-    document.getElementById('m3-s2-css-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s2-css', -0.1, 0, 100, 3, () => this.calculateScenario2()));
-    document.getElementById('m3-s2-css-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s2-css', 0.1, 0, 100, 3, () => this.calculateScenario2()));
+    document.getElementById('m4-s2-css-dec')?.addEventListener('click', () => this.stepFloatInput('m4-s2-css', -0.1, 0, 100, 3, () => this.calculateScenario2()));
+    document.getElementById('m4-s2-css-inc')?.addEventListener('click', () => this.stepFloatInput('m4-s2-css', 0.1, 0, 100, 3, () => this.calculateScenario2()));
 
-    document.getElementById('m3-s2-pdose-dec')?.addEventListener('click', () => this.stepDoseInput('m3-s2-pdose', -100, () => this.calculateScenario2()));
-    document.getElementById('m3-s2-pdose-inc')?.addEventListener('click', () => this.stepDoseInput('m3-s2-pdose', 100, () => this.calculateScenario2()));
+    document.getElementById('m4-s2-pdose-dec')?.addEventListener('click', () => this.stepDoseInput('m4-s2-pdose', -50, () => this.calculateScenario2()));
+    document.getElementById('m4-s2-pdose-inc')?.addEventListener('click', () => this.stepDoseInput('m4-s2-pdose', 50, () => this.calculateScenario2()));
 
-    this.formatDoseOnBlur('m3-s2-dose', () => this.calculateScenario2());
-    this.formatFloatOnBlur('m3-s2-css', 3, () => this.calculateScenario2());
-    this.formatDoseOnBlur('m3-s2-pdose', () => this.calculateScenario2());
+    this.formatDoseOnBlur('m4-s2-dose', () => this.calculateScenario2());
+    this.formatFloatOnBlur('m4-s2-css', 3, () => this.calculateScenario2());
+    this.formatDoseOnBlur('m4-s2-pdose', () => this.calculateScenario2());
 
     // --- ACCORDION 3 EVENTS ---
-    ['m3-s3-css', 'm3-s3-alb', 'm3-s3-crcl'].forEach(id => {
+    ['m4-s3-css', 'm4-s3-alb', 'm4-s3-crcl'].forEach(id => {
       document.getElementById(id)?.addEventListener('input', () => this.calculateScenario3());
     });
 
-    document.getElementById('m3-s3-css-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s3-css', -0.1, 0, 100, 3, () => this.calculateScenario3()));
-    document.getElementById('m3-s3-css-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s3-css', 0.1, 0, 100, 3, () => this.calculateScenario3()));
+    document.getElementById('m4-s3-css-dec')?.addEventListener('click', () => this.stepFloatInput('m4-s3-css', -0.1, 0, 100, 3, () => this.calculateScenario3()));
+    document.getElementById('m4-s3-css-inc')?.addEventListener('click', () => this.stepFloatInput('m4-s3-css', 0.1, 0, 100, 3, () => this.calculateScenario3()));
 
-    document.getElementById('m3-s3-alb-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s3-alb', -0.1, 0, 10, 2, () => this.calculateScenario3()));
-    document.getElementById('m3-s3-alb-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s3-alb', 0.1, 0, 10, 2, () => this.calculateScenario3()));
+    document.getElementById('m4-s3-alb-dec')?.addEventListener('click', () => this.stepFloatInput('m4-s3-alb', -0.1, 0, 10, 2, () => this.calculateScenario3()));
+    document.getElementById('m4-s3-alb-inc')?.addEventListener('click', () => this.stepFloatInput('m4-s3-alb', 0.1, 0, 10, 2, () => this.calculateScenario3()));
 
-    document.getElementById('m3-s3-crcl-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s3-crcl', -1, 0, 300, 2, () => this.calculateScenario3()));
-    document.getElementById('m3-s3-crcl-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s3-crcl', 1, 0, 300, 2, () => this.calculateScenario3()));
+    document.getElementById('m4-s3-crcl-dec')?.addEventListener('click', () => this.stepFloatInput('m4-s3-crcl', -1, 0, 300, 2, () => this.calculateScenario3()));
+    document.getElementById('m4-s3-crcl-inc')?.addEventListener('click', () => this.stepFloatInput('m4-s3-crcl', 1, 0, 300, 2, () => this.calculateScenario3()));
 
-    this.formatFloatOnBlur('m3-s3-css', 3, () => this.calculateScenario3());
-    this.formatFloatOnBlur('m3-s3-alb', 2, () => this.calculateScenario3());
-    this.formatFloatOnBlur('m3-s3-crcl', 2, () => this.calculateScenario3());
+    this.formatFloatOnBlur('m4-s3-css', 3, () => this.calculateScenario3());
+    this.formatFloatOnBlur('m4-s3-alb', 2, () => this.calculateScenario3());
+    this.formatFloatOnBlur('m4-s3-crcl', 2, () => this.calculateScenario3());
 
     // --- ACCORDION 4 EVENTS ---
-    ['m3-s4-css', 'm3-s4-vpa'].forEach(id => {
+    ['m4-s4-css', 'm4-s4-vpa'].forEach(id => {
       document.getElementById(id)?.addEventListener('input', () => this.calculateScenario4());
     });
 
-    document.getElementById('m3-s4-css-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s4-css', -0.1, 0, 100, 3, () => this.calculateScenario4()));
-    document.getElementById('m3-s4-css-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s4-css', 0.1, 0, 100, 3, () => this.calculateScenario4()));
+    document.getElementById('m4-s4-css-dec')?.addEventListener('click', () => this.stepFloatInput('m4-s4-css', -0.1, 0, 100, 3, () => this.calculateScenario4()));
+    document.getElementById('m4-s4-css-inc')?.addEventListener('click', () => this.stepFloatInput('m4-s4-css', 0.1, 0, 100, 3, () => this.calculateScenario4()));
 
-    document.getElementById('m3-s4-vpa-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s4-vpa', -0.1, 0, 300, 3, () => this.calculateScenario4()));
-    document.getElementById('m3-s4-vpa-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s4-vpa', 0.1, 0, 300, 3, () => this.calculateScenario4()));
+    document.getElementById('m4-s4-vpa-dec')?.addEventListener('click', () => this.stepFloatInput('m4-s4-vpa', -0.1, 0, 300, 3, () => this.calculateScenario4()));
+    document.getElementById('m4-s4-vpa-inc')?.addEventListener('click', () => this.stepFloatInput('m4-s4-vpa', 0.1, 0, 300, 3, () => this.calculateScenario4()));
 
-    this.formatFloatOnBlur('m3-s4-css', 3, () => this.calculateScenario4());
-    this.formatFloatOnBlur('m3-s4-vpa', 3, () => this.calculateScenario4());
+    this.formatFloatOnBlur('m4-s4-css', 3, () => this.calculateScenario4());
+    this.formatFloatOnBlur('m4-s4-vpa', 3, () => this.calculateScenario4());
 
     // --- ACCORDION 5 EVENTS ---
-    ['m3-s5-dose', 'm3-s5-c1', 'm3-s5-c2'].forEach(id => {
+    ['m4-s5-dose', 'm4-s5-c1', 'm4-s5-c2'].forEach(id => {
       document.getElementById(id)?.addEventListener('input', () => this.calculateScenario5());
     });
 
-    document.getElementById('m3-s5-dose-dec')?.addEventListener('click', () => this.stepDoseInput('m3-s5-dose', -100, () => this.calculateScenario5()));
-    document.getElementById('m3-s5-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m3-s5-dose', 100, () => this.calculateScenario5()));
+    document.getElementById('m4-s5-dose-dec')?.addEventListener('click', () => this.stepDoseInput('m4-s5-dose', -50, () => this.calculateScenario5()));
+    document.getElementById('m4-s5-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m4-s5-dose', 50, () => this.calculateScenario5()));
 
-    document.getElementById('m3-s5-c1-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s5-c1', -0.1, 0, 200, 3, () => this.calculateScenario5()));
-    document.getElementById('m3-s5-c1-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s5-c1', 0.1, 0, 200, 3, () => this.calculateScenario5()));
+    document.getElementById('m4-s5-c1-dec')?.addEventListener('click', () => this.stepFloatInput('m4-s5-c1', -0.1, 0, 200, 3, () => this.calculateScenario5()));
+    document.getElementById('m4-s5-c1-inc')?.addEventListener('click', () => this.stepFloatInput('m4-s5-c1', 0.1, 0, 200, 3, () => this.calculateScenario5()));
 
-    document.getElementById('m3-s5-c2-dec')?.addEventListener('click', () => this.stepFloatInput('m3-s5-c2', -0.1, 0, 200, 3, () => this.calculateScenario5()));
-    document.getElementById('m3-s5-c2-inc')?.addEventListener('click', () => this.stepFloatInput('m3-s5-c2', 0.1, 0, 200, 3, () => this.calculateScenario5()));
+    document.getElementById('m4-s5-c2-dec')?.addEventListener('click', () => this.stepFloatInput('m4-s5-c2', -0.1, 0, 200, 3, () => this.calculateScenario5()));
+    document.getElementById('m4-s5-c2-inc')?.addEventListener('click', () => this.stepFloatInput('m4-s5-c2', 0.1, 0, 200, 3, () => this.calculateScenario5()));
 
-    this.formatDoseOnBlur('m3-s5-dose', () => this.calculateScenario5());
-    this.formatFloatOnBlur('m3-s5-c1', 3, () => this.calculateScenario5());
-    this.formatFloatOnBlur('m3-s5-c2', 3, () => this.calculateScenario5());
+    this.formatDoseOnBlur('m4-s5-dose', () => this.calculateScenario5());
+    this.formatFloatOnBlur('m4-s5-c1', 3, () => this.calculateScenario5());
+    this.formatFloatOnBlur('m4-s5-c2', 3, () => this.calculateScenario5());
 
     // Show/Hide All Accordions
-    document.getElementById('m3-btn-show-all')?.addEventListener('click', () => this.toggleAllAccordions(true));
-    document.getElementById('m3-btn-hide-all')?.addEventListener('click', () => this.toggleAllAccordions(false));
+    document.getElementById('m4-btn-show-all')?.addEventListener('click', () => this.toggleAllAccordions(true));
+    document.getElementById('m4-btn-hide-all')?.addEventListener('click', () => this.toggleAllAccordions(false));
 
     // Accordions Toggle Event Listener
-    const accHeaders = document.querySelectorAll('#m3-accordion-container .accordion-header');
+    const accHeaders = document.querySelectorAll('#m4-accordion-container .accordion-header');
     accHeaders.forEach(header => {
       header.addEventListener('click', (e) => {
         if (e.target.classList.contains('btn-clear-mini')) return;
@@ -1483,9 +1483,9 @@ window.M3_PheCap = {
   },
 
   calculateScenario1: function() {
-    let bw = parseFloat(document.getElementById('m3-bw')?.value) || 0;
-    let ht = parseFloat(document.getElementById('m3-ht')?.value) || 0;
-    let dose = this.parseFormattedNumber(document.getElementById('m3-dose')?.value);
+    let bw = parseFloat(document.getElementById('m4-bw')?.value) || 0;
+    let ht = parseFloat(document.getElementById('m4-ht')?.value) || 0;
+    let dose = this.parseFormattedNumber(document.getElementById('m4-dose')?.value);
 
     ['col-m-real', 'col-m-ibw', 'col-f-real', 'col-f-ibw'].forEach(id => {
       document.getElementById(id)?.classList.remove('highlight-lower');
@@ -1527,39 +1527,39 @@ window.M3_PheCap = {
   },
 
   calculateScenario2: function() {
-    let dose = this.parseFormattedNumber(document.getElementById('m3-s2-dose')?.value);
-    let css = parseFloat(document.getElementById('m3-s2-css')?.value) || 0;
-    let pdose = this.parseFormattedNumber(document.getElementById('m3-s2-pdose')?.value);
+    let dose = this.parseFormattedNumber(document.getElementById('m4-s2-dose')?.value);
+    let css = parseFloat(document.getElementById('m4-s2-css')?.value) || 0;
+    let pdose = this.parseFormattedNumber(document.getElementById('m4-s2-pdose')?.value);
 
     if (dose > 0 && css > 0) {
-      let vmax = ((0.92 * 1 * dose) * (4 + css)) / css;
-      this.setText('m3-s2-vmax', this.formatNumberWithComma(vmax, 3));
+      let vmax = ((1 * 1 * dose) * (4 + css)) / css;
+      this.setText('m4-s2-vmax', this.formatNumberWithComma(vmax, 3));
 
       if (pdose > 0) {
-        let denom = vmax - (0.92 * 1 * pdose);
+        let denom = vmax - (1 * 1 * pdose);
         if (denom <= 0) {
-          this.setText('m3-s2-cpred', 'Infinity');
+          this.setText('m4-s2-cpred', 'Infinity');
         } else {
-          let cpred = (4 * (0.92 * 1 * pdose)) / denom;
-          this.setText('m3-s2-cpred', cpred.toFixed(3));
+          let cpred = (4 * (1 * 1 * pdose)) / denom;
+          this.setText('m4-s2-cpred', cpred.toFixed(3));
         }
       } else {
-        this.setText('m3-s2-cpred', '-');
+        this.setText('m4-s2-cpred', '-');
       }
     } else {
-      this.setText('m3-s2-vmax', '-');
-      this.setText('m3-s2-cpred', '-');
+      this.setText('m4-s2-vmax', '-');
+      this.setText('m4-s2-cpred', '-');
     }
   },
 
   calculateScenario3: function() {
-    let css = parseFloat(document.getElementById('m3-s3-css')?.value) || 0;
-    let alb = parseFloat(document.getElementById('m3-s3-alb')?.value) || 0;
-    let crclInput = document.getElementById('m3-s3-crcl')?.value;
+    let css = parseFloat(document.getElementById('m4-s3-css')?.value) || 0;
+    let alb = parseFloat(document.getElementById('m4-s3-alb')?.value) || 0;
+    let crclInput = document.getElementById('m4-s3-crcl')?.value;
     let crcl = parseFloat(crclInput) || 0;
     let hasCrCl = crclInput !== '' && !isNaN(crcl);
 
-    const noticeBox = document.getElementById('m3-s3-notice');
+    const noticeBox = document.getElementById('m4-s3-notice');
 
     if (hasCrCl && crcl < 10) {
       if (noticeBox) noticeBox.style.display = 'flex';
@@ -1570,7 +1570,7 @@ window.M3_PheCap = {
     if (css > 0 && alb > 0) {
       let denom = (0.9 * (alb / 4.4)) + 0.1;
       if (denom <= 0) {
-        this.setText('m3-s3-cpred', 'Infinity');
+        this.setText('m4-s3-cpred', 'Infinity');
         return;
       }
 
@@ -1580,44 +1580,44 @@ window.M3_PheCap = {
         cpred = cpred / 0.44;
       }
 
-      this.setText('m3-s3-cpred', cpred.toFixed(3));
+      this.setText('m4-s3-cpred', cpred.toFixed(3));
     } else {
-      this.setText('m3-s3-cpred', '-');
+      this.setText('m4-s3-cpred', '-');
     }
   },
 
   calculateScenario4: function() {
-    let css = parseFloat(document.getElementById('m3-s4-css')?.value) || 0;
-    let vpa = parseFloat(document.getElementById('m3-s4-vpa')?.value) || 0;
+    let css = parseFloat(document.getElementById('m4-s4-css')?.value) || 0;
+    let vpa = parseFloat(document.getElementById('m4-s4-vpa')?.value) || 0;
 
     if (css > 0 && vpa > 0) {
       let cpred = ((0.095 + (0.001 * vpa)) * css) / 0.1;
-      this.setText('m3-s4-cpred', cpred.toFixed(3));
+      this.setText('m4-s4-cpred', cpred.toFixed(3));
     } else {
-      this.setText('m3-s4-cpred', '-');
+      this.setText('m4-s4-cpred', '-');
     }
   },
 
   calculateScenario5: function() {
-    let dose = this.parseFormattedNumber(document.getElementById('m3-s5-dose')?.value);
-    let c1 = parseFloat(document.getElementById('m3-s5-c1')?.value) || 0;
-    let c2 = parseFloat(document.getElementById('m3-s5-c2')?.value) || 0;
+    let dose = this.parseFormattedNumber(document.getElementById('m4-s5-dose')?.value);
+    let c1 = parseFloat(document.getElementById('m4-s5-c1')?.value) || 0;
+    let c2 = parseFloat(document.getElementById('m4-s5-c2')?.value) || 0;
 
-    let realBW = parseFloat(document.getElementById('m3-bw')?.value) || 0;
-    let ht = parseFloat(document.getElementById('m3-ht')?.value) || 0;
+    let realBW = parseFloat(document.getElementById('m4-bw')?.value) || 0;
+    let ht = parseFloat(document.getElementById('m4-ht')?.value) || 0;
 
     // Reset Highlights สำหรับ Scenario 5
-    ['m3-s5-col-m-real', 'm3-s5-col-m-ibw', 'm3-s5-col-f-real', 'm3-s5-col-f-ibw'].forEach(id => {
+    ['m4-s5-col-m-real', 'm4-s5-col-m-ibw', 'm4-s5-col-f-real', 'm4-s5-col-f-ibw'].forEach(id => {
       document.getElementById(id)?.classList.remove('highlight-lower');
     });
 
     // 1. Vmax Calculation
     let vmax = 0;
     if (dose > 0 && c1 > 0) {
-      vmax = ((0.92 * 1 * dose) * (4 + c1)) / c1;
-      this.setText('m3-s5-vmax', this.formatNumberWithComma(vmax, 3));
+      vmax = ((1 * 1 * dose) * (4 + c1)) / c1;
+      this.setText('m4-s5-vmax', this.formatNumberWithComma(vmax, 3));
     } else {
-      this.setText('m3-s5-vmax', '-');
+      this.setText('m4-s5-vmax', '-');
     }
 
     // 2. IBW (ชาย / หญิง)
@@ -1630,20 +1630,20 @@ window.M3_PheCap = {
       if (ibwFemale < 0) ibwFemale = 0;
     }
 
-    this.setText('m3-s5-val-m-real-bw', realBW > 0 ? `${realBW} kg` : '-');
-    this.setText('m3-s5-val-m-ibw-bw', ibwMale > 0 ? `${ibwMale.toFixed(2)} kg` : '-');
-    this.setText('m3-s5-val-f-real-bw', realBW > 0 ? `${realBW} kg` : '-');
-    this.setText('m3-s5-val-f-ibw-bw', ibwFemale > 0 ? `${ibwFemale.toFixed(2)} kg` : '-');
+    this.setText('m4-s5-val-m-real-bw', realBW > 0 ? `${realBW} kg` : '-');
+    this.setText('m4-s5-val-m-ibw-bw', ibwMale > 0 ? `${ibwMale.toFixed(2)} kg` : '-');
+    this.setText('m4-s5-val-f-real-bw', realBW > 0 ? `${realBW} kg` : '-');
+    this.setText('m4-s5-val-f-ibw-bw', ibwFemale > 0 ? `${ibwFemale.toFixed(2)} kg` : '-');
 
     // 3. Vd Calculations
     let vdReal = realBW > 0 ? 0.65 * realBW : 0;
     let vdIbwM = (ibwMale > 0 && realBW > 0) ? 0.65 * (ibwMale + 1.33 * (realBW - ibwMale)) : 0;
     let vdIbwF = (ibwFemale > 0 && realBW > 0) ? 0.65 * (ibwFemale + 1.33 * (realBW - ibwFemale)) : 0;
 
-    this.setText('m3-s5-vd-m-real', vdReal > 0 ? vdReal.toFixed(3) : '-');
-    this.setText('m3-s5-vd-m-ibw', vdIbwM > 0 ? vdIbwM.toFixed(3) : '-');
-    this.setText('m3-s5-vd-f-real', vdReal > 0 ? vdReal.toFixed(3) : '-');
-    this.setText('m3-s5-vd-f-ibw', vdIbwF > 0 ? vdIbwF.toFixed(3) : '-');
+    this.setText('m4-s5-vd-m-real', vdReal > 0 ? vdReal.toFixed(3) : '-');
+    this.setText('m4-s5-vd-m-ibw', vdIbwM > 0 ? vdIbwM.toFixed(3) : '-');
+    this.setText('m4-s5-vd-f-real', vdReal > 0 ? vdReal.toFixed(3) : '-');
+    this.setText('m4-s5-vd-f-ibw', vdIbwF > 0 ? vdIbwF.toFixed(3) : '-');
 
     // 4. จำนวนวันที่ต้องหยุดยา (รองรับ C2 >= C1)
     let holdReal = 0;
@@ -1656,10 +1656,10 @@ window.M3_PheCap = {
         holdIbwM = 0;
         holdIbwF = 0;
 
-        this.setText('m3-s5-offday-m-real', '0');
-        this.setText('m3-s5-offday-m-ibw', '0');
-        this.setText('m3-s5-offday-f-real', '0');
-        this.setText('m3-s5-offday-f-ibw', '0');
+        this.setText('m4-s5-offday-m-real', '0');
+        this.setText('m4-s5-offday-m-ibw', '0');
+        this.setText('m4-s5-offday-f-real', '0');
+        this.setText('m4-s5-offday-f-ibw', '0');
       } else {
         let numFactor = (4 * Math.log(c1 / c2)) + (c1 - c2);
 
@@ -1667,19 +1667,19 @@ window.M3_PheCap = {
         holdIbwM = vdIbwM > 0 ? numFactor / (vmax / vdIbwM) : 0;
         holdIbwF = vdIbwF > 0 ? numFactor / (vmax / vdIbwF) : 0;
 
-        this.setText('m3-s5-offday-m-real', holdReal > 0 ? holdReal.toFixed(3) : '-');
-        this.setText('m3-s5-offday-m-ibw', holdIbwM > 0 ? holdIbwM.toFixed(3) : '-');
-        this.setText('m3-s5-offday-f-real', holdReal > 0 ? holdReal.toFixed(3) : '-');
-        this.setText('m3-s5-offday-f-ibw', holdIbwF > 0 ? holdIbwF.toFixed(3) : '-');
+        this.setText('m4-s5-offday-m-real', holdReal > 0 ? holdReal.toFixed(3) : '-');
+        this.setText('m4-s5-offday-m-ibw', holdIbwM > 0 ? holdIbwM.toFixed(3) : '-');
+        this.setText('m4-s5-offday-f-real', holdReal > 0 ? holdReal.toFixed(3) : '-');
+        this.setText('m4-s5-offday-f-ibw', holdIbwF > 0 ? holdIbwF.toFixed(3) : '-');
       }
     } else {
-      this.setText('m3-s5-offday-m-real', '-');
-      this.setText('m3-s5-offday-m-ibw', '-');
-      this.setText('m3-s5-offday-f-real', '-');
-      this.setText('m3-s5-offday-f-ibw', '-');
+      this.setText('m4-s5-offday-m-real', '-');
+      this.setText('m4-s5-offday-m-ibw', '-');
+      this.setText('m4-s5-offday-f-real', '-');
+      this.setText('m4-s5-offday-f-ibw', '-');
     }
 
-    // 5. Dose ที่ควรได้รับหลัง hold ยา (ปรับปรุงการแสดงผลให้ดูโปรขึ้นเมื่อ hold 0 วัน)
+    // 5. Dose ที่ควรได้รับหลัง hold ยา
     let targetDaysValue = 0;
     if (realBW > 0) {
       if (realBW < 60) {
@@ -1693,35 +1693,35 @@ window.M3_PheCap = {
 
     if (vmax > 0 && c1 > 0 && c2 > 0) {
       if (roundedDays > 0) {
-        this.setText('m3-s5-hold-days-tag', `[${roundedDays}] วัน`);
+        this.setText('m4-s5-hold-days-tag', `[${roundedDays}] วัน`);
       } else {
-        this.setText('m3-s5-hold-days-tag', `(ไม่ต้อง hold ยา)`);
+        this.setText('m4-s5-hold-days-tag', `(ไม่ต้อง hold ยา)`);
       }
     } else {
-      this.setText('m3-s5-hold-days-tag', '');
+      this.setText('m4-s5-hold-days-tag', '');
     }
 
     if (vmax > 0 && c2 > 0) {
-      let recDose = (vmax * c2) / ((4 + c2) * 0.92);
-      this.setText('m3-s5-rec-dose', this.formatNumberWithComma(recDose, 2) + ' mg');
+      let recDose = (vmax * c2) / ((4 + c2) * 1);
+      this.setText('m4-s5-rec-dose', this.formatNumberWithComma(recDose, 2) + ' mg');
     } else {
-      this.setText('m3-s5-rec-dose', '- mg');
+      this.setText('m4-s5-rec-dose', '- mg');
     }
 
-    // 6. Highlight Logic (คอลัมน์ที่อิงกับค่าน้ำหนักที่น้อยกว่า)
+    // 6. Highlight Logic
     if (realBW > 0 && ht > 0) {
       // เพศชาย
       if (realBW < ibwMale) {
-        document.getElementById('m3-s5-col-m-real')?.classList.add('highlight-lower');
+        document.getElementById('m4-s5-col-m-real')?.classList.add('highlight-lower');
       } else if (ibwMale < realBW) {
-        document.getElementById('m3-s5-col-m-ibw')?.classList.add('highlight-lower');
+        document.getElementById('m4-s5-col-m-ibw')?.classList.add('highlight-lower');
       }
 
       // เพศหญิง
       if (realBW < ibwFemale) {
-        document.getElementById('m3-s5-col-f-real')?.classList.add('highlight-lower');
+        document.getElementById('m4-s5-col-f-real')?.classList.add('highlight-lower');
       } else if (ibwFemale < realBW) {
-        document.getElementById('m3-s5-col-f-ibw')?.classList.add('highlight-lower');
+        document.getElementById('m4-s5-col-f-ibw')?.classList.add('highlight-lower');
       }
     }
   },
@@ -1734,7 +1734,7 @@ window.M3_PheCap = {
       if (elVmax) elVmax.innerText = '-';
       if (elCpred) {
         elCpred.innerHTML = '-';
-        elCpred.style.color = '#2563eb'; // Reset สีกลับเป็นน้ำเงินปกติ
+        elCpred.style.color = '#2563eb';
       }
       return;
     }
@@ -1745,22 +1745,21 @@ window.M3_PheCap = {
     if (dose > 0) {
       if (dose >= vmax) {
         if (elCpred) {
-          // จัด N/A ไว้บรรทัดบน และ (Dose ≥ Vmax) ไว้บรรทัดล่าง แบบย่อตัวอักษรลง 20% + จัดกึ่งกลาง
           elCpred.innerHTML = '<div>N/A</div><span class="na-subtext">(Dose ≥ Vmax)</span>';
-          elCpred.style.color = '#dc2626'; // เปลี่ยนตัวหนังสือเป็นสีแดง
+          elCpred.style.color = '#dc2626';
         }
       } else {
-        let denom = vmax - (0.92 * 1 * dose);
-        let cpred = (4 * 0.92 * 1 * dose) / denom;
+        let denom = vmax - (1 * 1 * dose);
+        let cpred = (4 * 1 * 1 * dose) / denom;
         if (elCpred) {
           elCpred.innerText = cpred.toFixed(3);
-          elCpred.style.color = '#2563eb'; // สีน้ำเงินปกติ
+          elCpred.style.color = '#2563eb';
         }
       }
     } else {
       if (elCpred) {
         elCpred.innerHTML = '-';
-        elCpred.style.color = '#2563eb'; // สีน้ำเงินปกติ
+        elCpred.style.color = '#2563eb';
       }
     }
   },
@@ -1872,7 +1871,7 @@ window.M3_PheCap = {
   },
 
   toggleAllAccordions: function(show) {
-    const items = document.querySelectorAll('#m3-accordion-container .accordion-item');
+    const items = document.querySelectorAll('#m4-accordion-container .accordion-item');
     items.forEach(item => {
       if (show) {
         item.classList.add('active');
