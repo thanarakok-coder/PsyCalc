@@ -353,12 +353,12 @@ window.M3_PheCap = {
 
         .gender-box-male {
           background-color: #f0f9ff;
-          padding: 8px;
+          padding: 8px 4px;
           min-width: 0;
         }
         .gender-box-female {
           background-color: #fdf2f8;
-          padding: 8px;
+          padding: 8px 4px;
           min-width: 0;
         }
 
@@ -384,7 +384,7 @@ window.M3_PheCap = {
         .sub-bw-split {
           display: grid;
           grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
-          gap: 4px;
+          gap: 2px;
         }
         .dashed-vertical-line {
           border-left: 1px dashed #cbd5e1;
@@ -394,7 +394,7 @@ window.M3_PheCap = {
           display: flex;
           flex-direction: column;
           gap: 5px;
-          padding: 6px 4px;
+          padding: 6px 3px;
           border-radius: 6px;
           transition: all 0.2s ease;
           border: 1.5px solid transparent;
@@ -432,7 +432,7 @@ window.M3_PheCap = {
           font-weight: 600;
           color: #1e293b;
           background: rgba(255, 255, 255, 0.9);
-          padding: 4px 6px;
+          padding: 4px 4px;
           border-radius: 4px;
           border: 1px dashed #cbd5e1;
           gap: 2px;
@@ -444,15 +444,22 @@ window.M3_PheCap = {
         .calc-val-placeholder {
           font-weight: 800;
           color: #2563eb;
-          text-align: right;
+          text-align: center;
           word-break: break-all;
           line-height: 1.1;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
         }
         .na-subtext {
-          font-size: 0.7rem;
+          font-size: 0.56rem;
           font-weight: 700;
           display: block;
           white-space: nowrap;
+          text-align: center;
+          margin-top: 1px;
         }
 
         /* --- STYLES SCENARIO 2, 3 & 4 --- */
@@ -1738,8 +1745,8 @@ window.M3_PheCap = {
     if (dose > 0) {
       if (dose >= vmax) {
         if (elCpred) {
-          // จัด N/A ไว้บรรทัดบน และ (Dose >= Vmax) ไว้บรรทัดล่าง แบบย่อตัวอักษรเล็ก
-          elCpred.innerHTML = 'N/A<span class="na-subtext">(Dose ≥ Vmax)</span>';
+          // จัด N/A ไว้บรรทัดบน และ (Dose ≥ Vmax) ไว้บรรทัดล่าง แบบย่อตัวอักษรลง 20% + จัดกึ่งกลาง
+          elCpred.innerHTML = '<div>N/A</div><span class="na-subtext">(Dose ≥ Vmax)</span>';
           elCpred.style.color = '#dc2626'; // เปลี่ยนตัวหนังสือเป็นสีแดง
         }
       } else {
