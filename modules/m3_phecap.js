@@ -274,36 +274,30 @@ window.M3_PheCap = {
         }
 
         /* --- Theme สีเฉพาะสำหรับแต่ละ Scenario --- */
-        /* Scenario 1: Emerald Theme */
         #m3-scen-1 { border-color: #a7f3d0; }
         #m3-scen-1 .accordion-header { background: #ecfdf5; color: #065f46; }
         #m3-scen-1.active { border-color: #10b981; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.12); }
         #m3-scen-1.active .accordion-header { background: #d1fae5; color: #047857; }
 
-        /* Scenario 2: Purple Theme */
         #m3-scen-2 { border-color: #ddd6fe; }
         #m3-scen-2 .accordion-header { background: #f5f3ff; color: #5b21b6; }
         #m3-scen-2.active { border-color: #8b5cf6; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.12); }
         #m3-scen-2.active .accordion-header { background: #ede9fe; color: #6d28d9; }
 
-        /* Scenario 3: Amber Theme */
         #m3-scen-3 { border-color: #fde68a; }
         #m3-scen-3 .accordion-header { background: #fffbeb; color: #92400e; }
         #m3-scen-3.active { border-color: #f59e0b; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.12); }
         #m3-scen-3.active .accordion-header { background: #fef3c7; color: #b45309; }
 
-        /* Scenario 4: Teal Theme */
         #m3-scen-4 { border-color: #99f6e4; }
         #m3-scen-4 .accordion-header { background: #f0fdf4; color: #115e59; }
         #m3-scen-4.active { border-color: #14b8a6; box-shadow: 0 2px 8px rgba(20, 184, 166, 0.12); }
         #m3-scen-4.active .accordion-header { background: #ccfbf1; color: #0f766e; }
 
-        /* Scenario 5: Indigo Theme */
         #m3-scen-5 { border-color: #c7d2fe; }
         #m3-scen-5 .accordion-header { background: #eef2ff; color: #3730a3; }
         #m3-scen-5.active { border-color: #6366f1; box-shadow: 0 2px 8px rgba(99, 102, 241, 0.12); }
         #m3-scen-5.active .accordion-header { background: #e0e7ff; color: #4338ca; }
-
 
         /* --- STYLES SCENARIO 1 --- */
         .scen1-grid-layout {
@@ -528,7 +522,6 @@ window.M3_PheCap = {
           color: #2563eb;
         }
 
-        /* Notice / Warning area below Acc3 result */
         .scen3-notice-box {
           font-size: 0.82rem;
           font-weight: 700;
@@ -542,7 +535,6 @@ window.M3_PheCap = {
           line-height: 1.35;
         }
 
-        /* Footnote Acc 3 */
         .scen3-footnote-box {
           font-size: 0.8rem;
           color: #64748b;
@@ -551,11 +543,11 @@ window.M3_PheCap = {
           border-top: 1px solid #e2e8f0;
         }
 
-        /* --- STYLES SCENARIO 5 SPECIFIC LAYOUT --- */
+        /* --- STYLES SCENARIO 5 NEW LAYOUT --- */
         .scen5-layout {
           display: grid;
-          grid-template-columns: 290px 2px minmax(0, 1fr);
-          gap: 14px;
+          grid-template-columns: 220px 2px minmax(0, 1fr);
+          gap: 12px;
           align-items: start;
           padding: 6px 0;
         }
@@ -580,10 +572,12 @@ window.M3_PheCap = {
         }
 
         .scen5-field-row {
-          display: grid;
-          grid-template-columns: 120px 1fr;
-          align-items: center;
-          gap: 6px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+        .scen5-field-row .scen-label {
+          font-size: 0.88rem;
         }
 
         .scen5-vmax-card {
@@ -597,142 +591,87 @@ window.M3_PheCap = {
           margin-top: 2px;
         }
 
-        .scen5-note-box {
-          font-size: 0.82rem;
-          font-weight: 600;
-          color: #d97706;
-          background: #fffbe3;
-          border: 1px solid #fde047;
-          border-radius: 6px;
-          padding: 8px 10px;
-          line-height: 1.4;
-          margin-top: 2px;
-        }
-
         .scen5-display-col {
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 12px;
+          min-width: 0;
         }
 
-        /* Table Structure สำหรับ Scenario 5 */
-        .scen5-table-container {
+        /* New Table Structure Scenario 5 */
+        .scen5-gender-split-container {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) 2px minmax(0, 1fr);
           border: 1.5px solid #cbd5e1;
           border-radius: 8px;
           overflow: hidden;
           background: #ffffff;
+          min-width: 0;
+        }
+        @media (max-width: 680px) {
+          .scen5-gender-split-container {
+            grid-template-columns: 1fr;
+          }
         }
 
-        .scen5-table-grid {
-          display: grid;
-          grid-template-columns: 150px 2px 1fr 1px 1fr 1px 1fr;
-          align-items: center;
-        }
-
-        .scen5-head-cell {
-          padding: 8px;
-          font-weight: 800;
-          font-size: 0.88rem;
-          color: #1e293b;
-          text-align: center;
-          background: #f1f5f9;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        /* สีคอลัมน์ ชาย (ฟ้าอ่อน) / หญิง (ชมพูอ่อน) */
-        .scen5-head-male {
-          background: #e0f2fe !important;
-          color: #0369a1 !important;
-        }
-        .scen5-head-female {
-          background: #fce7f3 !important;
-          color: #be185d !important;
-        }
-
-        .scen5-ibw-header-span {
-          grid-column: span 3;
-          background: #e2e8f0;
-          border-bottom: 1px solid #cbd5e1;
-          padding: 4px 0;
-          font-weight: 800;
-          font-size: 0.85rem;
-          color: #1e293b;
-          text-align: center;
-        }
-
-        .scen5-row-label {
-          padding: 10px 12px;
-          font-size: 0.9rem;
-          font-weight: 700;
-          color: #334155;
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
-          text-align: left;
-          white-space: nowrap;
-        }
-
-        .scen5-cell-box {
-          padding: 6px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-        }
-
-        .scen5-val-box {
-          width: 100%;
-          min-height: 38px;
-          background: #f8fafc;
-          border: 1.5px dashed #94a3b8;
-          border-radius: 6px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 800;
-          font-size: 1.05rem;
-          color: #2563eb;
-          padding: 2px 6px;
-          text-align: center;
-          transition: all 0.2s ease;
-        }
-
-        /* Highlight สีคอลัมน์ ชาย / หญิง */
-        .scen5-val-box-male {
+        .scen5-gender-box-male {
           background-color: #f0f9ff;
-          border-color: #bae6fd;
+          padding: 8px;
+          min-width: 0;
         }
-        .scen5-val-box-female {
+        .scen5-gender-box-female {
           background-color: #fdf2f8;
-          border-color: #fbcfe8;
+          padding: 8px;
+          min-width: 0;
         }
 
-        .scen5-val-box.highlight-cell {
+        .scen5-sub-bw-split {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+          gap: 4px;
+        }
+
+        .scen5-col {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          padding: 6px 4px;
+          border-radius: 6px;
+          transition: all 0.2s ease;
+          border: 1.5px solid transparent;
+          min-width: 0;
+        }
+
+        .scen5-col.highlight-lower {
           background-color: #f0fdf4 !important;
-          border: 1.5px solid #22c55e !important;
-          color: #15803d !important;
+          border-color: #22c55e !important;
           box-shadow: 0 2px 6px rgba(34, 197, 94, 0.15);
         }
 
-        .scen5-v-line {
-          background-color: #cbd5e1;
-          align-self: stretch;
-          width: 100%;
+        .scen5-calc-card {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background: rgba(255, 255, 255, 0.95);
+          padding: 4px 6px;
+          border-radius: 6px;
+          border: 1px dashed #cbd5e1;
+          min-width: 0;
         }
 
-        .scen5-v-line-dashed {
-          background-color: #e2e8f0;
-          align-self: stretch;
-          width: 100%;
+        .scen5-calc-label {
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: #475569;
+          white-space: nowrap;
         }
 
-        .scen5-h-line {
-          grid-column: span 7;
-          height: 1px;
-          background-color: #e2e8f0;
+        .scen5-calc-val {
+          font-size: 0.95rem;
+          font-weight: 800;
+          color: #2563eb;
+          word-break: break-all;
         }
 
         .scen5-dose-recommend-card {
@@ -1179,7 +1118,7 @@ window.M3_PheCap = {
               <div class="accordion-content">
                 
                 <div class="scen5-layout">
-                  <!-- ฝั่งซ้าย: Inputs (3 ช่อง) + Vmax Display + Note -->
+                  <!-- ฝั่งซ้าย: Inputs (บีบเหลือ 220px) -->
                   <div class="scen5-input-col">
                     
                     <!-- 1. ขนาดยา/วัน -->
@@ -1206,7 +1145,7 @@ window.M3_PheCap = {
                       </div>
                     </div>
 
-                    <!-- Vmax Display Block (แสดงทศนิยม 3 ตำแหน่ง) -->
+                    <!-- Vmax Display Block -->
                     <div class="scen5-vmax-card">
                       <span class="scen-result-label">V<sub>max</sub> =</span>
                       <span class="scen-result-val" id="m3-s5-vmax">-</span>
@@ -1224,93 +1163,101 @@ window.M3_PheCap = {
                       </div>
                     </div>
 
-                    <!-- Note ปรับการขึ้นบรรทัดใหม่ และลบ Note: ออก -->
-                    <div class="scen5-note-box">
-                      Criteria: BW &gt;=60 เข้าเกณฑ์ Obesity<br>
-                      ใช้ IBW ในการทำนาย
-                    </div>
-
                   </div>
 
                   <div class="scen5-divider"></div>
 
-                  <!-- ฝั่งขวา: Display Table & Dose Recommendation -->
+                  <!-- ฝั่งขวา: Display Layout ปรับรูปแบบให้คล้าย Scenario 1 -->
                   <div class="scen5-display-col">
                     
-                    <div class="scen5-table-container">
-                      <div class="scen5-table-grid">
-                        
-                        <!-- Header Row 1: IBW Span -->
-                        <div class="scen5-head-cell"></div>
-                        <div class="scen5-v-line"></div>
-                        <div class="scen5-head-cell"></div>
-                        <div class="scen5-v-line"></div>
-                        <div class="scen5-ibw-header-span">IBW</div>
+                    <div class="scen5-gender-split-container">
+                      
+                      <!-- ฝั่งเพศชาย -->
+                      <div class="scen5-gender-box-male">
+                        <div class="gender-title-male">เพศชาย</div>
+                        <div class="scen5-sub-bw-split">
+                          
+                          <!-- Male: real BW -->
+                          <div class="scen5-col" id="m3-s5-col-m-real">
+                            <div class="bw-col-title">
+                              <span>real BW</span>
+                              <span class="bw-val-sub" id="m3-s5-val-m-real-bw">-</span>
+                            </div>
+                            <div class="scen5-calc-card">
+                              <span class="scen5-calc-label">Vd:</span>
+                              <span class="scen5-calc-val" id="m3-s5-m-real-vd">-</span>
+                            </div>
+                            <div class="scen5-calc-card">
+                              <span class="scen5-calc-label">จำนวนวันที่ต้องหยุดยา:</span>
+                              <span class="scen5-calc-val" id="m3-s5-m-real-offday">-</span>
+                            </div>
+                          </div>
 
-                        <!-- Header Row 2: Sub-headers (ปรับสีคอลัมน์ ชาย/หญิง) -->
-                        <div class="scen5-head-cell"></div>
-                        <div class="scen5-v-line"></div>
-                        <div class="scen5-head-cell">real BW</div>
-                        <div class="scen5-v-line"></div>
-                        <div class="scen5-head-cell scen5-head-male">ชาย</div>
-                        <div class="scen5-v-line-dashed"></div>
-                        <div class="scen5-head-cell scen5-head-female">หญิง</div>
+                          <div class="dashed-vertical-line"></div>
 
-                        <!-- Horizontal Divider -->
-                        <div class="scen5-h-line"></div>
+                          <!-- Male: IBW -->
+                          <div class="scen5-col" id="m3-s5-col-m-ibw">
+                            <div class="bw-col-title">
+                              <span>IBW</span>
+                              <span class="bw-val-sub" id="m3-s5-val-m-ibw-bw">-</span>
+                            </div>
+                            <div class="scen5-calc-card">
+                              <span class="scen5-calc-label">Vd:</span>
+                              <span class="scen5-calc-val" id="m3-s5-m-ibw-vd">-</span>
+                            </div>
+                            <div class="scen5-calc-card">
+                              <span class="scen5-calc-label">จำนวนวันที่ต้องหยุดยา:</span>
+                              <span class="scen5-calc-val" id="m3-s5-m-ibw-offday">-</span>
+                            </div>
+                          </div>
 
-                        <!-- Row 1: BW -->
-                        <div class="scen5-row-label">BW</div>
-                        <div class="scen5-v-line"></div>
-                        <div class="scen5-cell-box">
-                          <div class="scen5-val-box" id="m3-s5-bw-real">-</div>
                         </div>
-                        <div class="scen5-v-line"></div>
-                        <div class="scen5-cell-box">
-                          <div class="scen5-val-box scen5-val-box-male" id="m3-s5-bw-ibw-m">-</div>
-                        </div>
-                        <div class="scen5-v-line-dashed"></div>
-                        <div class="scen5-cell-box">
-                          <div class="scen5-val-box scen5-val-box-female" id="m3-s5-bw-ibw-f">-</div>
-                        </div>
-
-                        <!-- Horizontal Divider -->
-                        <div class="scen5-h-line"></div>
-
-                        <!-- Row 2: Vd -->
-                        <div class="scen5-row-label">Vd</div>
-                        <div class="scen5-v-line"></div>
-                        <div class="scen5-cell-box">
-                          <div class="scen5-val-box" id="m3-s5-vd-real">-</div>
-                        </div>
-                        <div class="scen5-v-line"></div>
-                        <div class="scen5-cell-box">
-                          <div class="scen5-val-box scen5-val-box-male" id="m3-s5-vd-ibw-m">-</div>
-                        </div>
-                        <div class="scen5-v-line-dashed"></div>
-                        <div class="scen5-cell-box">
-                          <div class="scen5-val-box scen5-val-box-female" id="m3-s5-vd-ibw-f">-</div>
-                        </div>
-
-                        <!-- Horizontal Divider -->
-                        <div class="scen5-h-line"></div>
-
-                        <!-- Row 3: จำนวนวันที่ต้องหยุดยา -->
-                        <div class="scen5-row-label">จำนวนวันที่ต้องหยุดยา</div>
-                        <div class="scen5-v-line"></div>
-                        <div class="scen5-cell-box">
-                          <div class="scen5-val-box" id="m3-s5-offday-real">-</div>
-                        </div>
-                        <div class="scen5-v-line"></div>
-                        <div class="scen5-cell-box">
-                          <div class="scen5-val-box scen5-val-box-male" id="m3-s5-offday-ibw-m">-</div>
-                        </div>
-                        <div class="scen5-v-line-dashed"></div>
-                        <div class="scen5-cell-box">
-                          <div class="scen5-val-box scen5-val-box-female" id="m3-s5-offday-ibw-f">-</div>
-                        </div>
-
                       </div>
+
+                      <div class="gender-divider-line"></div>
+
+                      <!-- ฝั่งเพศหญิง -->
+                      <div class="scen5-gender-box-female">
+                        <div class="gender-title-female">เพศหญิง</div>
+                        <div class="scen5-sub-bw-split">
+                          
+                          <!-- Female: real BW -->
+                          <div class="scen5-col" id="m3-s5-col-f-real">
+                            <div class="bw-col-title">
+                              <span>real BW</span>
+                              <span class="bw-val-sub" id="m3-s5-val-f-real-bw">-</span>
+                            </div>
+                            <div class="scen5-calc-card">
+                              <span class="scen5-calc-label">Vd:</span>
+                              <span class="scen5-calc-val" id="m3-s5-f-real-vd">-</span>
+                            </div>
+                            <div class="scen5-calc-card">
+                              <span class="scen5-calc-label">จำนวนวันที่ต้องหยุดยา:</span>
+                              <span class="scen5-calc-val" id="m3-s5-f-real-offday">-</span>
+                            </div>
+                          </div>
+
+                          <div class="dashed-vertical-line"></div>
+
+                          <!-- Female: IBW -->
+                          <div class="scen5-col" id="m3-s5-col-f-ibw">
+                            <div class="bw-col-title">
+                              <span>IBW</span>
+                              <span class="bw-val-sub" id="m3-s5-val-f-ibw-bw">-</span>
+                            </div>
+                            <div class="scen5-calc-card">
+                              <span class="scen5-calc-label">Vd:</span>
+                              <span class="scen5-calc-val" id="m3-s5-f-ibw-vd">-</span>
+                            </div>
+                            <div class="scen5-calc-card">
+                              <span class="scen5-calc-label">จำนวนวันที่ต้องหยุดยา:</span>
+                              <span class="scen5-calc-val" id="m3-s5-f-ibw-offday">-</span>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+
                     </div>
 
                     <!-- Dose ที่ควรได้รับหลัง hold ยา -->
@@ -1390,7 +1337,7 @@ window.M3_PheCap = {
       this.calculateScenario5();
     });
 
-    // Input Listeners Acc 1
+    // Input Listeners Acc 1 & Acc 5
     ['m3-bw', 'm3-ht', 'm3-dose'].forEach(id => {
       document.getElementById(id)?.addEventListener('input', () => {
         this.calculateScenario1();
@@ -1490,7 +1437,6 @@ window.M3_PheCap = {
     const accHeaders = document.querySelectorAll('#m3-accordion-container .accordion-header');
     accHeaders.forEach(header => {
       header.addEventListener('click', (e) => {
-        // หากคลิกที่ปุ่ม Clear ไม่ต้องพับสลับ Accordion
         if (e.target.classList.contains('btn-clear-mini')) return;
         const item = header.closest('.accordion-item');
         if (item) item.classList.toggle('active');
@@ -1622,9 +1568,9 @@ window.M3_PheCap = {
     let realBW = parseFloat(document.getElementById('m3-bw')?.value) || 0;
     let ht = parseFloat(document.getElementById('m3-ht')?.value) || 0;
 
-    // Reset Highlights
-    ['m3-s5-bw-real', 'm3-s5-bw-ibw-m', 'm3-s5-bw-ibw-f', 'm3-s5-vd-real', 'm3-s5-vd-ibw-m', 'm3-s5-vd-ibw-f', 'm3-s5-offday-real', 'm3-s5-offday-ibw-m', 'm3-s5-offday-ibw-f'].forEach(id => {
-      document.getElementById(id)?.classList.remove('highlight-cell');
+    // Reset Highlights สำหรับ Scenario 5
+    ['m3-s5-col-m-real', 'm3-s5-col-m-ibw', 'm3-s5-col-f-real', 'm3-s5-col-f-ibw'].forEach(id => {
+      document.getElementById(id)?.classList.remove('highlight-lower');
     });
 
     // 1. Vmax Calculation
@@ -1646,18 +1592,20 @@ window.M3_PheCap = {
       if (ibwFemale < 0) ibwFemale = 0;
     }
 
-    this.setText('m3-s5-bw-real', realBW > 0 ? realBW.toFixed(3) : '-');
-    this.setText('m3-s5-bw-ibw-m', ibwMale > 0 ? ibwMale.toFixed(3) : '-');
-    this.setText('m3-s5-bw-ibw-f', ibwFemale > 0 ? ibwFemale.toFixed(3) : '-');
+    this.setText('m3-s5-val-m-real-bw', realBW > 0 ? `${realBW} kg` : '-');
+    this.setText('m3-s5-val-m-ibw-bw', ibwMale > 0 ? `${ibwMale.toFixed(2)} kg` : '-');
+    this.setText('m3-s5-val-f-real-bw', realBW > 0 ? `${realBW} kg` : '-');
+    this.setText('m3-s5-val-f-ibw-bw', ibwFemale > 0 ? `${ibwFemale.toFixed(2)} kg` : '-');
 
     // 3. Vd
     let vdReal = realBW > 0 ? 0.65 * realBW : 0;
     let vdIbwM = (ibwMale > 0 && realBW > 0) ? 0.65 * (ibwMale + 1.33 * (realBW - ibwMale)) : 0;
     let vdIbwF = (ibwFemale > 0 && realBW > 0) ? 0.65 * (ibwFemale + 1.33 * (realBW - ibwFemale)) : 0;
 
-    this.setText('m3-s5-vd-real', vdReal > 0 ? vdReal.toFixed(3) : '-');
-    this.setText('m3-s5-vd-ibw-m', vdIbwM > 0 ? vdIbwM.toFixed(3) : '-');
-    this.setText('m3-s5-vd-ibw-f', vdIbwF > 0 ? vdIbwF.toFixed(3) : '-');
+    this.setText('m3-s5-m-real-vd', vdReal > 0 ? vdReal.toFixed(3) : '-');
+    this.setText('m3-s5-m-ibw-vd', vdIbwM > 0 ? vdIbwM.toFixed(3) : '-');
+    this.setText('m3-s5-f-real-vd', vdReal > 0 ? vdReal.toFixed(3) : '-');
+    this.setText('m3-s5-f-ibw-vd', vdIbwF > 0 ? vdIbwF.toFixed(3) : '-');
 
     // 4. จำนวนวันที่ต้องหยุดยา
     let holdReal = 0;
@@ -1671,13 +1619,15 @@ window.M3_PheCap = {
       holdIbwM = vdIbwM > 0 ? numFactor / (vmax / vdIbwM) : 0;
       holdIbwF = vdIbwF > 0 ? numFactor / (vmax / vdIbwF) : 0;
 
-      this.setText('m3-s5-offday-real', holdReal > 0 ? holdReal.toFixed(3) : '-');
-      this.setText('m3-s5-offday-ibw-m', holdIbwM > 0 ? holdIbwM.toFixed(3) : '-');
-      this.setText('m3-s5-offday-ibw-f', holdIbwF > 0 ? holdIbwF.toFixed(3) : '-');
+      this.setText('m3-s5-m-real-offday', holdReal > 0 ? holdReal.toFixed(3) : '-');
+      this.setText('m3-s5-m-ibw-offday', holdIbwM > 0 ? holdIbwM.toFixed(3) : '-');
+      this.setText('m3-s5-f-real-offday', holdReal > 0 ? holdReal.toFixed(3) : '-');
+      this.setText('m3-s5-f-ibw-offday', holdIbwF > 0 ? holdIbwF.toFixed(3) : '-');
     } else {
-      this.setText('m3-s5-offday-real', '-');
-      this.setText('m3-s5-offday-ibw-m', '-');
-      this.setText('m3-s5-offday-ibw-f', '-');
+      this.setText('m3-s5-m-real-offday', '-');
+      this.setText('m3-s5-m-ibw-offday', '-');
+      this.setText('m3-s5-f-real-offday', '-');
+      this.setText('m3-s5-f-ibw-offday', '-');
     }
 
     // 5. Dose ที่ควรได้รับหลัง hold ยา
@@ -1705,19 +1655,18 @@ window.M3_PheCap = {
       this.setText('m3-s5-rec-dose', '- mg');
     }
 
-    // 6. Highlight Logic
-    if (realBW > 0) {
-      if (realBW < 60) {
-        document.getElementById('m3-s5-bw-real')?.classList.add('highlight-cell');
-        document.getElementById('m3-s5-vd-real')?.classList.add('highlight-cell');
-        document.getElementById('m3-s5-offday-real')?.classList.add('highlight-cell');
-      } else {
-        document.getElementById('m3-s5-bw-ibw-m')?.classList.add('highlight-cell');
-        document.getElementById('m3-s5-bw-ibw-f')?.classList.add('highlight-cell');
-        document.getElementById('m3-s5-vd-ibw-m')?.classList.add('highlight-cell');
-        document.getElementById('m3-s5-vd-ibw-f')?.classList.add('highlight-cell');
-        document.getElementById('m3-s5-offday-ibw-m')?.classList.add('highlight-cell');
-        document.getElementById('m3-s5-offday-ibw-f')?.classList.add('highlight-cell');
+    // 6. Highlight Logic (เทียบ real BW vs IBW คล้าย Scenario 1)
+    if (realBW > 0 && ht > 0) {
+      if (realBW < ibwMale) {
+        document.getElementById('m3-s5-col-m-real')?.classList.add('highlight-lower');
+      } else if (ibwMale < realBW) {
+        document.getElementById('m3-s5-col-m-ibw')?.classList.add('highlight-lower');
+      }
+
+      if (realBW < ibwFemale) {
+        document.getElementById('m3-s5-col-f-real')?.classList.add('highlight-lower');
+      } else if (ibwFemale < realBW) {
+        document.getElementById('m3-s5-col-f-ibw')?.classList.add('highlight-lower');
       }
     }
   },
@@ -1779,89 +1728,4 @@ window.M3_PheCap = {
         el.value = '';
       } else {
         let factor = Math.pow(10, maxDecimals);
-        el.value = Math.round(val * factor) / factor;
-      }
-      if (callback) callback();
-      else this.calculateScenario1();
-    });
-  },
-
-  formatFloatOnBlur: function(id, maxDecimals, callback) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.addEventListener('blur', () => {
-      if (el.value === '') return;
-      let val = parseFloat(el.value);
-      if (isNaN(val) || val === 0) {
-        el.value = '';
-      } else {
-        el.value = val.toFixed(maxDecimals);
-      }
-      if (callback) callback();
-    });
-  },
-
-  formatDoseOnBlur: function(id, callback) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.addEventListener('blur', () => {
-      let num = this.parseFormattedNumber(el.value);
-      if (num === 0) {
-        el.value = '';
-      } else {
-        el.value = this.formatNumberWithComma(num, 2);
-      }
-      if (callback) callback();
-      else this.calculateScenario1();
-    });
-  },
-
-  stepInput: function(id, delta, minVal, maxVal, maxDecimals, callback) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    let curr = parseFloat(el.value) || 0;
-    let nextVal = curr + delta;
-    if (nextVal < minVal) nextVal = minVal;
-    if (nextVal > maxVal) nextVal = maxVal;
-
-    let factor = Math.pow(10, maxDecimals);
-    el.value = Math.round(nextVal * factor) / factor;
-    if (callback) callback();
-    else this.calculateScenario1();
-  },
-
-  stepFloatInput: function(id, delta, minVal, maxVal, maxDecimals, callback) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    let curr = parseFloat(el.value) || 0;
-    let nextVal = curr + delta;
-    if (nextVal < minVal) nextVal = minVal;
-    if (nextVal > maxVal) nextVal = maxVal;
-
-    el.value = nextVal.toFixed(maxDecimals);
-    if (callback) callback();
-  },
-
-  stepDoseInput: function(id, delta, callback) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    let curr = this.parseFormattedNumber(el.value);
-    let nextVal = curr + delta;
-    if (nextVal < 0) nextVal = 0;
-
-    el.value = this.formatNumberWithComma(nextVal, 2);
-    if (callback) callback();
-    else this.calculateScenario1();
-  },
-
-  toggleAllAccordions: function(show) {
-    const items = document.querySelectorAll('#m3-accordion-container .accordion-item');
-    items.forEach(item => {
-      if (show) {
-        item.classList.add('active');
-      } else {
-        item.classList.remove('active');
-      }
-    });
-  }
-};
+        el.value = Math.round(val *
