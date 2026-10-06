@@ -1631,22 +1631,33 @@ window.M3_PheCap = {
     this.setText('m3-s5-vd-f-real', vdReal > 0 ? vdReal.toFixed(3) : '-');
     this.setText('m3-s5-vd-f-ibw', vdIbwF > 0 ? vdIbwF.toFixed(3) : '-');
 
-    // 4. จำนวนวันที่ต้องหยุดยา
+    // 4. จำนวนวันที่ต้องหยุดยา (รองรับ C2 >= C1)
     let holdReal = 0;
     let holdIbwM = 0;
     let holdIbwF = 0;
 
-    if (vmax > 0 && c1 > 0 && c2 > 0 && c1 > c2) {
-      let numFactor = (4 * Math.log(c1 / c2)) + (c1 - c2);
+    if (vmax > 0 && c1 > 0 && c2 > 0) {
+      if (c2 >= c1) {
+        holdReal = 0;
+        holdIbwM = 0;
+        holdIbwF = 0;
 
-      holdReal = vdReal > 0 ? numFactor / (vmax / vdReal) : 0;
-      holdIbwM = vdIbwM > 0 ? numFactor / (vmax / vdIbwM) : 0;
-      holdIbwF = vdIbwF > 0 ? numFactor / (vmax / vdIbwF) : 0;
+        this.setText('m3-s5-offday-m-real', '0');
+        this.setText('m3-s5-offday-m-ibw', '0');
+        this.setText('m3-s5-offday-f-real', '0');
+        this.setText('m3-s5-offday-f-ibw', '0');
+      } else {
+        let numFactor = (4 * Math.log(c1 / c2)) + (c1 - c2);
 
-      this.setText('m3-s5-offday-m-real', holdReal > 0 ? holdReal.toFixed(3) : '-');
-      this.setText('m3-s5-offday-m-ibw', holdIbwM > 0 ? holdIbwM.toFixed(3) : '-');
-      this.setText('m3-s5-offday-f-real', holdReal > 0 ? holdReal.toFixed(3) : '-');
-      this.setText('m3-s5-offday-f-ibw', holdIbwF > 0 ? holdIbwF.toFixed(3) : '-');
+        holdReal = vdReal > 0 ? numFactor / (vmax / vdReal) : 0;
+        holdIbwM = vdIbwM > 0 ? numFactor / (vmax / vdIbwM) : 0;
+        holdIbwF = vdIbwF > 0 ? numFactor / (vmax / vdIbwF) : 0;
+
+        this.setText('m3-s5-offday-m-real', holdReal > 0 ? holdReal.toFixed(3) : '-');
+        this.setText('m3-s5-offday-m-ibw', holdIbwM > 0 ? holdIbwM.toFixed(3) : '-');
+        this.setText('m3-s5-offday-f-real', holdReal > 0 ? holdReal.toFixed(3) : '-');
+        this.setText('m3-s5-offday-f-ibw', holdIbwF > 0 ? holdIbwF.toFixed(3) : '-');
+      }
     } else {
       this.setText('m3-s5-offday-m-real', '-');
       this.setText('m3-s5-offday-m-ibw', '-');
@@ -1703,7 +1714,10 @@ window.M3_PheCap = {
 
     if (weight <= 0) {
       if (elVmax) elVmax.innerText = '-';
-      if (elCpred) elCpred.innerText = '-';
+      if (elCpred) {
+        elCpred.innerText = '-';
+        elCpred.style.color = '#2563eb'; // Reset สีกลับเป็นน้ำเงินปกติ
+      }
       return;
     }
 
@@ -1711,15 +1725,24 @@ window.M3_PheCap = {
     if (elVmax) elVmax.innerText = this.formatNumberWithComma(vmax, 3);
 
     if (dose > 0) {
-      let denom = vmax - (0.92 * 1 * dose);
-      if (denom <= 0) {
-        if (elCpred) elCpred.innerText = 'Infinity';
+      if (dose >= vmax) {
+        if (elCpred) {
+          elCpred.innerText = 'N/A (Dose ≥ Vmax)';
+          elCpred.style.color = '#dc2626'; // เปลี่ยนตัวหนังสือเป็นสีแดง
+        }
       } else {
+        let denom = vmax - (0.92 * 1 * dose);
         let cpred = (4 * 0.92 * 1 * dose) / denom;
-        if (elCpred) elCpred.innerText = cpred.toFixed(3);
+        if (elCpred) {
+          elCpred.innerText = cpred.toFixed(3);
+          elCpred.style.color = '#2563eb'; // สีน้ำเงินปกติ
+        }
       }
     } else {
-      if (elCpred) elCpred.innerText = '-';
+      if (elCpred) {
+        elCpred.innerText = '-';
+        elCpred.style.color = '#2563eb'; // สีน้ำเงินปกติ
+      }
     }
   },
 
