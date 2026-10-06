@@ -446,6 +446,13 @@ window.M3_PheCap = {
           color: #2563eb;
           text-align: right;
           word-break: break-all;
+          line-height: 1.1;
+        }
+        .na-subtext {
+          font-size: 0.7rem;
+          font-weight: 700;
+          display: block;
+          white-space: nowrap;
         }
 
         /* --- STYLES SCENARIO 2, 3 & 4 --- */
@@ -1665,7 +1672,7 @@ window.M3_PheCap = {
       this.setText('m3-s5-offday-f-ibw', '-');
     }
 
-    // 5. Dose ที่ควรได้รับหลัง hold ยา
+    // 5. Dose ที่ควรได้รับหลัง hold ยา (ปรับปรุงการแสดงผลให้ดูโปรขึ้นเมื่อ hold 0 วัน)
     let targetDaysValue = 0;
     if (realBW > 0) {
       if (realBW < 60) {
@@ -1677,8 +1684,12 @@ window.M3_PheCap = {
 
     let roundedDays = Math.round(targetDaysValue);
 
-    if (targetDaysValue > 0) {
-      this.setText('m3-s5-hold-days-tag', `[${roundedDays}] วัน`);
+    if (vmax > 0 && c1 > 0 && c2 > 0) {
+      if (roundedDays > 0) {
+        this.setText('m3-s5-hold-days-tag', `[${roundedDays}] วัน`);
+      } else {
+        this.setText('m3-s5-hold-days-tag', `(ไม่ต้อง hold ยา)`);
+      }
     } else {
       this.setText('m3-s5-hold-days-tag', '');
     }
@@ -1715,7 +1726,7 @@ window.M3_PheCap = {
     if (weight <= 0) {
       if (elVmax) elVmax.innerText = '-';
       if (elCpred) {
-        elCpred.innerText = '-';
+        elCpred.innerHTML = '-';
         elCpred.style.color = '#2563eb'; // Reset สีกลับเป็นน้ำเงินปกติ
       }
       return;
@@ -1727,7 +1738,8 @@ window.M3_PheCap = {
     if (dose > 0) {
       if (dose >= vmax) {
         if (elCpred) {
-          elCpred.innerText = 'N/A (Dose ≥ Vmax)';
+          // จัด N/A ไว้บรรทัดบน และ (Dose >= Vmax) ไว้บรรทัดล่าง แบบย่อตัวอักษรเล็ก
+          elCpred.innerHTML = 'N/A<span class="na-subtext">(Dose ≥ Vmax)</span>';
           elCpred.style.color = '#dc2626'; // เปลี่ยนตัวหนังสือเป็นสีแดง
         }
       } else {
@@ -1740,7 +1752,7 @@ window.M3_PheCap = {
       }
     } else {
       if (elCpred) {
-        elCpred.innerText = '-';
+        elCpred.innerHTML = '-';
         elCpred.style.color = '#2563eb'; // สีน้ำเงินปกติ
       }
     }
