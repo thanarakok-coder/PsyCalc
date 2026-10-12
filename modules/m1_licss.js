@@ -297,7 +297,12 @@ window.M1_LiCss = {
           border-bottom: none;
         }
 
-        /* นำเส้นประออกเฉพาะรายการ Cทำนาย จาก Max Dose */
+        /* เส้นประคั่นระหว่าง Zone Acute phase กับ Maintenance phase */
+        .rec-phase-divider {
+          border-top: 1px dashed #cbd5e1;
+          margin: 4px 0;
+        }
+
         .rec-out-item.no-border {
           border-bottom: none;
           padding-top: 0px;
@@ -508,7 +513,7 @@ window.M1_LiCss = {
                   </div>
 
                   <!-- Acute Phase Group -->
-                  <div class="rec-out-item">
+                  <div class="rec-out-item" style="border-bottom: none; padding-bottom: 2px;">
                     <span class="rec-out-label">
                       Max dose
                       <small>(Acute phase)</small>
@@ -520,16 +525,19 @@ window.M1_LiCss = {
                     </div>
                   </div>
 
-                  <div class="rec-out-item no-border">
-                    <span class="rec-out-label" style="font-size: 0.82rem; color: #64748b; padding-left: 8px;">↳ Cทำนาย จาก Max Dose</span>
+                  <div class="rec-out-item" style="border-bottom: none; padding-top: 0px; padding-bottom: 6px;">
+                    <span class="rec-out-label" style="font-size: 0.82rem; color: #0f172a;">Cทำนาย จาก Max Dose</span>
                     <div class="rec-out-val-container">
-                      <span class="rec-out-num" id="rec-cpred-acute" style="font-size: 1.05rem;">-</span>
-                      <span class="rec-out-unit">mEq/L</span>
+                      <span class="rec-out-num" id="rec-cpred-acute" style="font-size: 1.05rem; color: #0f172a;">-</span>
+                      <span class="rec-out-unit" style="color: #0f172a;">mEq/L</span>
                     </div>
                   </div>
 
+                  <!-- เส้นประคั่นระหว่าง Zone Acute phase กับ Maintenance phase -->
+                  <div class="rec-phase-divider"></div>
+
                   <!-- Maintenance Phase Group -->
-                  <div class="rec-out-item" style="margin-top: 4px;">
+                  <div class="rec-out-item" style="border-bottom: none; padding-top: 4px; padding-bottom: 2px;">
                     <span class="rec-out-label">
                       Max dose
                       <small>(Maintenance phase)</small>
@@ -541,11 +549,11 @@ window.M1_LiCss = {
                     </div>
                   </div>
 
-                  <div class="rec-out-item no-border">
-                    <span class="rec-out-label" style="font-size: 0.82rem; color: #64748b; padding-left: 8px;">↳ Cทำนาย จาก Max Dose</span>
+                  <div class="rec-out-item no-border" style="padding-top: 0px; padding-bottom: 2px;">
+                    <span class="rec-out-label" style="font-size: 0.82rem; color: #0f172a;">Cทำนาย จาก Max Dose</span>
                     <div class="rec-out-val-container">
-                      <span class="rec-out-num" id="rec-cpred-maint" style="font-size: 1.05rem;">-</span>
-                      <span class="rec-out-unit">mEq/L</span>
+                      <span class="rec-out-num" id="rec-cpred-maint" style="font-size: 1.05rem; color: #0f172a;">-</span>
+                      <span class="rec-out-unit" style="color: #0f172a;">mEq/L</span>
                     </div>
                   </div>
                 </div>
@@ -681,7 +689,6 @@ window.M1_LiCss = {
       let maxAcute = (1.2 * recInputDose) / targetCss;
       let maxMaint = (1.0 * recInputDose) / targetCss;
 
-      // Cทำนาย จาก Max Dose คำนวณตามสูตร: (Max Dose * Target Css) / ขนาดยาที่ได้รับ
       let cpredAcute = (maxAcute * targetCss) / recInputDose;
       let cpredMaint = (maxMaint * targetCss) / recInputDose;
 
