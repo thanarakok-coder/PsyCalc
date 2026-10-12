@@ -9,12 +9,30 @@ window.M1_LiCss = {
           font-family: system-ui, -apple-system, sans-serif;
           color: #0f172a;
         }
-        .m1-header-title {
-          font-size: 1.15rem;
-          font-weight: 700;
+
+        /* Header & Title Adjustments */
+        .m1-header-block {
           margin-bottom: 12px;
-          padding-bottom: 6px;
+          padding-bottom: 8px;
           border-bottom: 1px solid #cbd5e1;
+        }
+        .m1-main-title {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: #0f172a;
+          line-height: 1.2;
+        }
+        .m1-sub-title {
+          font-size: 0.88rem;
+          color: #64748b;
+          font-weight: 500;
+          margin-top: 2px;
+        }
+        .m1-sub-title2 {
+          font-size: 0.88rem;
+          color: #15803d;
+          font-weight: 700;
+          margin-top: 2px;
         }
 
         /* Grid หลัก */
@@ -41,7 +59,6 @@ window.M1_LiCss = {
           flex-direction: column;
         }
 
-        /* การ์ดฝั่งซ้าย: กระจายช่องไฟ (Spacing) ให้เท่ากันสม่ำเสมอ */
         .input-card-highlight {
           background: #f8fafc;
           border: 1.5px solid #93c5fd;
@@ -106,7 +123,6 @@ window.M1_LiCss = {
           flex: 1;
         }
 
-        /* Stepper Box สไตล์ Phenytoin Capsule */
         .stepper-box {
           display: flex;
           align-items: center;
@@ -124,7 +140,6 @@ window.M1_LiCss = {
           box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
-        /* ปุ่มกดวงกลมสีขาวขอบฟ้าแบบ Phenytoin Capsule */
         .btn-step {
           width: 34px;
           height: 34px;
@@ -246,7 +261,7 @@ window.M1_LiCss = {
         /* Recommended Dose Split Panel */
         .rec-split-grid {
           display: grid;
-          grid-template-columns: 1.1fr 0.9fr;
+          grid-template-columns: 1fr 1fr;
           gap: 16px;
           align-items: stretch;
         }
@@ -263,9 +278,9 @@ window.M1_LiCss = {
         .rec-out-list {
           display: flex;
           flex-direction: column;
-          justify-content: space-around;
+          gap: 8px;
           background: #f8fafc;
-          padding: 10px 14px;
+          padding: 12px 14px;
           border-radius: 8px;
           border: 1px solid #cbd5e1;
           height: 100%;
@@ -275,7 +290,7 @@ window.M1_LiCss = {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 6px 0;
+          padding: 4px 0;
           border-bottom: 1px dashed #e2e8f0;
         }
         .rec-out-item:last-child {
@@ -286,12 +301,13 @@ window.M1_LiCss = {
           color: #334155;
           font-weight: 600;
           font-size: 0.88rem;
-          line-height: 1.2;
+          line-height: 1.25;
         }
         .rec-out-label small {
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           color: #64748b;
           font-weight: 500;
+          display: block;
         }
 
         .rec-out-val-container {
@@ -300,19 +316,24 @@ window.M1_LiCss = {
         }
         .rec-out-num {
           font-weight: 800;
-          font-size: 1.2rem;
+          font-size: 1.15rem;
           color: #0f172a;
         }
         .rec-out-unit {
           font-weight: 500;
-          font-size: 0.82rem;
+          font-size: 0.8rem;
           color: #64748b;
           margin-left: 2px;
         }
       </style>
 
       <div class="m1-wrapper">
-        <div class="m1-header-title">M1: LiCss - ช่วยแนะนำการปรับขนาดยา Lithium</div>
+        <!-- Header Zone -->
+        <div class="m1-header-block">
+          <div class="m1-main-title">Lithium</div>
+          <div class="m1-sub-title">ช่วยแนะนำการปรับขนาดยา Lithium</div>
+          <div class="m1-sub-title2">*คำตอบที่แนะนำ ในกรอบสีเขียว</div>
+        </div>
 
         <div class="m1-main-layout">
           
@@ -480,7 +501,11 @@ window.M1_LiCss = {
                   </div>
 
                   <div class="rec-out-item">
-                    <span class="rec-out-label">Max dose<br><small>(Acute phase)</small></span>
+                    <span class="rec-out-label">
+                      Max dose
+                      <small>(Acute phase)</small>
+                      <small>(ระดับยา 0.6-1.2 mmol/L)</small>
+                    </span>
                     <div class="rec-out-val-container">
                       <span class="rec-out-num" id="rec-max-acute">-</span>
                       <span class="rec-out-unit">เม็ด/วัน</span>
@@ -488,10 +513,30 @@ window.M1_LiCss = {
                   </div>
 
                   <div class="rec-out-item">
-                    <span class="rec-out-label">Max dose<br><small>(Maintenance phase)</small></span>
+                    <span class="rec-out-label">Cทำนาย จาก Max Dose</span>
+                    <div class="rec-out-val-container">
+                      <span class="rec-out-num" id="rec-cpred-acute">-</span>
+                      <span class="rec-out-unit">mEq/L</span>
+                    </div>
+                  </div>
+
+                  <div class="rec-out-item">
+                    <span class="rec-out-label">
+                      Max dose
+                      <small>(Maintenance phase)</small>
+                      <small>(ระดับยา 0.6-1.0 mmol/L)</small>
+                    </span>
                     <div class="rec-out-val-container">
                       <span class="rec-out-num" id="rec-max-maint">-</span>
                       <span class="rec-out-unit">เม็ด/วัน</span>
+                    </div>
+                  </div>
+
+                  <div class="rec-out-item">
+                    <span class="rec-out-label">Cทำนาย จาก Max Dose</span>
+                    <div class="rec-out-val-container">
+                      <span class="rec-out-num" id="rec-cpred-maint">-</span>
+                      <span class="rec-out-unit">mEq/L</span>
                     </div>
                   </div>
                 </div>
@@ -626,13 +671,21 @@ window.M1_LiCss = {
       let maxAcute = (1.2 * dose) / targetCss;
       let maxMaint = (1.0 * dose) / targetCss;
 
+      // Cทำนาย จาก Max Dose
+      let cpredAcute = (maxAcute * targetCss) / dose;
+      let cpredMaint = (maxMaint * targetCss) / dose;
+
       this.setText('rec-min', minDose.toFixed(3));
       this.setText('rec-max-acute', maxAcute.toFixed(3));
+      this.setText('rec-cpred-acute', cpredAcute.toFixed(3));
       this.setText('rec-max-maint', maxMaint.toFixed(3));
+      this.setText('rec-cpred-maint', cpredMaint.toFixed(3));
     } else {
       this.setText('rec-min', '-');
       this.setText('rec-max-acute', '-');
+      this.setText('rec-cpred-acute', '-');
       this.setText('rec-max-maint', '-');
+      this.setText('rec-cpred-maint', '-');
     }
   },
 
