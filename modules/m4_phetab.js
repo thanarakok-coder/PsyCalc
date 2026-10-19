@@ -14,12 +14,29 @@ window.M4_PheTab = {
           box-sizing: border-box;
         }
 
-        .m4-header-title {
-          font-size: 1.15rem;
-          font-weight: 700;
+        /* Header & Title Adjustments */
+        .m4-header-block {
           margin-bottom: 12px;
-          padding-bottom: 6px;
+          padding-bottom: 8px;
           border-bottom: 1px solid #cbd5e1;
+        }
+        .m4-main-title {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: #0f172a;
+          line-height: 1.2;
+        }
+        .m4-sub-title {
+          font-size: 0.88rem;
+          color: #64748b;
+          font-weight: 500;
+          margin-top: 2px;
+        }
+        .m4-green-hint {
+          font-size: 0.88rem;
+          font-weight: 700;
+          color: #16a34a;
+          margin-top: 2px;
         }
 
         /* Layout หลัก */
@@ -536,6 +553,25 @@ window.M4_PheTab = {
           color: #2563eb;
         }
 
+        /* Checkbox style for ESRD (Scenario 3) */
+        .esrd-checkbox-label {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          cursor: pointer;
+          font-size: 0.9rem;
+          font-weight: 700;
+          color: #1e293b;
+          user-select: none;
+          padding: 4px 0;
+        }
+        .esrd-checkbox-label input[type="checkbox"] {
+          width: 18px;
+          height: 18px;
+          cursor: pointer;
+          accent-color: #f59e0b;
+        }
+
         .scen3-notice-box {
           font-size: 0.82rem;
           font-weight: 700;
@@ -758,7 +794,12 @@ window.M4_PheTab = {
       </style>
 
       <div class="m4-wrapper">
-        <div class="m4-header-title">M4: PheTab - Phenytoin InfaTab Dosing Adjustment</div>
+        <!-- Header Zone -->
+        <div class="m4-header-block">
+          <div class="m4-main-title">Phenytoin InfaTab</div>
+          <div class="m4-sub-title">ช่วยแนะนำการปรับขนาดยา Phenytoin รูปแบบ Infatab</div>
+          <div class="m4-green-hint">*คำตอบที่แนะนำ ในกรอบสีเขียว</div>
+        </div>
 
         <div class="m4-main-layout">
           
@@ -1018,7 +1059,7 @@ window.M4_PheTab = {
               <div class="accordion-content">
                 
                 <div class="scen-two-col-layout">
-                  <!-- ฝั่งซ้าย: Inputs (3 ตัว) -->
+                  <!-- ฝั่งซ้าย: Inputs (2 ตัว + Checkbox ESRD) -->
                   <div class="scen-input-group">
                     
                     <!-- ระดับยาที่ SS -->
@@ -1047,17 +1088,12 @@ window.M4_PheTab = {
                       </div>
                     </div>
 
-                    <!-- CrCl (ml/min) -->
-                    <div class="scen-field-row">
-                      <span class="scen-label">CrCl</span>
-                      <div class="stepper-container-inline">
-                        <div class="stepper-box">
-                          <button type="button" class="btn-step" id="m4-s3-crcl-dec">-</button>
-                          <input type="text" id="m4-s3-crcl" placeholder="0">
-                          <button type="button" class="btn-step" id="m4-s3-crcl-inc">+</button>
-                        </div>
-                        <span class="unit-text">ml/min</span>
-                      </div>
+                    <!-- Checkbox สำหรับ ESRD -->
+                    <div style="margin-top: 6px;">
+                      <label class="esrd-checkbox-label">
+                        <input type="checkbox" id="m4-s3-esrd-checkbox">
+                        <span>CrCl &lt; 10 ml/min (ESRD)</span>
+                      </label>
                     </div>
 
                   </div>
@@ -1071,7 +1107,7 @@ window.M4_PheTab = {
                       <span class="scen-result-val" id="m4-s3-cpred">-</span>
                     </div>
 
-                    <!-- ข้อความเตือน (แสดงเฉพาะ CrCl < 10) -->
+                    <!-- ข้อความเตือน (แสดงเฉพาะตอนติ๊ก Checkbox ESRD) -->
                     <div class="scen3-notice-box" id="m4-s3-notice">
                       ⚠ เคสนี้ ESRD (CrCl&lt;10) ปรับสูตรการคำนวณแล้ว
                     </div>
@@ -1156,7 +1192,7 @@ window.M4_PheTab = {
               <div class="accordion-content">
                 
                 <div class="scen5-layout">
-                  <!-- ฝั่งซ้าย: Inputs บีบแคบลง (220px) ยกเว้นข้อความเตือนออก -->
+                  <!-- ฝั่งซ้าย: Inputs บีบแคบลง (220px) -->
                   <div class="scen5-input-col">
                     
                     <!-- 1. ขนาดยา/วัน -->
@@ -1352,10 +1388,14 @@ window.M4_PheTab = {
     });
 
     document.getElementById('btn-clear-s3')?.addEventListener('click', () => {
-      ['m4-s3-css', 'm4-s3-alb', 'm4-s3-crcl'].forEach(id => {
+      ['m4-s3-css', 'm4-s3-alb'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = '';
       });
+      const esrdCheckbox = document.getElementById('m4-s3-esrd-checkbox');
+      if (esrdCheckbox) {
+        esrdCheckbox.checked = false;
+      }
       this.calculateScenario3();
     });
 
@@ -1374,6 +1414,14 @@ window.M4_PheTab = {
       });
       this.calculateScenario5();
     });
+
+    // ESRD Checkbox Change Event for Scenario 3
+    const esrdCheckbox = document.getElementById('m4-s3-esrd-checkbox');
+    if (esrdCheckbox) {
+      esrdCheckbox.addEventListener('change', () => {
+        this.calculateScenario3();
+      });
+    }
 
     // Input Listeners Acc 1
     ['m4-bw', 'm4-ht', 'm4-dose'].forEach(id => {
@@ -1394,7 +1442,7 @@ window.M4_PheTab = {
     document.getElementById('m4-dose-dec')?.addEventListener('click', () => this.stepDoseInput('m4-dose', -50));
     document.getElementById('m4-dose-inc')?.addEventListener('click', () => this.stepDoseInput('m4-dose', 50));
 
-    // Blur formatters Acc 1
+    // Blur formatters Acc 1 (Dynamic trimming without trailing zeros)
     this.formatInputOnBlur('m4-bw', 3, () => { this.calculateScenario1(); this.calculateScenario5(); });
     this.formatInputOnBlur('m4-ht', 2, () => { this.calculateScenario1(); this.calculateScenario5(); });
     this.formatDoseOnBlur('m4-dose');
@@ -1418,7 +1466,7 @@ window.M4_PheTab = {
     this.formatDoseOnBlur('m4-s2-pdose', () => this.calculateScenario2());
 
     // --- ACCORDION 3 EVENTS ---
-    ['m4-s3-css', 'm4-s3-alb', 'm4-s3-crcl'].forEach(id => {
+    ['m4-s3-css', 'm4-s3-alb'].forEach(id => {
       document.getElementById(id)?.addEventListener('input', () => this.calculateScenario3());
     });
 
@@ -1428,12 +1476,8 @@ window.M4_PheTab = {
     document.getElementById('m4-s3-alb-dec')?.addEventListener('click', () => this.stepFloatInput('m4-s3-alb', -0.1, 0, 10, 2, () => this.calculateScenario3()));
     document.getElementById('m4-s3-alb-inc')?.addEventListener('click', () => this.stepFloatInput('m4-s3-alb', 0.1, 0, 10, 2, () => this.calculateScenario3()));
 
-    document.getElementById('m4-s3-crcl-dec')?.addEventListener('click', () => this.stepFloatInput('m4-s3-crcl', -1, 0, 300, 2, () => this.calculateScenario3()));
-    document.getElementById('m4-s3-crcl-inc')?.addEventListener('click', () => this.stepFloatInput('m4-s3-crcl', 1, 0, 300, 2, () => this.calculateScenario3()));
-
     this.formatFloatOnBlur('m4-s3-css', 3, () => this.calculateScenario3());
     this.formatFloatOnBlur('m4-s3-alb', 2, () => this.calculateScenario3());
-    this.formatFloatOnBlur('m4-s3-crcl', 2, () => this.calculateScenario3());
 
     // --- ACCORDION 4 EVENTS ---
     ['m4-s4-css', 'm4-s4-vpa'].forEach(id => {
@@ -1501,10 +1545,10 @@ window.M4_PheTab = {
       if (ibwFemale < 0) ibwFemale = 0;
     }
 
-    this.setText('val-m-real-bw', bw > 0 ? `${bw} kg` : '-');
-    this.setText('val-m-ibw-bw', ibwMale > 0 ? `${ibwMale.toFixed(2)} kg` : '-');
-    this.setText('val-f-real-bw', bw > 0 ? `${bw} kg` : '-');
-    this.setText('val-f-ibw-bw', ibwFemale > 0 ? `${ibwFemale.toFixed(2)} kg` : '-');
+    this.setText('val-m-real-bw', bw > 0 ? `${this.trimDecimal(bw)} kg` : '-');
+    this.setText('val-m-ibw-bw', ibwMale > 0 ? `${this.trimDecimal(ibwMale, 2)} kg` : '-');
+    this.setText('val-f-real-bw', bw > 0 ? `${this.trimDecimal(bw)} kg` : '-');
+    this.setText('val-f-ibw-bw', ibwFemale > 0 ? `${this.trimDecimal(ibwFemale, 2)} kg` : '-');
 
     this.computeAndDisplay('m1-m-real', bw, dose);
     this.computeAndDisplay('m1-m-ibw', ibwMale, dose);
@@ -1541,7 +1585,7 @@ window.M4_PheTab = {
           this.setText('m4-s2-cpred', 'Infinity');
         } else {
           let cpred = (4 * (1 * 1 * pdose)) / denom;
-          this.setText('m4-s2-cpred', cpred.toFixed(3));
+          this.setText('m4-s2-cpred', this.trimDecimal(cpred, 3));
         }
       } else {
         this.setText('m4-s2-cpred', '-');
@@ -1555,13 +1599,11 @@ window.M4_PheTab = {
   calculateScenario3: function() {
     let css = parseFloat(document.getElementById('m4-s3-css')?.value) || 0;
     let alb = parseFloat(document.getElementById('m4-s3-alb')?.value) || 0;
-    let crclInput = document.getElementById('m4-s3-crcl')?.value;
-    let crcl = parseFloat(crclInput) || 0;
-    let hasCrCl = crclInput !== '' && !isNaN(crcl);
+    const esrdCheckbox = document.getElementById('m4-s3-esrd-checkbox');
+    let isEsrd = esrdCheckbox ? esrdCheckbox.checked : false;
 
     const noticeBox = document.getElementById('m4-s3-notice');
-
-    if (hasCrCl && crcl < 10) {
+    if (isEsrd) {
       if (noticeBox) noticeBox.style.display = 'flex';
     } else {
       if (noticeBox) noticeBox.style.display = 'none';
@@ -1576,11 +1618,11 @@ window.M4_PheTab = {
 
       let cpred = css / denom;
 
-      if (hasCrCl && crcl < 10) {
+      if (isEsrd) {
         cpred = cpred / 0.44;
       }
 
-      this.setText('m4-s3-cpred', cpred.toFixed(3));
+      this.setText('m4-s3-cpred', this.trimDecimal(cpred, 3));
     } else {
       this.setText('m4-s3-cpred', '-');
     }
@@ -1592,7 +1634,7 @@ window.M4_PheTab = {
 
     if (css > 0 && vpa > 0) {
       let cpred = ((0.095 + (0.001 * vpa)) * css) / 0.1;
-      this.setText('m4-s4-cpred', cpred.toFixed(3));
+      this.setText('m4-s4-cpred', this.trimDecimal(cpred, 3));
     } else {
       this.setText('m4-s4-cpred', '-');
     }
@@ -1606,12 +1648,10 @@ window.M4_PheTab = {
     let realBW = parseFloat(document.getElementById('m4-bw')?.value) || 0;
     let ht = parseFloat(document.getElementById('m4-ht')?.value) || 0;
 
-    // Reset Highlights สำหรับ Scenario 5
     ['m4-s5-col-m-real', 'm4-s5-col-m-ibw', 'm4-s5-col-f-real', 'm4-s5-col-f-ibw'].forEach(id => {
       document.getElementById(id)?.classList.remove('highlight-lower');
     });
 
-    // 1. Vmax Calculation
     let vmax = 0;
     if (dose > 0 && c1 > 0) {
       vmax = ((1 * 1 * dose) * (4 + c1)) / c1;
@@ -1620,7 +1660,6 @@ window.M4_PheTab = {
       this.setText('m4-s5-vmax', '-');
     }
 
-    // 2. IBW (ชาย / หญิง)
     let ibwMale = 0;
     let ibwFemale = 0;
     if (ht > 0) {
@@ -1630,22 +1669,20 @@ window.M4_PheTab = {
       if (ibwFemale < 0) ibwFemale = 0;
     }
 
-    this.setText('m4-s5-val-m-real-bw', realBW > 0 ? `${realBW} kg` : '-');
-    this.setText('m4-s5-val-m-ibw-bw', ibwMale > 0 ? `${ibwMale.toFixed(2)} kg` : '-');
-    this.setText('m4-s5-val-f-real-bw', realBW > 0 ? `${realBW} kg` : '-');
-    this.setText('m4-s5-val-f-ibw-bw', ibwFemale > 0 ? `${ibwFemale.toFixed(2)} kg` : '-');
+    this.setText('m4-s5-val-m-real-bw', realBW > 0 ? `${this.trimDecimal(realBW)} kg` : '-');
+    this.setText('m4-s5-val-m-ibw-bw', ibwMale > 0 ? `${this.trimDecimal(ibwMale, 2)} kg` : '-');
+    this.setText('m4-s5-val-f-real-bw', realBW > 0 ? `${this.trimDecimal(realBW)} kg` : '-');
+    this.setText('m4-s5-val-f-ibw-bw', ibwFemale > 0 ? `${this.trimDecimal(ibwFemale, 2)} kg` : '-');
 
-    // 3. Vd Calculations
     let vdReal = realBW > 0 ? 0.65 * realBW : 0;
     let vdIbwM = (ibwMale > 0 && realBW > 0) ? 0.65 * (ibwMale + 1.33 * (realBW - ibwMale)) : 0;
     let vdIbwF = (ibwFemale > 0 && realBW > 0) ? 0.65 * (ibwFemale + 1.33 * (realBW - ibwFemale)) : 0;
 
-    this.setText('m4-s5-vd-m-real', vdReal > 0 ? vdReal.toFixed(3) : '-');
-    this.setText('m4-s5-vd-m-ibw', vdIbwM > 0 ? vdIbwM.toFixed(3) : '-');
-    this.setText('m4-s5-vd-f-real', vdReal > 0 ? vdReal.toFixed(3) : '-');
-    this.setText('m4-s5-vd-f-ibw', vdIbwF > 0 ? vdIbwF.toFixed(3) : '-');
+    this.setText('m4-s5-vd-m-real', vdReal > 0 ? this.trimDecimal(vdReal, 3) : '-');
+    this.setText('m4-s5-vd-m-ibw', vdIbwM > 0 ? this.trimDecimal(vdIbwM, 3) : '-');
+    this.setText('m4-s5-vd-f-real', vdReal > 0 ? this.trimDecimal(vdReal, 3) : '-');
+    this.setText('m4-s5-vd-f-ibw', vdIbwF > 0 ? this.trimDecimal(vdIbwF, 3) : '-');
 
-    // 4. จำนวนวันที่ต้องหยุดยา (รองรับ C2 >= C1)
     let holdReal = 0;
     let holdIbwM = 0;
     let holdIbwF = 0;
@@ -1667,10 +1704,10 @@ window.M4_PheTab = {
         holdIbwM = vdIbwM > 0 ? numFactor / (vmax / vdIbwM) : 0;
         holdIbwF = vdIbwF > 0 ? numFactor / (vmax / vdIbwF) : 0;
 
-        this.setText('m4-s5-offday-m-real', holdReal > 0 ? holdReal.toFixed(3) : '-');
-        this.setText('m4-s5-offday-m-ibw', holdIbwM > 0 ? holdIbwM.toFixed(3) : '-');
-        this.setText('m4-s5-offday-f-real', holdReal > 0 ? holdReal.toFixed(3) : '-');
-        this.setText('m4-s5-offday-f-ibw', holdIbwF > 0 ? holdIbwF.toFixed(3) : '-');
+        this.setText('m4-s5-offday-m-real', holdReal > 0 ? this.trimDecimal(holdReal, 3) : '-');
+        this.setText('m4-s5-offday-m-ibw', holdIbwM > 0 ? this.trimDecimal(holdIbwM, 3) : '-');
+        this.setText('m4-s5-offday-f-real', holdReal > 0 ? this.trimDecimal(holdReal, 3) : '-');
+        this.setText('m4-s5-offday-f-ibw', holdIbwF > 0 ? this.trimDecimal(holdIbwF, 3) : '-');
       }
     } else {
       this.setText('m4-s5-offday-m-real', '-');
@@ -1679,7 +1716,6 @@ window.M4_PheTab = {
       this.setText('m4-s5-offday-f-ibw', '-');
     }
 
-    // 5. Dose ที่ควรได้รับหลัง hold ยา
     let targetDaysValue = 0;
     if (realBW > 0) {
       if (realBW < 60) {
@@ -1708,16 +1744,13 @@ window.M4_PheTab = {
       this.setText('m4-s5-rec-dose', '- mg');
     }
 
-    // 6. Highlight Logic
     if (realBW > 0 && ht > 0) {
-      // เพศชาย
       if (realBW < ibwMale) {
         document.getElementById('m4-s5-col-m-real')?.classList.add('highlight-lower');
       } else if (ibwMale < realBW) {
         document.getElementById('m4-s5-col-m-ibw')?.classList.add('highlight-lower');
       }
 
-      // เพศหญิง
       if (realBW < ibwFemale) {
         document.getElementById('m4-s5-col-f-real')?.classList.add('highlight-lower');
       } else if (ibwFemale < realBW) {
@@ -1752,7 +1785,7 @@ window.M4_PheTab = {
         let denom = vmax - (1 * 1 * dose);
         let cpred = (4 * 1 * 1 * dose) / denom;
         if (elCpred) {
-          elCpred.innerText = cpred.toFixed(3);
+          elCpred.innerText = this.trimDecimal(cpred, 3);
           elCpred.style.color = '#2563eb';
         }
       }
@@ -1762,6 +1795,13 @@ window.M4_PheTab = {
         elCpred.style.color = '#2563eb';
       }
     }
+  },
+
+  trimDecimal: function(num, maxDecimals = 3) {
+    if (isNaN(num) || num === null || num === undefined) return '-';
+    let factor = Math.pow(10, maxDecimals);
+    let rounded = Math.round(num * factor) / factor;
+    return rounded.toString();
   },
 
   setText: function(id, text) {
@@ -1794,8 +1834,7 @@ window.M4_PheTab = {
       if (isNaN(val)) {
         el.value = '';
       } else {
-        let factor = Math.pow(10, maxDecimals);
-        el.value = Math.round(val * factor) / factor;
+        el.value = this.trimDecimal(val, maxDecimals);
       }
       if (callback) callback();
       else this.calculateScenario1();
@@ -1811,7 +1850,7 @@ window.M4_PheTab = {
       if (isNaN(val) || val === 0) {
         el.value = '';
       } else {
-        el.value = val.toFixed(maxDecimals);
+        el.value = this.trimDecimal(val, maxDecimals);
       }
       if (callback) callback();
     });
@@ -1840,8 +1879,7 @@ window.M4_PheTab = {
     if (nextVal < minVal) nextVal = minVal;
     if (nextVal > maxVal) nextVal = maxVal;
 
-    let factor = Math.pow(10, maxDecimals);
-    el.value = Math.round(nextVal * factor) / factor;
+    el.value = this.trimDecimal(nextVal, maxDecimals);
     if (callback) callback();
     else this.calculateScenario1();
   },
@@ -1854,7 +1892,7 @@ window.M4_PheTab = {
     if (nextVal < minVal) nextVal = minVal;
     if (nextVal > maxVal) nextVal = maxVal;
 
-    el.value = nextVal.toFixed(maxDecimals);
+    el.value = this.trimDecimal(nextVal, maxDecimals);
     if (callback) callback();
   },
 
@@ -1874,6 +1912,7 @@ window.M4_PheTab = {
     const items = document.querySelectorAll('#m4-accordion-container .accordion-item');
     items.forEach(item => {
       if (show) {
+        item.classList.0add('active'); // Wait, use classList.add
         item.classList.add('active');
       } else {
         item.classList.remove('active');
