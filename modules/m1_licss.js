@@ -8,6 +8,10 @@ window.M1_LiCss = {
           margin: 0 auto;
           font-family: system-ui, -apple-system, sans-serif;
           color: #0f172a;
+          box-sizing: border-box;
+        }
+        .m1-wrapper * {
+          box-sizing: border-box;
         }
 
         /* Header & Title Adjustments */
@@ -101,11 +105,12 @@ window.M1_LiCss = {
           color: #991b1b;
         }
 
-        /* Form Group Inline */
+        /* Form Group Inline (PC Base) */
         .field-group-inline {
           display: flex;
           align-items: center;
           gap: 8px;
+          width: 100%;
         }
         .field-group-inline label {
           width: 120px;
@@ -121,6 +126,7 @@ window.M1_LiCss = {
           align-items: center;
           gap: 8px;
           flex: 1;
+          min-width: 0; /* ป้องกันการดันจน overflow */
         }
 
         .stepper-box {
@@ -134,6 +140,7 @@ window.M1_LiCss = {
           height: 44px;
           box-sizing: border-box;
           transition: all 0.2s ease;
+          min-width: 0;
         }
         .stepper-box:focus-within {
           border-color: #2563eb;
@@ -172,6 +179,7 @@ window.M1_LiCss = {
 
         .stepper-box input {
           width: 100%;
+          min-width: 0; /* ยืดหดได้สมบูรณ์ในจอเล็ก */
           border: none;
           background: transparent;
           text-align: center;
@@ -179,6 +187,7 @@ window.M1_LiCss = {
           font-size: 1.2rem;
           color: #0f172a;
           outline: none;
+          padding: 0 2px;
         }
         .stepper-box input::-webkit-outer-spin-button,
         .stepper-box input::-webkit-inner-spin-button {
@@ -194,6 +203,36 @@ window.M1_LiCss = {
           color: #475569;
           min-width: 46px;
           text-align: left;
+          flex-shrink: 0;
+        }
+
+        /* 📱 RESPONSIVE EXTRA FIXES FOR MOBILE ONLY (<= 540px) */
+        @media (max-width: 540px) {
+          .m1-wrapper {
+            padding: 8px;
+          }
+          .m1-card {
+            padding: 12px;
+          }
+          .field-group-inline label {
+            width: 100px; /* ลดความกว้าง label เล็กน้อยให้ Stepper ขยายได้เต็มที่ */
+            font-size: 0.86rem;
+          }
+          .unit-text {
+            min-width: 38px;
+            font-size: 0.85rem;
+          }
+          .stepper-box input {
+            font-size: 1.05rem;
+          }
+          .btn-step {
+            width: 30px;
+            height: 30px;
+            font-size: 1.1rem;
+          }
+          .stepper-box {
+            height: 38px;
+          }
         }
 
         /* ฝั่งขวา Stack */
