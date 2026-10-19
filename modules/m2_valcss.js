@@ -8,13 +8,29 @@ window.M2_ValCss = {
           margin: 0 auto;
           font-family: system-ui, -apple-system, sans-serif;
           color: #0f172a;
+          box-sizing: border-box;
         }
-        .m2-header-title {
-          font-size: 1.15rem;
-          font-weight: 700;
+        .m2-wrapper * {
+          box-sizing: border-box;
+        }
+
+        /* Header & Title Adjustments */
+        .m2-header-block {
           margin-bottom: 12px;
-          padding-bottom: 6px;
+          padding-bottom: 8px;
           border-bottom: 1px solid #cbd5e1;
+        }
+        .m2-main-title {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: #0f172a;
+          line-height: 1.2;
+        }
+        .m2-sub-title {
+          font-size: 0.88rem;
+          color: #64748b;
+          font-weight: 500;
+          margin-top: 2px;
         }
 
         /* Grid แบ่ง ซ้าย-ขวา */
@@ -87,6 +103,7 @@ window.M2_ValCss = {
           display: flex;
           align-items: center;
           gap: 8px;
+          width: 100%;
         }
         .field-group-inline label {
           width: 120px;
@@ -102,6 +119,7 @@ window.M2_ValCss = {
           align-items: center;
           gap: 8px;
           flex: 1;
+          min-width: 0;
         }
 
         /* Stepper Box สไตล์ Phenytoin Capsule */
@@ -116,6 +134,7 @@ window.M2_ValCss = {
           height: 44px;
           box-sizing: border-box;
           transition: all 0.2s ease;
+          min-width: 0;
         }
         .stepper-box:focus-within {
           border-color: #2563eb;
@@ -155,6 +174,7 @@ window.M2_ValCss = {
 
         .stepper-box input {
           width: 100%;
+          min-width: 0;
           border: none;
           background: transparent;
           text-align: center;
@@ -162,6 +182,7 @@ window.M2_ValCss = {
           font-size: 1.2rem;
           color: #0f172a;
           outline: none;
+          padding: 0 2px;
         }
         .stepper-box input::-webkit-outer-spin-button,
         .stepper-box input::-webkit-inner-spin-button {
@@ -177,6 +198,36 @@ window.M2_ValCss = {
           color: #475569;
           min-width: 65px;
           text-align: left;
+          flex-shrink: 0;
+        }
+
+        /* 📱 RESPONSIVE EXTRA FIXES FOR MOBILE ONLY (<= 540px) */
+        @media (max-width: 540px) {
+          .m2-wrapper {
+            padding: 8px;
+          }
+          .m2-card {
+            padding: 12px;
+          }
+          .field-group-inline label {
+            width: 100px;
+            font-size: 0.86rem;
+          }
+          .unit-text {
+            min-width: 50px;
+            font-size: 0.85rem;
+          }
+          .stepper-box input {
+            font-size: 1.05rem;
+          }
+          .btn-step {
+            width: 30px;
+            height: 30px;
+            font-size: 1.1rem;
+          }
+          .stepper-box {
+            height: 38px;
+          }
         }
 
         /* ส่วนแสดงผลทำนายระดับยา */
@@ -275,7 +326,11 @@ window.M2_ValCss = {
       </style>
 
       <div class="m2-wrapper">
-        <div class="m2-header-title">M2: ValCss - ช่วยแนะนำการปรับขนาดยา Valproate</div>
+        <!-- Header Zone -->
+        <div class="m2-header-block">
+          <div class="m2-main-title">Valproate</div>
+          <div class="m2-sub-title">ช่วยแนะนำการปรับขนาดยา Valproate</div>
+        </div>
 
         <div class="m2-main-layout">
           
@@ -352,7 +407,7 @@ window.M2_ValCss = {
           <div class="m2-card">
             <div>
               <div class="card-head-title" style="border-bottom-color: #10b981;">
-                <span>Recommended dose <br><small style="font-size:0.85rem; font-weight:normal; color:#475569;">(Steady State อย่างน้อย 3 วัน)</small></span>
+                <span>Recommended dose <br><span style="font-size:0.85rem; font-weight:normal; color:#475569;">(Steady State อย่างน้อย 3 วัน)</span></span>
                 <button type="button" id="m2-btn-clear-right" class="btn-clear-mini">Clear</button>
               </div>
 
@@ -380,7 +435,7 @@ window.M2_ValCss = {
                 </div>
 
                 <div class="rec-out-item">
-                  <span class="rec-out-label">Max dose <small>(Acute Mania)</small></span>
+                  <span class="rec-out-label">Max dose <span style="font-size:0.9rem; font-weight:normal; color:#64748b; display:block;">(Acute Mania)</span></span>
                   <div class="rec-out-val-container">
                     <span class="rec-out-num" id="m2-rec-max-acute">-</span>
                     <span class="rec-out-unit">mg</span>
@@ -388,7 +443,7 @@ window.M2_ValCss = {
                 </div>
 
                 <div class="rec-out-item">
-                  <span class="rec-out-label">Max dose <small>(Maintenance phase)</small></span>
+                  <span class="rec-out-label">Max dose <span style="font-size:0.9rem; font-weight:normal; color:#64748b; display:block;">(Maintenance phase)</span></span>
                   <div class="rec-out-val-container">
                     <span class="rec-out-num" id="m2-rec-max-maint">-</span>
                     <span class="rec-out-unit">mg</span>

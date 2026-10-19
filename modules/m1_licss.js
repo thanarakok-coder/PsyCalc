@@ -8,13 +8,35 @@ window.M1_LiCss = {
           margin: 0 auto;
           font-family: system-ui, -apple-system, sans-serif;
           color: #0f172a;
+          box-sizing: border-box;
         }
-        .m1-header-title {
-          font-size: 1.15rem;
-          font-weight: 700;
+        .m1-wrapper * {
+          box-sizing: border-box;
+        }
+
+        /* Header & Title Adjustments */
+        .m1-header-block {
           margin-bottom: 12px;
-          padding-bottom: 6px;
+          padding-bottom: 8px;
           border-bottom: 1px solid #cbd5e1;
+        }
+        .m1-main-title {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: #0f172a;
+          line-height: 1.2;
+        }
+        .m1-sub-title {
+          font-size: 0.88rem;
+          color: #64748b;
+          font-weight: 500;
+          margin-top: 2px;
+        }
+        .m1-sub-title2 {
+          font-size: 0.88rem;
+          color: #15803d;
+          font-weight: 700;
+          margin-top: 2px;
         }
 
         /* Grid หลัก */
@@ -41,7 +63,6 @@ window.M1_LiCss = {
           flex-direction: column;
         }
 
-        /* การ์ดฝั่งซ้าย: กระจายช่องไฟ (Spacing) ให้เท่ากันสม่ำเสมอ */
         .input-card-highlight {
           background: #f8fafc;
           border: 1.5px solid #93c5fd;
@@ -84,11 +105,12 @@ window.M1_LiCss = {
           color: #991b1b;
         }
 
-        /* Form Group Inline */
+        /* Form Group Inline (PC Base) */
         .field-group-inline {
           display: flex;
           align-items: center;
           gap: 8px;
+          width: 100%;
         }
         .field-group-inline label {
           width: 120px;
@@ -104,9 +126,9 @@ window.M1_LiCss = {
           align-items: center;
           gap: 8px;
           flex: 1;
+          min-width: 0; /* ป้องกันการดันจน overflow */
         }
 
-        /* Stepper Box สไตล์ Phenytoin Capsule */
         .stepper-box {
           display: flex;
           align-items: center;
@@ -118,13 +140,13 @@ window.M1_LiCss = {
           height: 44px;
           box-sizing: border-box;
           transition: all 0.2s ease;
+          min-width: 0;
         }
         .stepper-box:focus-within {
           border-color: #2563eb;
           box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
-        /* ปุ่มกดวงกลมสีขาวขอบฟ้าแบบ Phenytoin Capsule */
         .btn-step {
           width: 34px;
           height: 34px;
@@ -157,6 +179,7 @@ window.M1_LiCss = {
 
         .stepper-box input {
           width: 100%;
+          min-width: 0; /* ยืดหดได้สมบูรณ์ในจอเล็ก */
           border: none;
           background: transparent;
           text-align: center;
@@ -164,6 +187,7 @@ window.M1_LiCss = {
           font-size: 1.2rem;
           color: #0f172a;
           outline: none;
+          padding: 0 2px;
         }
         .stepper-box input::-webkit-outer-spin-button,
         .stepper-box input::-webkit-inner-spin-button {
@@ -179,6 +203,36 @@ window.M1_LiCss = {
           color: #475569;
           min-width: 46px;
           text-align: left;
+          flex-shrink: 0;
+        }
+
+        /* 📱 RESPONSIVE EXTRA FIXES FOR MOBILE ONLY (<= 540px) */
+        @media (max-width: 540px) {
+          .m1-wrapper {
+            padding: 8px;
+          }
+          .m1-card {
+            padding: 12px;
+          }
+          .field-group-inline label {
+            width: 100px; /* ลดความกว้าง label เล็กน้อยให้ Stepper ขยายได้เต็มที่ */
+            font-size: 0.86rem;
+          }
+          .unit-text {
+            min-width: 38px;
+            font-size: 0.85rem;
+          }
+          .stepper-box input {
+            font-size: 1.05rem;
+          }
+          .btn-step {
+            width: 30px;
+            height: 30px;
+            font-size: 1.1rem;
+          }
+          .stepper-box {
+            height: 38px;
+          }
         }
 
         /* ฝั่งขวา Stack */
@@ -246,7 +300,7 @@ window.M1_LiCss = {
         /* Recommended Dose Split Panel */
         .rec-split-grid {
           display: grid;
-          grid-template-columns: 1.1fr 0.9fr;
+          grid-template-columns: 1fr 1fr;
           gap: 16px;
           align-items: stretch;
         }
@@ -263,9 +317,9 @@ window.M1_LiCss = {
         .rec-out-list {
           display: flex;
           flex-direction: column;
-          justify-content: space-around;
+          gap: 8px;
           background: #f8fafc;
-          padding: 10px 14px;
+          padding: 12px 14px;
           border-radius: 8px;
           border: 1px solid #cbd5e1;
           height: 100%;
@@ -275,23 +329,36 @@ window.M1_LiCss = {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 6px 0;
+          padding: 4px 0;
           border-bottom: 1px dashed #e2e8f0;
         }
         .rec-out-item:last-child {
           border-bottom: none;
+        }
+
+        /* เส้นประคั่นระหว่าง Zone Acute phase กับ Maintenance phase */
+        .rec-phase-divider {
+          border-top: 1px dashed #cbd5e1;
+          margin: 4px 0;
+        }
+
+        .rec-out-item.no-border {
+          border-bottom: none;
+          padding-top: 0px;
+          padding-bottom: 2px;
         }
         
         .rec-out-label {
           color: #334155;
           font-weight: 600;
           font-size: 0.88rem;
-          line-height: 1.2;
+          line-height: 1.25;
         }
         .rec-out-label small {
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           color: #64748b;
           font-weight: 500;
+          display: block;
         }
 
         .rec-out-val-container {
@@ -300,19 +367,24 @@ window.M1_LiCss = {
         }
         .rec-out-num {
           font-weight: 800;
-          font-size: 1.2rem;
+          font-size: 1.15rem;
           color: #0f172a;
         }
         .rec-out-unit {
           font-weight: 500;
-          font-size: 0.82rem;
+          font-size: 0.8rem;
           color: #64748b;
           margin-left: 2px;
         }
       </style>
 
       <div class="m1-wrapper">
-        <div class="m1-header-title">M1: LiCss - ช่วยแนะนำการปรับขนาดยา Lithium</div>
+        <!-- Header Zone -->
+        <div class="m1-header-block">
+          <div class="m1-main-title">Lithium</div>
+          <div class="m1-sub-title">ช่วยแนะนำการปรับขนาดยา Lithium</div>
+          <div class="m1-sub-title2">*คำตอบที่แนะนำ ในกรอบสีเขียว</div>
+        </div>
 
         <div class="m1-main-layout">
           
@@ -479,19 +551,48 @@ window.M1_LiCss = {
                     </div>
                   </div>
 
-                  <div class="rec-out-item">
-                    <span class="rec-out-label">Max dose<br><small>(Acute phase)</small></span>
+                  <!-- Acute Phase Group -->
+                  <div class="rec-out-item" style="border-bottom: none; padding-bottom: 2px;">
+                    <span class="rec-out-label">
+                      Max dose
+                      <small>(Acute phase)</small>
+                      <small>(ระดับยา 0.6-1.2 mmol/L)</small>
+                    </span>
                     <div class="rec-out-val-container">
                       <span class="rec-out-num" id="rec-max-acute">-</span>
                       <span class="rec-out-unit">เม็ด/วัน</span>
                     </div>
                   </div>
 
-                  <div class="rec-out-item">
-                    <span class="rec-out-label">Max dose<br><small>(Maintenance phase)</small></span>
+                  <div class="rec-out-item" style="border-bottom: none; padding-top: 0px; padding-bottom: 6px;">
+                    <span class="rec-out-label" style="font-size: 0.82rem; color: #0f172a;">Cทำนาย จาก Max Dose</span>
+                    <div class="rec-out-val-container">
+                      <span class="rec-out-num" id="rec-cpred-acute" style="font-size: 1.05rem; color: #0f172a;">-</span>
+                      <span class="rec-out-unit" style="color: #0f172a;">mEq/L</span>
+                    </div>
+                  </div>
+
+                  <!-- เส้นประคั่นระหว่าง Zone Acute phase กับ Maintenance phase -->
+                  <div class="rec-phase-divider"></div>
+
+                  <!-- Maintenance Phase Group -->
+                  <div class="rec-out-item" style="border-bottom: none; padding-top: 4px; padding-bottom: 2px;">
+                    <span class="rec-out-label">
+                      Max dose
+                      <small>(Maintenance phase)</small>
+                      <small>(ระดับยา 0.6-1.0 mmol/L)</small>
+                    </span>
                     <div class="rec-out-val-container">
                       <span class="rec-out-num" id="rec-max-maint">-</span>
                       <span class="rec-out-unit">เม็ด/วัน</span>
+                    </div>
+                  </div>
+
+                  <div class="rec-out-item no-border" style="padding-top: 0px; padding-bottom: 2px;">
+                    <span class="rec-out-label" style="font-size: 0.82rem; color: #0f172a;">Cทำนาย จาก Max Dose</span>
+                    <div class="rec-out-val-container">
+                      <span class="rec-out-num" id="rec-cpred-maint" style="font-size: 1.05rem; color: #0f172a;">-</span>
+                      <span class="rec-out-unit" style="color: #0f172a;">mEq/L</span>
                     </div>
                   </div>
                 </div>
@@ -621,18 +722,26 @@ window.M1_LiCss = {
     this.highlightLower('f-ibw-box', 'f-realbw-box', 'f-css-ibw-box', 'f-css-realbw-box', ibwF, bw);
 
     // Recommended Dose Calculations
-    if (dose > 0 && targetCss > 0) {
-      let minDose = (0.6 * dose) / targetCss;
-      let maxAcute = (1.2 * dose) / targetCss;
-      let maxMaint = (1.0 * dose) / targetCss;
+    const recInputDose = parseFloat(document.getElementById('m1-rec-dose')?.value) || 0;
+    if (recInputDose > 0 && targetCss > 0) {
+      let minDose = (0.6 * recInputDose) / targetCss;
+      let maxAcute = (1.2 * recInputDose) / targetCss;
+      let maxMaint = (1.0 * recInputDose) / targetCss;
+
+      let cpredAcute = (maxAcute * targetCss) / recInputDose;
+      let cpredMaint = (maxMaint * targetCss) / recInputDose;
 
       this.setText('rec-min', minDose.toFixed(3));
       this.setText('rec-max-acute', maxAcute.toFixed(3));
+      this.setText('rec-cpred-acute', cpredAcute.toFixed(3));
       this.setText('rec-max-maint', maxMaint.toFixed(3));
+      this.setText('rec-cpred-maint', cpredMaint.toFixed(3));
     } else {
       this.setText('rec-min', '-');
       this.setText('rec-max-acute', '-');
+      this.setText('rec-cpred-acute', '-');
       this.setText('rec-max-maint', '-');
+      this.setText('rec-cpred-maint', '-');
     }
   },
 
