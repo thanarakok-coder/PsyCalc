@@ -8,6 +8,10 @@ window.M2_ValCss = {
           margin: 0 auto;
           font-family: system-ui, -apple-system, sans-serif;
           color: #0f172a;
+          box-sizing: border-box;
+        }
+        .m2-wrapper * {
+          box-sizing: border-box;
         }
 
         /* Header & Title Adjustments */
@@ -99,6 +103,7 @@ window.M2_ValCss = {
           display: flex;
           align-items: center;
           gap: 8px;
+          width: 100%;
         }
         .field-group-inline label {
           width: 120px;
@@ -114,6 +119,7 @@ window.M2_ValCss = {
           align-items: center;
           gap: 8px;
           flex: 1;
+          min-width: 0;
         }
 
         /* Stepper Box สไตล์ Phenytoin Capsule */
@@ -128,6 +134,7 @@ window.M2_ValCss = {
           height: 44px;
           box-sizing: border-box;
           transition: all 0.2s ease;
+          min-width: 0;
         }
         .stepper-box:focus-within {
           border-color: #2563eb;
@@ -167,6 +174,7 @@ window.M2_ValCss = {
 
         .stepper-box input {
           width: 100%;
+          min-width: 0;
           border: none;
           background: transparent;
           text-align: center;
@@ -174,6 +182,7 @@ window.M2_ValCss = {
           font-size: 1.2rem;
           color: #0f172a;
           outline: none;
+          padding: 0 2px;
         }
         .stepper-box input::-webkit-outer-spin-button,
         .stepper-box input::-webkit-inner-spin-button {
@@ -189,6 +198,36 @@ window.M2_ValCss = {
           color: #475569;
           min-width: 65px;
           text-align: left;
+          flex-shrink: 0;
+        }
+
+        /* 📱 RESPONSIVE EXTRA FIXES FOR MOBILE ONLY (<= 540px) */
+        @media (max-width: 540px) {
+          .m2-wrapper {
+            padding: 8px;
+          }
+          .m2-card {
+            padding: 12px;
+          }
+          .field-group-inline label {
+            width: 100px;
+            font-size: 0.86rem;
+          }
+          .unit-text {
+            min-width: 50px;
+            font-size: 0.85rem;
+          }
+          .stepper-box input {
+            font-size: 1.05rem;
+          }
+          .btn-step {
+            width: 30px;
+            height: 30px;
+            font-size: 1.1rem;
+          }
+          .stepper-box {
+            height: 38px;
+          }
         }
 
         /* ส่วนแสดงผลทำนายระดับยา */
