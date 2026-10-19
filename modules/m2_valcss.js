@@ -368,9 +368,147 @@ window.M2_ValCss = {
           <div class="m2-card">
             <div>
               <div class="card-head-title" style="border-bottom-color: #10b981;">
-                <span>Recommended dose <br><small style="font-size:0.85rem; font-weight:normal; color:#475569;">(Steady State อย่างน้อย 3 วัน)</small></span>
+                <span>Recommended dose <br><span style="font-size:0.85rem; font-weight:normal; color:#475569;">(Steady State อย่างน้อย 3 วัน)</span></span>
                 <button type="button" id="m2-btn-clear-right" class="btn-clear-mini">Clear</button>
               </div>
 
               <!-- ระดับยาที่ SS -->
-              <div class
+              <div class="field-group-inline" style="margin-top: 10px;">
+                <label for="m2-ss-level" style="width: 110px;">ระดับยาที่ SS</label>
+                <div class="stepper-container-inline">
+                  <div class="stepper-box">
+                    <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-ss-level', -0.1, 0, 1000, 3)">-</button>
+                    <input type="number" id="m2-ss-level" step="0.001" placeholder="0" oninput="window.M2_ValCss.calculate()">
+                    <button type="button" class="btn-step" onclick="window.M2_ValCss.stepInput('m2-ss-level', 0.1, 0, 1000, 3)">+</button>
+                  </div>
+                  <span class="unit-text">mEq/L</span>
+                </div>
+              </div>
+
+              <!-- Output Box ผลลัพธ์ -->
+              <div class="rec-out-list">
+                <div class="rec-out-item">
+                  <span class="rec-out-label">Minimum dose</span>
+                  <div class="rec-out-val-container">
+                    <span class="rec-out-num" id="m2-rec-min">-</span>
+                    <span class="rec-out-unit">mg</span>
+                  </div>
+                </div>
+
+                <div class="rec-out-item">
+                  <span class="rec-out-label">Max dose <span style="font-size:0.9rem; font-weight:normal; color:#64748b; display:block;">(Acute Mania)</span></span>
+                  <div class="rec-out-val-container">
+                    <span class="rec-out-num" id="m2-rec-max-acute">-</span>
+                    <span class="rec-out-unit">mg</span>
+                  </div>
+                </div>
+
+                <div class="rec-out-item">
+                  <span class="rec-out-label">Max dose <span style="font-size:0.9rem; font-weight:normal; color:#64748b; display:block;">(Maintenance phase)</span></span>
+                  <div class="rec-out-val-container">
+                    <span class="rec-out-num" id="m2-rec-max-maint">-</span>
+                    <span class="rec-out-unit">mg</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    `;
+
+    // Clear ฝั่งซ้าย
+    document.getElementById('m2-btn-clear-left')?.addEventListener('click', function() {
+      ['m2-bw', 'm2-ht', 'm2-dose'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      window.M2_ValCss.calculate();
+    });
+
+    // Clear ฝั่งขวา
+    document.getElementById('m2-btn-clear-right')?.addEventListener('click', function() {
+      const el = document.getElementById('m2-ss-level');
+      if (el) el.value = '';
+      window.M2_ValCss.calculate();
+    });
+  },
+
+  formatNumber: function(num, decimals = 2) {
+    if (isNaN(num) || num === null || num === undefined) return '-';
+    return Number(num).toLocaleString('en-US', {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals
+    });
+  },
+
+  stepInput: function(id, delta, minVal, maxVal, decimals) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    let curr = parseFloat(el.value) || 0;
+    let nextVal = curr + delta;
+    if (nextVal < minVal) nextVal = minVal;
+    if (nextVal > maxVal) nextVal = maxVal;
+    
+    if (decimals === 0) {
+      el.value = Math.round(nextVal);
+    } else {
+      el.value = parseFloat(nextVal.toFixed(decimals));
+    }
+    this.calculate();
+  },
+
+  calculate: function() {
+    const bw = parseFloat(document.getElementById('m2-bw')?.value) || 0;
+    const ht = parseFloat(document.getElementById('m2-ht')?.value) || 0;
+    const dose = parseFloat(document.getElementById('m2-dose')?.value) || 0;
+    const ssLevel = parseFloat(document.getElementById('m2-ss-level')?.value) || 0;
+
+    // 1. ทำนายระดับยาผู้ใหญ่ = (1000 * dose) / (8 * 24 * bw)
+    if (bw > 0 && dose > 0) {
+      const predAdult = (1000 * dose) / (8 * 24 * bw);
+      this.setText('m2-pred-adult', this.formatNumber(predAdult, 2));
+    } else {
+      this.setText('m2-pred-adult', '-');
+    }
+
+    // 2. ทำนายระดับยาเด็ก = (1000 * dose) / (13 * 24 * bw)
+    if (bw > 0 && dose > 0) {
+      const predChild = (1000 * dose) / (13 * 24 * bw);
+      this.setText('m2-pred-child', this.formatNumber(predChild, 2));
+    } else {
+      this.setText('m2-pred-child', '-');
+    }
+
+    // 3. Minimum dose = (50 * dose) / ssLevel
+    if (ssLevel > 0 && dose > 0) {
+      const minDose = (50 * dose) / ssLevel;
+      this.setText('m2-rec-min', this.formatNumber(minDose, 2));
+    } else {
+      this.setText('m2-rec-min', '-');
+    }
+
+    // 4. Max dose (Acute Mania) = (125 * dose) / ssLevel
+    if (ssLevel > 0 && dose > 0) {
+      const maxAcute = (125 * dose) / ssLevel;
+      this.setText('m2-rec-max-acute', this.formatNumber(maxAcute, 2));
+    } else {
+      this.setText('m2-rec-max-acute', '-');
+    }
+
+    // 5. Max dose (Maintenance phase) = (100 * dose) / ssLevel
+    if (ssLevel > 0 && dose > 0) {
+      const maxMaint = (100 * dose) / ssLevel;
+      this.setText('m2-rec-max-maint', this.formatNumber(maxMaint, 2));
+    } else {
+      this.setText('m2-rec-max-maint', '-');
+    }
+  },
+
+  setText: function(id, txt) {
+    const el = document.getElementById(id);
+    if (el) el.innerText = txt;
+  }
+};
