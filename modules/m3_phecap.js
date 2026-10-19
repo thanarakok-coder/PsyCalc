@@ -112,6 +112,7 @@ window.M3_PheCap = {
           align-items: center;
           gap: 6px;
           width: 100%;
+          min-width: 0;
         }
 
         .stepper-box {
@@ -168,6 +169,7 @@ window.M3_PheCap = {
           font-size: 1.15rem;
           color: #0f172a;
           outline: none;
+          padding: 0 2px;
         }
         .stepper-box input::-webkit-outer-spin-button,
         .stepper-box input::-webkit-inner-spin-button {
@@ -179,6 +181,7 @@ window.M3_PheCap = {
           font-weight: 700;
           color: #475569;
           white-space: nowrap;
+          flex-shrink: 0;
         }
         .unit-spacer {
           width: 50px;
@@ -591,6 +594,24 @@ window.M3_PheCap = {
           line-height: 1.4;
           padding-top: 4px;
           border-top: 1px solid #e2e8f0;
+        }
+
+        /* 📱 RESPONSIVE FIXES FOR SCENARIOS 2, 3, 4 ON MOBILE (<= 640px) */
+        @media (max-width: 640px) {
+          .scen-field-row {
+            grid-template-columns: 100px 1fr; /* ลดความกว้าง label ฝั่งซ้ายจาก 120px เพื่อคืนพื้นที่ให้กล่อง Stepper */
+            gap: 6px;
+          }
+          .scen-label {
+            font-size: 0.85rem;
+          }
+          .unit-spacer {
+            width: 0px; /* ยุบ spacer ที่เคยเว้นว่างไว้บนมือถือ */
+            display: none;
+          }
+          .stepper-box input {
+            font-size: 1.05rem;
+          }
         }
 
         /* --- STYLES SCENARIO 5 UPDATED LAYOUT --- */
