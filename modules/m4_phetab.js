@@ -1912,7 +1912,6 @@ window.M4_PheTab = {
     const items = document.querySelectorAll('#m4-accordion-container .accordion-item');
     items.forEach(item => {
       if (show) {
-        item.classList.0add('active'); // Wait, use classList.add
         item.classList.add('active');
       } else {
         item.classList.remove('active');
