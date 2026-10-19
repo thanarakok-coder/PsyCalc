@@ -553,25 +553,23 @@ window.M3_PheCap = {
           color: #2563eb;
         }
 
-        /* Toggle Button for ESRD (Scenario 3) */
-        .esrd-toggle-btn {
-          width: 100%;
-          background: #f8fafc;
-          border: 1.5px solid #cbd5e1;
-          color: #475569;
-          padding: 8px 12px;
-          border-radius: 6px;
-          font-size: 0.88rem;
-          font-weight: 700;
+        /* Checkbox style for ESRD (Scenario 3) */
+        .esrd-checkbox-label {
+          display: flex;
+          align-items: center;
+          gap: 8px;
           cursor: pointer;
-          text-align: center;
-          transition: all 0.2s ease;
+          font-size: 0.9rem;
+          font-weight: 700;
+          color: #1e293b;
+          user-select: none;
+          padding: 4px 0;
         }
-        .esrd-toggle-btn.active {
-          background: #fef3c7;
-          border-color: #f59e0b;
-          color: #b45309;
-          box-shadow: 0 2px 4px rgba(245, 158, 11, 0.15);
+        .esrd-checkbox-label input[type="checkbox"] {
+          width: 18px;
+          height: 18px;
+          cursor: pointer;
+          accent-color: #f59e0b;
         }
 
         .scen3-notice-box {
@@ -1061,7 +1059,7 @@ window.M3_PheCap = {
               <div class="accordion-content">
                 
                 <div class="scen-two-col-layout">
-                  <!-- ฝั่งซ้าย: Inputs (2 ตัว + Toggle ปุ่ม ESRD) -->
+                  <!-- ฝั่งซ้าย: Inputs (2 ตัว + Checkbox ESRD) -->
                   <div class="scen-input-group">
                     
                     <!-- ระดับยาที่ SS -->
@@ -1090,9 +1088,12 @@ window.M3_PheCap = {
                       </div>
                     </div>
 
-                    <!-- ปุ่ม Toggle CrCl < 10 (ESRD) แทนช่องกรอกเดิม -->
-                    <div style="margin-top: 4px;">
-                      <button type="button" id="m3-s3-esrd-toggle" class="esrd-toggle-btn">CrCl &lt; 10 ml/min (ESRD)</button>
+                    <!-- Checkbox สำหรับ ESRD แทนปุ่ม Toggle เดิม -->
+                    <div style="margin-top: 6px;">
+                      <label class="esrd-checkbox-label">
+                        <input type="checkbox" id="m3-s3-esrd-checkbox">
+                        <span>CrCl &lt; 10 ml/min (ESRD)</span>
+                      </label>
                     </div>
 
                   </div>
@@ -1106,7 +1107,7 @@ window.M3_PheCap = {
                       <span class="scen-result-val" id="m3-s3-cpred">-</span>
                     </div>
 
-                    <!-- ข้อความเตือน (แสดงเฉพาะตอนเปิด Toggle ESRD) -->
+                    <!-- ข้อความเตือน (แสดงเฉพาะตอนติ๊ก Checkbox ESRD) -->
                     <div class="scen3-notice-box" id="m3-s3-notice">
                       ⚠ เคสนี้ ESRD (CrCl&lt;10) ปรับสูตรการคำนวณแล้ว
                     </div>
@@ -1391,9 +1392,9 @@ window.M3_PheCap = {
         const el = document.getElementById(id);
         if (el) el.value = '';
       });
-      const esrdToggle = document.getElementById('m3-s3-esrd-toggle');
-      if (esrdToggle) {
-        esrdToggle.classList.remove('active');
+      const esrdCheckbox = document.getElementById('m3-s3-esrd-checkbox');
+      if (esrdCheckbox) {
+        esrdCheckbox.checked = false;
       }
       this.calculateScenario3();
     });
@@ -1414,11 +1415,10 @@ window.M3_PheCap = {
       this.calculateScenario5();
     });
 
-    // ESRD Toggle Button Event for Scenario 3
-    const esrdToggleBtn = document.getElementById('m3-s3-esrd-toggle');
-    if (esrdToggleBtn) {
-      esrdToggleBtn.addEventListener('click', () => {
-        esrdToggleBtn.classList.toggle('active');
+    // ESRD Checkbox Change Event for Scenario 3
+    const esrdCheckbox = document.getElementById('m3-s3-esrd-checkbox');
+    if (esrdCheckbox) {
+      esrdCheckbox.addEventListener('change', () => {
         this.calculateScenario3();
       });
     }
@@ -1599,8 +1599,8 @@ window.M3_PheCap = {
   calculateScenario3: function() {
     let css = parseFloat(document.getElementById('m3-s3-css')?.value) || 0;
     let alb = parseFloat(document.getElementById('m3-s3-alb')?.value) || 0;
-    const esrdToggleBtn = document.getElementById('m3-s3-esrd-toggle');
-    let isEsrd = esrdToggleBtn ? esrdToggleBtn.classList.contains('active') : false;
+    const esrdCheckbox = document.getElementById('m3-s3-esrd-checkbox');
+    let isEsrd = esrdCheckbox ? esrdCheckbox.checked : false;
 
     const noticeBox = document.getElementById('m3-s3-notice');
     if (isEsrd) {
