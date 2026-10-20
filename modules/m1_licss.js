@@ -126,7 +126,7 @@ window.M1_LiCss = {
           align-items: center;
           gap: 8px;
           flex: 1;
-          min-width: 0; /* ป้องกันการดันจน overflow */
+          min-width: 0;
         }
 
         .stepper-box {
@@ -179,7 +179,7 @@ window.M1_LiCss = {
 
         .stepper-box input {
           width: 100%;
-          min-width: 0; /* ยืดหดได้สมบูรณ์ในจอเล็ก */
+          min-width: 0;
           border: none;
           background: transparent;
           text-align: center;
@@ -215,7 +215,7 @@ window.M1_LiCss = {
             padding: 12px;
           }
           .field-group-inline label {
-            width: 100px; /* ลดความกว้าง label เล็กน้อยให้ Stepper ขยายได้เต็มที่ */
+            width: 100px;
             font-size: 0.86rem;
           }
           .unit-text {
@@ -328,26 +328,16 @@ window.M1_LiCss = {
         .rec-out-item {
           display: flex;
           justify-content: space-between;
-          align-items: center;
+          align-items: flex-start;
           padding: 4px 0;
-          border-bottom: 1px dashed #e2e8f0;
-        }
-        .rec-out-item:last-child {
-          border-bottom: none;
         }
 
-        /* เส้นประคั่นระหว่าง Zone Acute phase กับ Maintenance phase */
+        /* เส้นประคั่นระหว่างทั้ง 3 จุด */
         .rec-phase-divider {
           border-top: 1px dashed #cbd5e1;
           margin: 4px 0;
         }
 
-        .rec-out-item.no-border {
-          border-bottom: none;
-          padding-top: 0px;
-          padding-bottom: 2px;
-        }
-        
         .rec-out-label {
           color: #334155;
           font-weight: 600;
@@ -375,6 +365,12 @@ window.M1_LiCss = {
           font-size: 0.8rem;
           color: #64748b;
           margin-left: 2px;
+        }
+        .rec-calc-sub {
+          font-size: 0.78rem;
+          color: #64748b;
+          font-weight: 500;
+          margin-top: 2px;
         }
       </style>
 
@@ -543,28 +539,38 @@ window.M1_LiCss = {
                 </div>
 
                 <div class="rec-out-list">
+                  <!-- 1. Minimum Dose Group -->
                   <div class="rec-out-item">
                     <span class="rec-out-label">Minimum dose</span>
                     <div class="rec-out-val-container">
-                      <span class="rec-out-num" id="rec-min">-</span>
-                      <span class="rec-out-unit">เม็ด/วัน</span>
+                      <div>
+                        <span class="rec-out-num" id="rec-min">-</span>
+                        <span class="rec-out-unit">เม็ด/วัน</span>
+                      </div>
+                      <div class="rec-calc-sub" id="rec-min-calc"></div>
                     </div>
                   </div>
 
-                  <!-- Acute Phase Group -->
-                  <div class="rec-out-item" style="border-bottom: none; padding-bottom: 2px;">
+                  <!-- เส้นประคั่นที่ 1 -->
+                  <div class="rec-phase-divider"></div>
+
+                  <!-- 2. Acute Phase Group -->
+                  <div class="rec-out-item" style="padding-bottom: 2px;">
                     <span class="rec-out-label">
                       Max dose
                       <small>(Acute phase)</small>
                       <small>(ระดับยา 0.6-1.2 mmol/L)</small>
                     </span>
                     <div class="rec-out-val-container">
-                      <span class="rec-out-num" id="rec-max-acute">-</span>
-                      <span class="rec-out-unit">เม็ด/วัน</span>
+                      <div>
+                        <span class="rec-out-num" id="rec-max-acute">-</span>
+                        <span class="rec-out-unit">เม็ด/วัน</span>
+                      </div>
+                      <div class="rec-calc-sub" id="rec-max-acute-calc"></div>
                     </div>
                   </div>
 
-                  <div class="rec-out-item" style="border-bottom: none; padding-top: 0px; padding-bottom: 6px;">
+                  <div class="rec-out-item" style="padding-top: 0px; padding-bottom: 4px;">
                     <span class="rec-out-label" style="font-size: 0.82rem; color: #0f172a;">Cทำนาย จาก Max Dose</span>
                     <div class="rec-out-val-container">
                       <span class="rec-out-num" id="rec-cpred-acute" style="font-size: 1.05rem; color: #0f172a;">-</span>
@@ -572,23 +578,26 @@ window.M1_LiCss = {
                     </div>
                   </div>
 
-                  <!-- เส้นประคั่นระหว่าง Zone Acute phase กับ Maintenance phase -->
+                  <!-- เส้นประคั่นที่ 2 -->
                   <div class="rec-phase-divider"></div>
 
-                  <!-- Maintenance Phase Group -->
-                  <div class="rec-out-item" style="border-bottom: none; padding-top: 4px; padding-bottom: 2px;">
+                  <!-- 3. Maintenance Phase Group -->
+                  <div class="rec-out-item" style="padding-top: 2px; padding-bottom: 2px;">
                     <span class="rec-out-label">
                       Max dose
                       <small>(Maintenance phase)</small>
                       <small>(ระดับยา 0.6-1.0 mmol/L)</small>
                     </span>
                     <div class="rec-out-val-container">
-                      <span class="rec-out-num" id="rec-max-maint">-</span>
-                      <span class="rec-out-unit">เม็ด/วัน</span>
+                      <div>
+                        <span class="rec-out-num" id="rec-max-maint">-</span>
+                        <span class="rec-out-unit">เม็ด/วัน</span>
+                      </div>
+                      <div class="rec-calc-sub" id="rec-max-maint-calc"></div>
                     </div>
                   </div>
 
-                  <div class="rec-out-item no-border" style="padding-top: 0px; padding-bottom: 2px;">
+                  <div class="rec-out-item" style="padding-top: 0px; padding-bottom: 2px;">
                     <span class="rec-out-label" style="font-size: 0.82rem; color: #0f172a;">Cทำนาย จาก Max Dose</span>
                     <div class="rec-out-val-container">
                       <span class="rec-out-num" id="rec-cpred-maint" style="font-size: 1.05rem; color: #0f172a;">-</span>
@@ -724,23 +733,40 @@ window.M1_LiCss = {
     // Recommended Dose Calculations
     const recInputDose = parseFloat(document.getElementById('m1-rec-dose')?.value) || 0;
     if (recInputDose > 0 && targetCss > 0) {
-      let minDose = (0.6 * recInputDose) / targetCss;
-      let maxAcute = (1.2 * recInputDose) / targetCss;
-      let maxMaint = (1.0 * recInputDose) / targetCss;
+      let minDoseExact = (0.6 * recInputDose) / targetCss;
+      let maxAcuteExact = (1.2 * recInputDose) / targetCss;
+      let maxMaintExact = (1.0 * recInputDose) / targetCss;
 
-      let cpredAcute = (maxAcute * targetCss) / recInputDose;
-      let cpredMaint = (maxMaint * targetCss) / recInputDose;
+      // 1. ปัดลงทั้งหมดทุกกรณี
+      let minDoseFloored = Math.floor(minDoseExact);
+      let maxAcuteFloored = Math.floor(maxAcuteExact);
+      let maxMaintFloored = Math.floor(maxMaintExact);
 
-      this.setText('rec-min', minDose.toFixed(3));
-      this.setText('rec-max-acute', maxAcute.toFixed(3));
+      // 2. ใช้ dose ที่ปัดลงคำนวณ Cทำนาย
+      let cpredAcute = (maxAcuteFloored * targetCss) / recInputDose;
+      let cpredMaint = (maxMaintFloored * targetCss) / recInputDose;
+
+      // แสดงผลตัวเลขปัดลง
+      this.setText('rec-min', minDoseFloored.toString());
+      this.setText('rec-min-calc', `คำนวณ ${minDoseExact.toFixed(3)}`);
+
+      this.setText('rec-max-acute', maxAcuteFloored.toString());
+      this.setText('rec-max-acute-calc', `คำนวณ ${maxAcuteExact.toFixed(3)}`);
+
       this.setText('rec-cpred-acute', cpredAcute.toFixed(3));
-      this.setText('rec-max-maint', maxMaint.toFixed(3));
+
+      this.setText('rec-max-maint', maxMaintFloored.toString());
+      this.setText('rec-max-maint-calc', `คำนวณ ${maxMaintExact.toFixed(3)}`);
+
       this.setText('rec-cpred-maint', cpredMaint.toFixed(3));
     } else {
       this.setText('rec-min', '-');
+      this.setText('rec-min-calc', '');
       this.setText('rec-max-acute', '-');
+      this.setText('rec-max-acute-calc', '');
       this.setText('rec-cpred-acute', '-');
       this.setText('rec-max-maint', '-');
+      this.setText('rec-max-maint-calc', '');
       this.setText('rec-cpred-maint', '-');
     }
   },
