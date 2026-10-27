@@ -599,14 +599,14 @@ window.M3_PheCap = {
         /* 📱 RESPONSIVE FIXES FOR SCENARIOS 2, 3, 4 ON MOBILE (<= 640px) */
         @media (max-width: 640px) {
           .scen-field-row {
-            grid-template-columns: 100px 1fr; /* ลดความกว้าง label ฝั่งซ้ายจาก 120px เพื่อคืนพื้นที่ให้กล่อง Stepper */
+            grid-template-columns: 100px 1fr;
             gap: 6px;
           }
           .scen-label {
             font-size: 0.85rem;
           }
           .unit-spacer {
-            width: 0px; /* ยุบ spacer ที่เคยเว้นว่างไว้บนมือถือ */
+            width: 0px;
             display: none;
           }
           .stepper-box input {
@@ -1750,9 +1750,9 @@ window.M3_PheCap = {
 
     if (vmax > 0 && c1 > 0 && c2 > 0) {
       if (roundedDays > 0) {
-        this.setText('m3-s5-hold-days-tag', `[${roundedDays}] วัน`);
+        this.setText('m3-s5-hold-days-tag', '');
       } else {
-        this.setText('m3-s5-hold-days-tag', `(ไม่ต้อง hold ยา)`);
+        this.setText('m3-s5-hold-days-tag', '(ไม่ต้อง hold ยา)');
       }
     } else {
       this.setText('m3-s5-hold-days-tag', '');
