@@ -1750,9 +1750,9 @@ window.M4_PheTab = {
 
     if (vmax > 0 && c1 > 0 && c2 > 0) {
       if (roundedDays > 0) {
-        this.setText('m4-s5-hold-days-tag', `[${roundedDays}] วัน`);
+        this.setText('m4-s5-hold-days-tag', '');
       } else {
-        this.setText('m4-s5-hold-days-tag', `(ไม่ต้อง hold ยา)`);
+        this.setText('m4-s5-hold-days-tag', '(ไม่ต้อง hold ยา)');
       }
     } else {
       this.setText('m4-s5-hold-days-tag', '');
